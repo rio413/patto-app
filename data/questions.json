@@ -1,0 +1,182 @@
+[
+    {
+      "id": "q001",
+      "difficultJapanese": "よろしくお願いします",
+      "trainer_prompt_1": "新しいチームでの挨拶だ。その便利な言葉で思考停止するな。この場で伝えたいお前の『本心』はなんだ？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "一緒に仕事ができて嬉しいです", "score": 10 },
+        "optionB": { "text": "手伝ってください", "score": 2 },
+        "optionC": { "text": "仲良くしてください", "score": 5 },
+        "optionD": { "text": "頑張ります", "score": 4 }
+      },
+      "trainer_prompt_2": "OK、そのポジティブな意気込みだ。じゃあ、それをプロフェッショナルな英語でどう伝える？",
+      "englishOptions": {
+        "optionA": { "text": "I'm looking forward to working with you.", "score": 10, "feedback": "完璧だ。やる気と協調性を示す、最もプロフェッショナルな一手。" },
+        "optionB": { "text": "Let's work hard together.", "score": 5, "feedback": "悪くない。熱意は伝わるが、少し学生っぽく聞こえることもある。" },
+        "optionC": { "text": "Please be nice to me.", "score": 0, "feedback": "最悪の直訳。対等な関係性を自ら放棄するな。" },
+        "optionD": { "text": "Thank you for accepting me.", "score": 2, "feedback": "少しズレている。感謝より、未来への期待を述べるのがセオリーだ。" }
+      }
+    },
+    {
+      "id": "q002",
+      "difficultJapanese": "いったん持ち帰ります",
+      "trainer_prompt_1": "会議で想定外の質問が来たな。「持ち帰る」という言葉で逃げるな。この言葉の最も『芯』となる意図はなんだ？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "今すぐには判断できません", "score": 10 },
+        "optionB": { "text": "上司に相談します", "score": 5 },
+        "optionC": { "text": "これは重要な問題です", "score": 2 },
+        "optionD": { "text": "時間をください", "score": 7 }
+      },
+      "trainer_prompt_2": "そうだ、正直に『即断できない』と伝えるのがビジネスの基本だ。じゃあ、それを相手に失礼なく、かつ有能に見せるには？",
+      "englishOptions": {
+        "optionA": { "text": "Let me get back to you on that.", "score": 10, "feedback": "完璧な回答だ。相手の意見を尊重しつつ、ボールを自分のコートに持ち帰るプロの技。" },
+        "optionB": { "text": "I need to think about it.", "score": 5, "feedback": "間違いではないが、少し準備不足に見えるリスクがある。" },
+        "optionC": { "text": "I'll take it back.", "score": 0, "feedback": "モノじゃないんだから『持ち帰る』な。典型的な直訳ミス。" },
+        "optionD": { "text": "I can't decide now.", "score": 3, "feedback": "正しいが、少しぶっきらぼうだ。『できない』と防御するより、次へのアクションを示せ。" }
+      }
+    },
+    {
+      "id": "q003",
+      "difficultJapanese": "大丈夫です",
+      "trainer_prompt_1": "最も危険な日本語だな。コンビニで店員に「レシートはご利用になりますか？」と聞かれた。この状況、お前はレシートが『いる』のか？『いらない』のか？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "いりません", "score": 10 },
+        "optionB": { "text": "はい、ください", "score": 0 },
+        "optionC": { "text": "問題ありません", "score": 2 },
+        "optionD": { "text": "結構です", "score": 8 }
+      },
+      "trainer_prompt_2": "よし、『不要』の意思を明確にしたな。じゃあ、それを店員に失礼なく、かつ一瞬で伝えるには？",
+      "englishOptions": {
+        "optionA": { "text": "No, thank you.", "score": 10, "feedback": "これ以上ないほど完璧だ。明確、丁寧、迅速。非の打ち所がない。" },
+        "optionB": { "text": "I'm fine.", "score": 5, "feedback": "通じる。だが、No, thank you. の方が10倍クリアだ。曖昧さを捨てるトレーニングをしろ。" },
+        "optionC": { "text": "I don't need it.", "score": 6, "feedback": "意図は正確に伝わる。だが、Thank you. の一言で丁寧さが格段に上がる。" },
+        "optionD": { "text": "It's okay.", "score": 3, "feedback": "これも通じるが、相手を許すようなニュアンスも含む。この状況ではベストじゃない。" }
+      }
+    },
+    {
+      "id": "q004",
+      "difficultJapanese": "お疲れ様です",
+      "trainer_prompt_1": "一日中使える便利な言葉だが、魂胆が見えん。オフィスで、退勤する同僚にかける言葉だ。伝えたいのは『ねぎらい』か？『別れの挨拶』か？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "また明日", "score": 10 },
+        "optionB": { "text": "大変だったね", "score": 7 },
+        "optionC": { "text": "お先に失礼します", "score": 5 },
+        "optionD": { "text": "こんにちは", "score": 0 }
+      },
+      "trainer_prompt_2": "OK、『また明日』という意図だな。シンプルでいい。じゃあ、それを同僚にサラッと伝えるには？",
+      "englishOptions": {
+        "optionA": { "text": "See you tomorrow.", "score": 10, "feedback": "その通り。日常の別れの挨拶は、これくらいシンプルでいい。" },
+        "optionB": { "text": "Have a good evening.", "score": 8, "feedback": "これも素晴らしい。丁寧で感じがいいな。『また明日』の意図も汲み取れる。" },
+        "optionC": { "text": "You worked hard.", "score": 2, "feedback": "直訳だ。上司が部下を評価するような、上から目線のニュアンスになる。同僚には使うな。" },
+        "optionD": { "text": "Good work.", "score": 4, "feedback": "これも上から目線に聞こえることが多い。シンプルだが、使う相手を選ぶ言葉だ。" }
+      }
+    },
+    {
+      "id": "q005",
+      "difficultJapanese": "（空気が）微妙",
+      "trainer_prompt_1": "『微妙』ね。便利な言葉だが、何がどう微妙なんだ？盛り上がるはずの飲み会が、静まり返っている。この場の状態を具体的に言語化してみろ。",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "なんだか気まずい", "score": 10 },
+        "optionB": { "text": "つまらない", "score": 6 },
+        "optionC": { "text": "静かだ", "score": 7 },
+        "optionD": { "text": "変な感じ", "score": 8 }
+      },
+      "trainer_prompt_2": "よし、『気まずい』という感情だな。じゃあ、その場の雰囲気を友人にこっそり伝えるには、どんな英語がフィットする？",
+      "englishOptions": {
+        "optionA": { "text": "The atmosphere is a bit awkward.", "score": 10, "feedback": "完璧な表現だ。awkwardという単語がこの『気まずさ』を的確に捉えている。" },
+        "optionB": { "text": "It's strange.", "score": 5, "feedback": "悪くはないが、『奇妙だ』というニュアンスが強い。『気まずい』とは少しズレる。" },
+        "optionC": { "text": "This is not exciting.", "score": 3, "feedback": "『つまらない』という直接的な感想だな。場の空気を説明するより、自分の感情を述べている。" },
+        "optionD": { "text": "The vibe is off.", "score": 9, "feedback": "かなりネイティブっぽい表現だ。vibe is off で『雰囲気がおかしい』というニュアンスが伝わる。" }
+      }
+    },
+    {
+      "id": "q006",
+      "difficultJapanese": "ご迷惑をおかけしますが",
+      "trainer_prompt_1": "まだ何もしてないのに謝るな。その癖が、お前を弱く見せる。忙しそうな同僚に少し手伝ってほしい。本当に伝えたいのは『謝罪』か？『相手への気遣い』か？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "忙しいところごめん", "score": 10 },
+        "optionB": { "text": "お願いがあります", "score": 8 },
+        "optionC": { "text": "謝ります", "score": 0 },
+        "optionD": { "text": "すみません", "score": 5 }
+      },
+      "trainer_prompt_2": "そうだ、『相手の状況を気遣う』のが本質だ。じゃあ、それをスマートに切り出すには？",
+      "englishOptions": {
+        "optionA": { "text": "Sorry to bother you, but can you help me for a second?", "score": 10, "feedback": "これだ。相手の時間を邪魔することを詫びつつ、本題に入る。完璧な流れ。" },
+        "optionB": { "text": "I'm sorry to cause you trouble.", "score": 1, "feedback": "大げさすぎる。何か重大なミスでもしたのか？これから頼み事をする人間が使う言葉じゃない。" },
+        "optionC": { "text": "Can you do me a favor?", "score": 6, "feedback": "ストレートで悪くない。だが、相手への気遣いの一言があると、もっとスムーズだ。" },
+        "optionD": { "text": "Excuse me, I have a question.", "score": 7, "feedback": "丁寧で良い。だが『手伝ってほしい』というニュアンスより『質問』の意図が強い。" }
+      }
+    },
+    {
+      "id": "q007",
+      "difficultJapanese": "恐縮です",
+      "trainer_prompt_1": "感謝、謙遜、申し訳なさ…色々混ざった便利な言葉だな。だが、大先輩から過分な褒め言葉をいただいた。この場面で一番伝えたい感情はなんだ？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "もったいないお言葉です", "score": 10 },
+        "optionB": { "text": "ありがとうございます", "score": 8 },
+        "optionC": { "text": "恥ずかしいです", "score": 5 },
+        "optionD": { "text": "すみません", "score": 2 }
+      },
+      "trainer_prompt_2": "そう、『もったいない（＝自分にはふさわしくない）』という謙遜の気持ちだ。それを英語で表現してみろ。",
+      "englishOptions": {
+        "optionA": { "text": "I'm flattered.", "score": 10, "feedback": "完璧だ。『お世辞でも嬉しい』という、謙遜と喜びが同居した最高の表現。" },
+        "optionB": { "text": "That's too much for me.", "score": 3, "feedback": "直訳に近い。『荷が重い』のように聞こえ、褒め言葉を拒否している印象を与える。" },
+        "optionC": { "text": "Thank you, I'm honored.", "score": 8, "feedback": "非常に良い表現だ。『光栄です』というニュアンス。I'm flattered より少しフォーマル。" },
+        "optionD": { "text": "I'm so shy.", "score": 1, "feedback": "『恥ずかしい』の直訳。子供っぽく聞こえる。この文脈では使わない。" }
+      }
+    },
+    {
+      "id": "q008",
+      "difficultJapanese": "前向きに検討します",
+      "trainer_prompt_1": "政治家みたいな言い回しだな。本心では『断りたい』が、角は立てたくない。その意図を、もっと正直な日本語にしてみろ。",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "約束はできないけど、考えてみます", "score": 10 },
+        "optionB": { "text": "可能性を探ってみます", "score": 8 },
+        "optionC": { "text": "やれるかもしれません", "score": 5 },
+        "optionD": { "text": "はい、やります", "score": 0 }
+      },
+      "trainer_prompt_2": "よし、『約束はできない』という予防線を張るのが本質だな。じゃあ、そのニュアンスをビジネス英語でどう伝える？",
+      "englishOptions": {
+        "optionA": { "text": "I can't make any promises, but I'll look into it.", "score": 10, "feedback": "これだ。『約束はできない』と明確に伝えつつ、『検討はする』という誠意も見せる。完璧なリスク管理。" },
+        "optionB": { "text": "We'll positively consider it.", "score": 0, "feedback": "最悪の直訳。相手に過度な期待をさせるだけ。後でトラブルになるぞ。" },
+        "optionC": { "text": "Let me think about it positively.", "score": 1, "feedback": "これも直訳。Positiveという単語を使うと、相手は『やる気がある』と勘違いする。" },
+        "optionD": { "text": "I'll see what I can do.", "score": 8, "feedback": "かなり良い。約束はしていないが、前向きな姿勢は示せる。覚えておけ。" }
+      }
+    },
+    {
+      "id": "q009",
+      "difficultJapanese": "頑張ります",
+      "trainer_prompt_1": "『頑張る』ね。小学生の感想文じゃないんだから。上司から大きな仕事を任された。上司が聞きたいのは、お前の『意気込み』か？それとも『結果を出すという約束』か？",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "お任せください", "score": 10 },
+        "optionB": { "text": "全力を尽くします", "score": 8 },
+        "optionC": { "text": "やってみます", "score": 4 },
+        "optionD": { "text": "ベストを尽くします", "score": 7 }
+      },
+      "trainer_prompt_2": "そうだ、『やり遂げてみせる』という覚悟を示すのがプロだ。じゃあ、その信頼感を英語でどう表現する？",
+      "englishOptions": {
+        "optionA": { "text": "You can count on me.", "score": 10, "feedback": "これだ。『私に任せてください』という、絶対的な自信と責任感を示す言葉。" },
+        "optionB": { "text": "I'll do my best.", "score": 5, "feedback": "定番だが、少し弱い。『ベストは尽くすが、結果は保証しない』という言い訳の余地を残している。" },
+        "optionC": { "text": "I got this.", "score": 9, "feedback": "これも素晴らしい。自信に満ち溢れた、ネイティブがよく使う表現だ。" },
+        "optionD": { "text": "Leave it to me.", "score": 8, "feedback": "これも『任せて』という強い意志表示。You can count on me より少しカジュアル。" }
+      }
+    },
+    {
+      "id": "q010",
+      "difficultJapanese": "（ちょっと）厳しいかも",
+      "trainer_prompt_1": "『厳しい“かも”』だと？望みがあるように聞こえるが、本心はどうなんだ。午後3時までの仕事を頼まれた。お前は『できる』のか、『できない』のか、ハッキリしろ。",
+      "simpleJapaneseOptions": {
+        "optionA": { "text": "多分できません", "score": 10 },
+        "optionB": { "text": "難しいです", "score": 7 },
+        "optionC": { "text": "努力してみます", "score": 2 },
+        "optionD": { "text": "時間が足りません", "score": 8 }
+      },
+      "trainer_prompt_2": "OK、『多分できない』という本心を認めたな。じゃあ、それを相手にプロとしてどう伝える？",
+      "englishOptions": {
+        "optionA": { "text": "I don't think I can make it by then.", "score": 10, "feedback": "完璧だ。丁寧かつ明確に、締め切りに間に合わないことを伝えている。" },
+        "optionB": { "text": "I'm afraid that might be difficult.", "score": 8, "feedback": "非常に丁寧で良い表現。だが、まだ少しだけ曖昧さが残る。一歩踏み込め。" },
+        "optionC": { "text": "That's a bit of a stretch.", "score": 7, "feedback": "ネイティブらしい良い表現だ。『少し無理がある』というニュアンスが伝わる。" },
+        "optionD": { "text": "It's tough.", "score": 3, "feedback": "少しぶっきらぼうで、説明不足に聞こえる。ビジネスでは避けろ。" }
+      }
+    }
+  ]

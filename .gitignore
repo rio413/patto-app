@@ -1,0 +1,12 @@
+# Firebase Service Account Key
+patto-gym-firebase-adminsdk-fbsvc-3d88e2514c.json
+
+# Dependencies
+/node_modules
+
+# Next.js build output
+/.next/
+/out/
+
+# Other
+.DS_Store
