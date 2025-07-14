@@ -111,8 +111,9 @@ export default function WorkoutScreen() {
     } else {
       // Session complete
       setIsSessionComplete(true);
-      // Decrease brain fat percentage
-      setBrainFatPercentage(prev => Math.max(prev - 0.2, 0));
+      // Calculate brain fat reduction based on total BCal burned
+      const reduction = 0 / 5000; // 0 BCal = 0% reduction
+      setBrainFatPercentage(prev => Math.max(prev - reduction, 0));
     }
   };
 
@@ -125,20 +126,25 @@ export default function WorkoutScreen() {
     if (japaneseScore !== null) {
       // Calculate BCal: (English option score) * (remaining seconds)
       const bcalForSet = score * timer;
-      setTotalBcalBurned(prev => prev + bcalForSet);
-      
-      if (currentQuestionIndex < 4) {
-        // Move to next question
-        setCurrentQuestionIndex(prev => prev + 1);
-        setCurrentStep(1);
-        setJapaneseScore(null);
-        setTimer(10);
-      } else {
-        // Session complete
-        setIsSessionComplete(true);
-        // Decrease brain fat percentage
-        setBrainFatPercentage(prev => Math.max(prev - 0.2, 0));
-      }
+      setTotalBcalBurned(prev => {
+        const newTotal = prev + bcalForSet;
+        
+        if (currentQuestionIndex < 4) {
+          // Move to next question
+          setCurrentQuestionIndex(prev => prev + 1);
+          setCurrentStep(1);
+          setJapaneseScore(null);
+          setTimer(10);
+        } else {
+          // Session complete
+          setIsSessionComplete(true);
+          // Calculate brain fat reduction based on total BCal burned
+          const reduction = newTotal / 5000;
+          setBrainFatPercentage(prev => Math.max(prev - reduction, 0));
+        }
+        
+        return newTotal;
+      });
     }
   };
 
@@ -191,6 +197,11 @@ export default function WorkoutScreen() {
             <p className="text-xl text-gray-300 font-sans">
               BRAIN FAT %: 35.0% → {brainFatPercentage.toFixed(1)}%
             </p>
+            {totalBcalBurned === 0 && (
+              <p className="text-lg text-gray-400 font-sans mt-2">
+                次はもっと脳に汗をかこう！
+              </p>
+            )}
           </div>
           
           <button
@@ -239,6 +250,18 @@ export default function WorkoutScreen() {
         <p className="text-xl text-gray-300 mb-8 font-sans">
           {currentStep === 1 ? currentQuestion.trainerPrompt1 : currentQuestion.trainerPrompt2}
         </p>
+
+        {/* Instructional text */}
+        {currentStep === 1 && (
+          <p className="text-lg text-gray-300 mb-6 font-sans">
+            この日本語の『意図』に最も近いものを、4つの中から選べ！
+          </p>
+        )}
+        {currentStep === 2 && (
+          <p className="text-lg text-gray-300 mb-6 font-sans">
+            OK！では、その意図に最適な英語を選べ！
+          </p>
+        )}
 
         {/* Difficult Japanese text */}
         {currentStep === 1 && (
