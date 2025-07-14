@@ -40,6 +40,13 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Current question state
   const [currentStep, setCurrentStep] = useState(1);
   const [japaneseScore, setJapaneseScore] = useState<number | null>(null);
+  const [showScoreBreakdown, setShowScoreBreakdown] = useState(false);
+  const [currentSetScore, setCurrentSetScore] = useState(0);
+  const [scoreBreakdown, setScoreBreakdown] = useState({
+    intentAccuracy: 0,
+    speedBonus: 0,
+    total: 0
+  });
   
   // UI state
   const [loading, setLoading] = useState(true);
@@ -104,19 +111,23 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   const handleTimeUp = () => {
     // Give 0 BCal for timeout
-    setTotalBcalBurned(prev => prev + 0);
+    const setScore = 0;
+    setTotalBcalBurned(prev => prev + setScore);
     
     if (currentQuestionIndex < 4) {
-      // Move to next question
-      setCurrentQuestionIndex(prev => prev + 1);
-      setCurrentStep(1);
-      setJapaneseScore(null);
-      setTimer(10);
+      // Show score breakdown for timeout
+      setScoreBreakdown({
+        intentAccuracy: 0,
+        speedBonus: 0,
+        total: 0
+      });
+      setCurrentSetScore(setScore);
+      setShowScoreBreakdown(true);
     } else {
       // Session complete
       setIsSessionComplete(true);
       // Calculate brain fat reduction based on total BCal burned
-      const reduction = 0 / 5000; // 0 BCal = 0% reduction
+      const reduction = (totalBcalBurned + setScore) / 1000;
       setBrainFatPercentage(prev => Math.max(prev - reduction, 0));
     }
   };
@@ -128,28 +139,42 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   const handleEnglishOptionClick = (score: number) => {
     if (japaneseScore !== null) {
-      // Calculate BCal: (English option score) * (remaining seconds)
-      const bcalForSet = score * timer;
+      // Calculate BCal: (Japanese score * English score) + (remaining seconds * 2)
+      const intentAccuracy = japaneseScore * score;
+      const speedBonus = timer * 2;
+      const bcalForSet = intentAccuracy + speedBonus;
+      
       setTotalBcalBurned(prev => {
         const newTotal = prev + bcalForSet;
         
         if (currentQuestionIndex < 4) {
-          // Move to next question
-          setCurrentQuestionIndex(prev => prev + 1);
-          setCurrentStep(1);
-          setJapaneseScore(null);
-          setTimer(10);
+          // Show score breakdown
+          setScoreBreakdown({
+            intentAccuracy,
+            speedBonus,
+            total: bcalForSet
+          });
+          setCurrentSetScore(bcalForSet);
+          setShowScoreBreakdown(true);
         } else {
           // Session complete
           setIsSessionComplete(true);
           // Calculate brain fat reduction based on total BCal burned
-          const reduction = newTotal / 5000;
+          const reduction = newTotal / 1000;
           setBrainFatPercentage(prev => Math.max(prev - reduction, 0));
         }
         
         return newTotal;
       });
     }
+  };
+
+  const handleNextSet = () => {
+    setCurrentQuestionIndex(prev => prev + 1);
+    setCurrentStep(1);
+    setJapaneseScore(null);
+    setTimer(10);
+    setShowScoreBreakdown(false);
   };
 
   const handleStartNewSession = () => {
@@ -161,6 +186,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setIsSessionComplete(false);
     setCurrentStep(1);
     setJapaneseScore(null);
+    setShowScoreBreakdown(false);
     
     // Fetch new questions
     fetchWorkoutQuestions();
@@ -223,6 +249,67 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     return (
       <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
         <div className="text-white text-xl font-sans">No questions available</div>
+      </main>
+    );
+  }
+
+  if (showScoreBreakdown) {
+    return (
+      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6 relative">
+        {/* Quit button */}
+        <button
+          onClick={() => {
+            if (window.confirm("Are you sure you want to quit? Your current progress will be lost.")) {
+              onQuit();
+            }
+          }}
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-lg"
+        >
+          QUIT
+        </button>
+        
+        <div className="max-w-2xl w-full text-center">
+          <h2 className="text-4xl font-bold text-white mb-8 font-sans">
+            SET {currentQuestionIndex + 1} COMPLETE
+          </h2>
+          
+          <div className="bg-gray-800 rounded-lg p-8 mb-8">
+            <div className="text-6xl font-bold text-[#FACC15] mb-4">
+              {currentSetScore}
+            </div>
+            <p className="text-2xl text-white mb-6 font-sans">BCal EARNED</p>
+            
+            <div className="text-left space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-300 font-sans">Intent Accuracy:</span>
+                <span className="text-white font-sans font-bold">
+                  {scoreBreakdown.intentAccuracy > 0 ? `${Math.sqrt(scoreBreakdown.intentAccuracy)} × ${Math.sqrt(scoreBreakdown.intentAccuracy)} = ${scoreBreakdown.intentAccuracy}` : '0'}
+                </span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-300 font-sans">Speed Bonus:</span>
+                <span className="text-[#FACC15] font-sans font-bold">
+                  +{scoreBreakdown.speedBonus} BCal
+                </span>
+              </div>
+              <div className="border-t border-gray-600 pt-4">
+                <div className="flex justify-between items-center">
+                  <span className="text-white font-sans font-bold text-lg">SET SCORE:</span>
+                  <span className="text-[#FACC15] font-sans font-bold text-lg">
+                    {scoreBreakdown.total} BCal
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <button
+            onClick={handleNextSet}
+            className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans"
+          >
+            NEXT SET
+          </button>
+        </div>
       </main>
     );
   }
