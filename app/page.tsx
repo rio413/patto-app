@@ -10,8 +10,12 @@ export default function Home() {
     setIsWorkoutStarted(true);
   };
 
+  const handleQuitWorkout = () => {
+    setIsWorkoutStarted(false);
+  };
+
   if (isWorkoutStarted) {
-    return <WorkoutScreen />;
+    return <WorkoutScreen onQuit={handleQuitWorkout} />;
   }
 
   return (

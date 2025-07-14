@@ -24,7 +24,11 @@ interface QuestionData {
   englishOptions: { [key: string]: EnglishOption };
 }
 
-export default function WorkoutScreen() {
+interface WorkoutScreenProps {
+  onQuit: () => void;
+}
+
+export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Session state management
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -226,7 +230,19 @@ export default function WorkoutScreen() {
   const currentQuestion = workoutQuestions[currentQuestionIndex];
 
   return (
-    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6">
+    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6 relative">
+      {/* Quit button */}
+      <button
+        onClick={() => {
+          if (window.confirm("Are you sure you want to quit? Your current progress will be lost.")) {
+            onQuit();
+          }
+        }}
+        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-lg"
+      >
+        QUIT
+      </button>
+      
       <div className="max-w-2xl w-full text-center">
         {/* Session progress */}
         <div className="mb-6">
