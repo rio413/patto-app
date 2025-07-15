@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import { useAuth } from '../contexts/AuthContext';
 
 interface JapaneseOption {
   text: string;
@@ -29,6 +30,8 @@ interface WorkoutScreenProps {
 }
 
 export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
+  const { user } = useAuth();
+  
   // Session state management
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -48,6 +51,26 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // UI state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Save workout results to Firestore
+  const saveWorkoutResult = async (totalBcalBurned: number, newBrainFatPercentage: number) => {
+    if (!user) {
+      console.error('No user logged in');
+      return;
+    }
+
+    try {
+      const userDocRef = doc(db, 'users', user.uid);
+      await updateDoc(userDocRef, {
+        brainFatPercentage: newBrainFatPercentage,
+        lastWorkoutBcal: totalBcalBurned,
+        lastWorkoutDate: new Date()
+      });
+      console.log('Workout results saved successfully');
+    } catch (error) {
+      console.error('Error saving workout results:', error);
+    }
+  };
 
   // Fetch 5 random questions for the session
   const fetchWorkoutQuestions = async () => {
@@ -105,6 +128,13 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   useEffect(() => {
     fetchWorkoutQuestions();
   }, []);
+
+  // Save workout results when session is complete
+  useEffect(() => {
+    if (isSessionComplete && user) {
+      saveWorkoutResult(totalBcalBurned, brainFatPercentage);
+    }
+  }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user]);
 
   const handleTimeUp = () => {
     // Give 0 BCal for timeout
