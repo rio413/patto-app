@@ -8,6 +8,10 @@ import { db } from '../firebase/config';
 interface WorkoutRecord {
   date: Date;
   totalBcalBurned: number;
+  step1Time?: number;
+  step2Time?: number;
+  wasDirectTranslationError?: boolean;
+  setScores?: number[];
 }
 
 interface UserData {
@@ -17,6 +21,7 @@ interface UserData {
   lastWorkoutBcal?: number;
   lastWorkoutDate?: Date;
   totalBcalBurned?: number;
+  totalWorkouts?: number;
   workoutHistory?: WorkoutRecord[];
   createdAt: Date;
 }
@@ -78,6 +83,53 @@ export default function ProfilePage() {
   // Calculate brain fitness level
   const calculateBrainFitnessLevel = (totalBcalBurned: number = 0): number => {
     return Math.floor(totalBcalBurned / 10000) + 1;
+  };
+
+  // Calculate processing speed averages
+  const calculateProcessingSpeed = (workoutHistory: WorkoutRecord[] = []): { step1Avg: number; step2Avg: number } => {
+    if (workoutHistory.length === 0) return { step1Avg: 0, step2Avg: 0 };
+
+    const recentWorkouts = workoutHistory
+      .filter(workout => workout.step1Time && workout.step2Time)
+      .slice(-10); // Last 10 workouts
+
+    if (recentWorkouts.length === 0) return { step1Avg: 0, step2Avg: 0 };
+
+    const step1Total = recentWorkouts.reduce((sum, workout) => sum + (workout.step1Time || 0), 0);
+    const step2Total = recentWorkouts.reduce((sum, workout) => sum + (workout.step2Time || 0), 0);
+
+    return {
+      step1Avg: step1Total / recentWorkouts.length,
+      step2Avg: step2Total / recentWorkouts.length
+    };
+  };
+
+  // Calculate direct translation error percentage
+  const calculateDirectTranslationErrorPercentage = (workoutHistory: WorkoutRecord[] = []): number => {
+    if (workoutHistory.length === 0) return 0;
+
+    const recentWorkouts = workoutHistory
+      .filter(workout => workout.wasDirectTranslationError !== undefined)
+      .slice(-10); // Last 10 workouts
+
+    if (recentWorkouts.length === 0) return 0;
+
+    const errorCount = recentWorkouts.filter(workout => workout.wasDirectTranslationError).length;
+    return (errorCount / recentWorkouts.length) * 100;
+  };
+
+  // Get most recent workout
+  const getMostRecentWorkout = (workoutHistory: WorkoutRecord[] = []): WorkoutRecord | null => {
+    if (workoutHistory.length === 0) return null;
+
+    const sortedWorkouts = workoutHistory
+      .map(workout => ({
+        ...workout,
+        date: workout.date instanceof Date ? workout.date : new Date(workout.date)
+      }))
+      .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+    return sortedWorkouts[0];
   };
 
   // Fetch user data from Firestore
@@ -154,6 +206,9 @@ export default function ProfilePage() {
   // Calculate values
   const brainFitnessLevel = calculateBrainFitnessLevel(userData?.totalBcalBurned);
   const workoutStreak = calculateWorkoutStreak(userData?.workoutHistory);
+  const { step1Avg, step2Avg } = calculateProcessingSpeed(userData?.workoutHistory);
+  const directTranslationErrorPercentage = calculateDirectTranslationErrorPercentage(userData?.workoutHistory);
+  const mostRecentWorkoutData = getMostRecentWorkout(userData?.workoutHistory);
 
   return (
     <main className="min-h-screen bg-[#1A1A1A]">
@@ -244,13 +299,17 @@ export default function ProfilePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                   <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Total Workouts</h3>
-                  <p className="text-3xl font-bold text-white font-sans">0</p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">Complete your first workout to start tracking</p>
+                  <p className="text-3xl font-bold text-white font-sans">{userData?.totalWorkouts || 0}</p>
+                  <p className="text-gray-400 text-sm font-sans mt-2">
+                    {userData?.totalWorkouts === 0 ? 'Complete your first workout to start tracking' : ''}
+                  </p>
                 </div>
                 <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                   <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Total BCal Burned</h3>
-                  <p className="text-3xl font-bold text-white font-sans">0</p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">Start training to accumulate BCal</p>
+                  <p className="text-3xl font-bold text-white font-sans">{userData?.totalBcalBurned || 0}</p>
+                  <p className="text-gray-400 text-sm font-sans mt-2">
+                    {userData?.totalBcalBurned === 0 ? 'Start training to accumulate BCal' : ''}
+                  </p>
                 </div>
               </div>
             </div>
@@ -260,7 +319,23 @@ export default function ProfilePage() {
               <h2 className="text-2xl font-bold text-white mb-6 font-sans">Recent Activity</h2>
               <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                 <p className="text-gray-300 font-sans">
-                  No recent workouts. Complete your first training session to see your activity here.
+                  {mostRecentWorkoutData ? (
+                    <>
+                      <strong>Last Workout:</strong> {mostRecentWorkoutData.date.toLocaleDateString()}
+                      <br />
+                      <strong>Total BCal Burned:</strong> {mostRecentWorkoutData.totalBcalBurned}
+                      <br />
+                      <strong>Processing Speed:</strong>
+                      <br />
+                      Japanese: {mostRecentWorkoutData.step1Time ? `${mostRecentWorkoutData.step1Time.toFixed(1)}s` : 'N/A'}
+                      <br />
+                      English: {mostRecentWorkoutData.step2Time ? `${mostRecentWorkoutData.step2Time.toFixed(1)}s` : 'N/A'}
+                      <br />
+                      <strong>Direct Translation Error:</strong> {directTranslationErrorPercentage.toFixed(1)}%
+                    </>
+                  ) : (
+                    'No recent workouts. Complete your first training session to see your activity here.'
+                  )}
                 </p>
               </div>
             </div>
@@ -277,11 +352,11 @@ export default function ProfilePage() {
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-sans">Japanese Phase:</span>
-                    <span className="text-[#FACC15] font-bold font-sans">1.8s</span>
+                    <span className="text-[#FACC15] font-bold font-sans">{step1Avg.toFixed(1)}s</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300 font-sans">English Phase:</span>
-                    <span className="text-[#FACC15] font-bold font-sans">1.2s</span>
+                    <span className="text-[#FACC15] font-bold font-sans">{step2Avg.toFixed(1)}s</span>
                   </div>
                 </div>
               </div>
@@ -292,7 +367,7 @@ export default function ProfilePage() {
               <h2 className="text-2xl font-bold text-white mb-6 font-sans">Error Patterns</h2>
               <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                 <p className="text-gray-300 font-sans">
-                  Complete more workouts to analyze your error patterns and identify areas for improvement.
+                  Direct Translation Error: {directTranslationErrorPercentage.toFixed(1)}%
                 </p>
               </div>
             </div>

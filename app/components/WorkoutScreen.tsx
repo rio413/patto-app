@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc, getDoc, arrayUnion } from 'firebase/firestore';
 import { db } from '../firebase/config';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -48,6 +48,12 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   const [feedbackScore, setFeedbackScore] = useState(0);
   const [feedbackPosition, setFeedbackPosition] = useState({ x: 0, y: 0 });
   
+  // Timing tracking
+  const [step1StartTime, setStep1StartTime] = useState<number>(0);
+  const [step1Time, setStep1Time] = useState<number>(0);
+  const [step2Time, setStep2Time] = useState<number>(0);
+  const [wasDirectTranslationError, setWasDirectTranslationError] = useState<boolean>(false);
+  
   // UI state
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -61,11 +67,31 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
     try {
       const userDocRef = doc(db, 'users', user.uid);
+      
+      // Get current user data to update workout history
+      const userDoc = await getDoc(userDocRef);
+      const currentData = userDoc.exists() ? userDoc.data() : {};
+      
+      // Create workout record
+      const workoutRecord = {
+        date: new Date(),
+        totalBcalBurned: totalBcalBurned,
+        step1Time: step1Time,
+        step2Time: step2Time,
+        wasDirectTranslationError: wasDirectTranslationError,
+        setScores: setScores
+      };
+
+      // Update user document with new workout data
       await updateDoc(userDocRef, {
         brainFatPercentage: newBrainFatPercentage,
         lastWorkoutBcal: totalBcalBurned,
-        lastWorkoutDate: new Date()
+        lastWorkoutDate: new Date(),
+        totalBcalBurned: (currentData.totalBcalBurned || 0) + totalBcalBurned,
+        totalWorkouts: (currentData.totalWorkouts || 0) + 1,
+        workoutHistory: arrayUnion(workoutRecord)
       });
+      
       console.log('Workout results saved successfully');
     } catch (error) {
       console.error('Error saving workout results:', error);
@@ -129,6 +155,13 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     fetchWorkoutQuestions();
   }, []);
 
+  // Start timing when step 1 begins
+  useEffect(() => {
+    if (currentStep === 1 && !isSessionComplete && !loading && !error) {
+      setStep1StartTime(Date.now());
+    }
+  }, [currentQuestionIndex, currentStep, isSessionComplete, loading, error]);
+
   // Save workout results when session is complete
   useEffect(() => {
     if (isSessionComplete && user) {
@@ -163,12 +196,28 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   };
 
   const handleJapaneseOptionClick = (score: number) => {
+    // Calculate step 1 time
+    const step1EndTime = Date.now();
+    const step1Duration = (step1EndTime - step1StartTime) / 1000; // Convert to seconds
+    setStep1Time(step1Duration);
+    
     setJapaneseScore(score);
     setCurrentStep(2);
   };
 
   const handleEnglishOptionClick = (score: number) => {
     if (japaneseScore !== null) {
+      // Calculate step 2 time (from when step 2 started to now)
+      const step2EndTime = Date.now();
+      const step2StartTime = step1StartTime + (step1Time * 1000); // Convert back to milliseconds
+      const step2Duration = (step2EndTime - step2StartTime) / 1000; // Convert to seconds
+      setStep2Time(step2Duration);
+      
+      // Detect direct translation error (simplified logic - can be enhanced)
+      // This is a placeholder logic - you can make it more sophisticated
+      const isDirectTranslationError = score < 3; // Assuming low scores indicate direct translation
+      setWasDirectTranslationError(isDirectTranslationError);
+      
       // Calculate BCal: (Japanese score * English score) + (remaining seconds * 2)
       const intentAccuracy = japaneseScore * score;
       const speedBonus = timer * 2;
@@ -188,6 +237,10 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
             setCurrentStep(1);
             setJapaneseScore(null);
             setTimer(10);
+            // Reset timing for next question
+            setStep1Time(0);
+            setStep2Time(0);
+            setWasDirectTranslationError(false);
           }, 1000);
         } else {
           // Session complete
