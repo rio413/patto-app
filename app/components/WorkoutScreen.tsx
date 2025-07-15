@@ -40,13 +40,10 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Current question state
   const [currentStep, setCurrentStep] = useState(1);
   const [japaneseScore, setJapaneseScore] = useState<number | null>(null);
-  const [showScoreBreakdown, setShowScoreBreakdown] = useState(false);
-  const [currentSetScore, setCurrentSetScore] = useState(0);
-  const [scoreBreakdown, setScoreBreakdown] = useState({
-    intentAccuracy: 0,
-    speedBonus: 0,
-    total: 0
-  });
+  const [setScores, setSetScores] = useState<number[]>([]);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [feedbackScore, setFeedbackScore] = useState(0);
+  const [feedbackPosition, setFeedbackPosition] = useState({ x: 0, y: 0 });
   
   // UI state
   const [loading, setLoading] = useState(true);
@@ -113,16 +110,19 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     // Give 0 BCal for timeout
     const setScore = 0;
     setTotalBcalBurned(prev => prev + setScore);
+    setSetScores(prev => [...prev, setScore]);
     
     if (currentQuestionIndex < 4) {
-      // Show score breakdown for timeout
-      setScoreBreakdown({
-        intentAccuracy: 0,
-        speedBonus: 0,
-        total: 0
-      });
-      setCurrentSetScore(setScore);
-      setShowScoreBreakdown(true);
+      // Show instant feedback for timeout
+      setFeedbackScore(setScore);
+      setShowFeedback(true);
+      setTimeout(() => {
+        setShowFeedback(false);
+        setCurrentQuestionIndex(prev => prev + 1);
+        setCurrentStep(1);
+        setJapaneseScore(null);
+        setTimer(10);
+      }, 1000);
     } else {
       // Session complete
       setIsSessionComplete(true);
@@ -146,16 +146,19 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       
       setTotalBcalBurned(prev => {
         const newTotal = prev + bcalForSet;
+        setSetScores(prev => [...prev, bcalForSet]);
         
         if (currentQuestionIndex < 4) {
-          // Show score breakdown
-          setScoreBreakdown({
-            intentAccuracy,
-            speedBonus,
-            total: bcalForSet
-          });
-          setCurrentSetScore(bcalForSet);
-          setShowScoreBreakdown(true);
+          // Show instant feedback
+          setFeedbackScore(bcalForSet);
+          setShowFeedback(true);
+          setTimeout(() => {
+            setShowFeedback(false);
+            setCurrentQuestionIndex(prev => prev + 1);
+            setCurrentStep(1);
+            setJapaneseScore(null);
+            setTimer(10);
+          }, 1000);
         } else {
           // Session complete
           setIsSessionComplete(true);
@@ -169,13 +172,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     }
   };
 
-  const handleNextSet = () => {
-    setCurrentQuestionIndex(prev => prev + 1);
-    setCurrentStep(1);
-    setJapaneseScore(null);
-    setTimer(10);
-    setShowScoreBreakdown(false);
-  };
+
 
   const handleStartNewSession = () => {
     // Reset all states
@@ -186,7 +183,8 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setIsSessionComplete(false);
     setCurrentStep(1);
     setJapaneseScore(null);
-    setShowScoreBreakdown(false);
+    setSetScores([]);
+    setShowFeedback(false);
     
     // Fetch new questions
     fetchWorkoutQuestions();
@@ -209,6 +207,18 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   }
 
   if (isSessionComplete) {
+    // Calculate max possible score (5 questions × 120 BCal each)
+    const maxPossibleBcal = 600;
+    const scorePercentage = totalBcalBurned / maxPossibleBcal;
+    
+    // Determine performance rating
+    let performanceRating = "GOOD!";
+    if (scorePercentage > 0.9) {
+      performanceRating = "PERFECT!";
+    } else if (scorePercentage > 0.7) {
+      performanceRating = "GREAT!";
+    }
+    
     return (
       <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6">
         <div className="max-w-2xl w-full text-center">
@@ -220,15 +230,30 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
             <div className="text-6xl font-bold text-[#FACC15] mb-4">
               {totalBcalBurned}
             </div>
-            <p className="text-2xl text-white mb-4 font-sans">TOTAL BURN: {totalBcalBurned} BCal</p>
+            <p className="text-2xl text-white mb-4 font-sans">TOTAL BURN: {totalBcalBurned} / {maxPossibleBcal} BCal</p>
+            <p className="text-xl text-[#FACC15] font-sans font-bold">
+              {performanceRating}
+            </p>
           </div>
           
           <div className="bg-gray-800 rounded-lg p-6 mb-8">
-            <p className="text-xl text-gray-300 font-sans">
+            <p className="text-xl text-gray-300 font-sans mb-4">
               BRAIN FAT %: 35.0% → {brainFatPercentage.toFixed(1)}%
             </p>
+            
+            {/* Set scores summary */}
+            <div className="text-left space-y-2">
+              <p className="text-lg text-gray-300 font-sans">SET SCORES:</p>
+              {setScores.map((score, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <span className="text-gray-400 font-sans">Set {index + 1}:</span>
+                  <span className="text-[#FACC15] font-sans font-bold">{score} BCal</span>
+                </div>
+              ))}
+            </div>
+            
             {totalBcalBurned === 0 && (
-              <p className="text-lg text-gray-400 font-sans mt-2">
+              <p className="text-lg text-gray-400 font-sans mt-4">
                 次はもっと脳に汗をかこう！
               </p>
             )}
@@ -253,66 +278,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     );
   }
 
-  if (showScoreBreakdown) {
-    return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6 relative">
-        {/* Quit button */}
-        <button
-          onClick={() => {
-            if (window.confirm("Are you sure you want to quit? Your current progress will be lost.")) {
-              onQuit();
-            }
-          }}
-          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-lg"
-        >
-          QUIT
-        </button>
-        
-        <div className="max-w-2xl w-full text-center">
-          <h2 className="text-4xl font-bold text-white mb-8 font-sans">
-            SET {currentQuestionIndex + 1} COMPLETE
-          </h2>
-          
-          <div className="bg-gray-800 rounded-lg p-8 mb-8">
-            <div className="text-6xl font-bold text-[#FACC15] mb-4">
-              {currentSetScore}
-            </div>
-            <p className="text-2xl text-white mb-6 font-sans">BCal EARNED</p>
-            
-            <div className="text-left space-y-4">
-              <div className="flex justify-between items-center">
-                <span className="text-gray-300 font-sans">Intent Accuracy:</span>
-                <span className="text-white font-sans font-bold">
-                  {scoreBreakdown.intentAccuracy > 0 ? `${Math.sqrt(scoreBreakdown.intentAccuracy)} × ${Math.sqrt(scoreBreakdown.intentAccuracy)} = ${scoreBreakdown.intentAccuracy}` : '0'}
-                </span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-gray-300 font-sans">Speed Bonus:</span>
-                <span className="text-[#FACC15] font-sans font-bold">
-                  +{scoreBreakdown.speedBonus} BCal
-                </span>
-              </div>
-              <div className="border-t border-gray-600 pt-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-white font-sans font-bold text-lg">SET SCORE:</span>
-                  <span className="text-[#FACC15] font-sans font-bold text-lg">
-                    {scoreBreakdown.total} BCal
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <button
-            onClick={handleNextSet}
-            className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans"
-          >
-            NEXT SET
-          </button>
-        </div>
-      </main>
-    );
-  }
+
 
   const currentQuestion = workoutQuestions[currentQuestionIndex];
 
@@ -329,6 +295,15 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       >
         QUIT
       </button>
+      
+      {/* Instant feedback overlay */}
+      {showFeedback && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="text-4xl font-bold text-[#FACC15] animate-bounce">
+            +{feedbackScore} BCal
+          </div>
+        </div>
+      )}
       
       <div className="max-w-2xl w-full text-center">
         {/* Session progress */}
