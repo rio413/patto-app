@@ -6,7 +6,7 @@ import WorkoutScreen from './components/WorkoutScreen';
 
 export default function Home() {
   const [isWorkoutStarted, setIsWorkoutStarted] = useState(false);
-  const { user, loading } = useAuth();
+  const { user, isLoading } = useAuth();
 
   const handleWorkoutStart = () => {
     setIsWorkoutStarted(true);
@@ -16,7 +16,7 @@ export default function Home() {
     setIsWorkoutStarted(false);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
         <div className="text-white text-xl font-sans">Loading...</div>

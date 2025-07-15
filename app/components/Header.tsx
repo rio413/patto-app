@@ -1,13 +1,11 @@
 'use client';
 
 import { useAuth } from '../contexts/AuthContext';
-import LoginButton from './LoginButton';
-import LogoutButton from './LogoutButton';
 
 export default function Header() {
-  const { user, loading } = useAuth();
+  const { user, isLoading, login, logout } = useAuth();
 
-  if (loading) {
+  if (isLoading) {
     return (
       <header className="bg-[#1A1A1A] p-4 border-b border-gray-700">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
@@ -28,10 +26,20 @@ export default function Header() {
               <span className="text-white font-sans">
                 Welcome, {user.displayName || user.email}
               </span>
-              <LogoutButton />
+              <button
+                onClick={logout}
+                className="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans"
+              >
+                Sign Out
+              </button>
             </>
           ) : (
-            <LoginButton />
+            <button
+              onClick={login}
+              className="bg-[#FACC15] text-black px-6 py-3 rounded-lg font-bold hover:brightness-110 transition-all duration-200 font-sans"
+            >
+              Sign In with Google
+            </button>
           )}
         </div>
       </div>
