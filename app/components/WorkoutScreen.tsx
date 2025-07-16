@@ -36,8 +36,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [totalBcalBurned, setTotalBcalBurned] = useState(0);
-  const [timer, setTimer] = useState(7); // Start with 7 seconds for step 1
+  const [timer, setTimer] = useState(7); // Start with step 1 timer
   const [isSessionComplete, setIsSessionComplete] = useState(false);
+  const [hasCalculatedResult, setHasCalculatedResult] = useState(false);
   
   // Current question state
   const [currentStep, setCurrentStep] = useState(1);
@@ -167,7 +168,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   // Save workout results when session is complete
   useEffect(() => {
-    if (isSessionComplete && user) {
+    if (isSessionComplete && user && !hasCalculatedResult) {
       console.log("--- DEBUGGING WORKOUT REPORT ---");
       console.log("User object from AuthContext:", user);
       console.log("Current Brain Fat from AuthContext state:", brainFatPercentage);
@@ -200,8 +201,11 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       console.log("Report: newBrainFatPercentage =", newBrainFatPercentage);
       
       saveWorkoutResult(totalBcalBurned, newBrainFatPercentage);
+      
+      // Mark that we've calculated the result for this session
+      setHasCalculatedResult(true);
     }
-  }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user, updateBrainFatPercentage]);
+  }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user, updateBrainFatPercentage, hasCalculatedResult]);
 
   const handleTimeUp = () => {
     // Give 0 BCal for timeout
@@ -299,6 +303,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setJapaneseScore(null);
     setSetScores([]);
     setShowFeedback(false);
+    setHasCalculatedResult(false); // Reset calculation flag for new session
     
     // Fetch new questions
     fetchWorkoutQuestions();
