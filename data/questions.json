@@ -1,182 +1,850 @@
 [
-    {
-      "id": "q001",
-      "difficultJapanese": "よろしくお願いします",
-      "trainer_prompt_1": "新しいチームでの挨拶だ。その便利な言葉で思考停止するな。この場で伝えたいお前の『本心』はなんだ？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "一緒に仕事ができて嬉しいです", "score": 10 },
-        "optionB": { "text": "手伝ってください", "score": 2 },
-        "optionC": { "text": "仲良くしてください", "score": 5 },
-        "optionD": { "text": "頑張ります", "score": 4 }
-      },
-      "trainer_prompt_2": "OK、そのポジティブな意気込みだ。じゃあ、それをプロフェッショナルな英語でどう伝える？",
-      "englishOptions": {
-        "optionA": { "text": "I'm looking forward to working with you.", "score": 10, "feedback": "完璧だ。やる気と協調性を示す、最もプロフェッショナルな一手。" },
-        "optionB": { "text": "Let's work hard together.", "score": 5, "feedback": "悪くない。熱意は伝わるが、少し学生っぽく聞こえることもある。" },
-        "optionC": { "text": "Please be nice to me.", "score": 0, "feedback": "最悪の直訳。対等な関係性を自ら放棄するな。" },
-        "optionD": { "text": "Thank you for accepting me.", "score": 2, "feedback": "少しズレている。感謝より、未来への期待を述べるのがセオリーだ。" }
-      }
-    },
-    {
-      "id": "q002",
-      "difficultJapanese": "いったん持ち帰ります",
-      "trainer_prompt_1": "会議で想定外の質問が来たな。「持ち帰る」という言葉で逃げるな。この言葉の最も『芯』となる意図はなんだ？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "今すぐには判断できません", "score": 10 },
-        "optionB": { "text": "上司に相談します", "score": 5 },
-        "optionC": { "text": "これは重要な問題です", "score": 2 },
-        "optionD": { "text": "時間をください", "score": 7 }
-      },
-      "trainer_prompt_2": "そうだ、正直に『即断できない』と伝えるのがビジネスの基本だ。じゃあ、それを相手に失礼なく、かつ有能に見せるには？",
-      "englishOptions": {
-        "optionA": { "text": "Let me get back to you on that.", "score": 10, "feedback": "完璧な回答だ。相手の意見を尊重しつつ、ボールを自分のコートに持ち帰るプロの技。" },
-        "optionB": { "text": "I need to think about it.", "score": 5, "feedback": "間違いではないが、少し準備不足に見えるリスクがある。" },
-        "optionC": { "text": "I'll take it back.", "score": 0, "feedback": "モノじゃないんだから『持ち帰る』な。典型的な直訳ミス。" },
-        "optionD": { "text": "I can't decide now.", "score": 3, "feedback": "正しいが、少しぶっきらぼうだ。『できない』と防御するより、次へのアクションを示せ。" }
-      }
-    },
-    {
-      "id": "q003",
-      "difficultJapanese": "大丈夫です",
-      "trainer_prompt_1": "最も危険な日本語だな。コンビニで店員に「レシートはご利用になりますか？」と聞かれた。この状況、お前はレシートが『いる』のか？『いらない』のか？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "いりません", "score": 10 },
-        "optionB": { "text": "はい、ください", "score": 0 },
-        "optionC": { "text": "問題ありません", "score": 2 },
-        "optionD": { "text": "結構です", "score": 8 }
-      },
-      "trainer_prompt_2": "よし、『不要』の意思を明確にしたな。じゃあ、それを店員に失礼なく、かつ一瞬で伝えるには？",
-      "englishOptions": {
-        "optionA": { "text": "No, thank you.", "score": 10, "feedback": "これ以上ないほど完璧だ。明確、丁寧、迅速。非の打ち所がない。" },
-        "optionB": { "text": "I'm fine.", "score": 5, "feedback": "通じる。だが、No, thank you. の方が10倍クリアだ。曖昧さを捨てるトレーニングをしろ。" },
-        "optionC": { "text": "I don't need it.", "score": 6, "feedback": "意図は正確に伝わる。だが、Thank you. の一言で丁寧さが格段に上がる。" },
-        "optionD": { "text": "It's okay.", "score": 3, "feedback": "これも通じるが、相手を許すようなニュアンスも含む。この状況ではベストじゃない。" }
-      }
-    },
-    {
-      "id": "q004",
-      "difficultJapanese": "お疲れ様です",
-      "trainer_prompt_1": "一日中使える便利な言葉だが、魂胆が見えん。オフィスで、退勤する同僚にかける言葉だ。伝えたいのは『ねぎらい』か？『別れの挨拶』か？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "また明日", "score": 10 },
-        "optionB": { "text": "大変だったね", "score": 7 },
-        "optionC": { "text": "お先に失礼します", "score": 5 },
-        "optionD": { "text": "こんにちは", "score": 0 }
-      },
-      "trainer_prompt_2": "OK、『また明日』という意図だな。シンプルでいい。じゃあ、それを同僚にサラッと伝えるには？",
-      "englishOptions": {
-        "optionA": { "text": "See you tomorrow.", "score": 10, "feedback": "その通り。日常の別れの挨拶は、これくらいシンプルでいい。" },
-        "optionB": { "text": "Have a good evening.", "score": 8, "feedback": "これも素晴らしい。丁寧で感じがいいな。『また明日』の意図も汲み取れる。" },
-        "optionC": { "text": "You worked hard.", "score": 2, "feedback": "直訳だ。上司が部下を評価するような、上から目線のニュアンスになる。同僚には使うな。" },
-        "optionD": { "text": "Good work.", "score": 4, "feedback": "これも上から目線に聞こえることが多い。シンプルだが、使う相手を選ぶ言葉だ。" }
-      }
-    },
-    {
-      "id": "q005",
-      "difficultJapanese": "（空気が）微妙",
-      "trainer_prompt_1": "『微妙』ね。便利な言葉だが、何がどう微妙なんだ？盛り上がるはずの飲み会が、静まり返っている。この場の状態を具体的に言語化してみろ。",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "なんだか気まずい", "score": 10 },
-        "optionB": { "text": "つまらない", "score": 6 },
-        "optionC": { "text": "静かだ", "score": 7 },
-        "optionD": { "text": "変な感じ", "score": 8 }
-      },
-      "trainer_prompt_2": "よし、『気まずい』という感情だな。じゃあ、その場の雰囲気を友人にこっそり伝えるには、どんな英語がフィットする？",
-      "englishOptions": {
-        "optionA": { "text": "The atmosphere is a bit awkward.", "score": 10, "feedback": "完璧な表現だ。awkwardという単語がこの『気まずさ』を的確に捉えている。" },
-        "optionB": { "text": "It's strange.", "score": 5, "feedback": "悪くはないが、『奇妙だ』というニュアンスが強い。『気まずい』とは少しズレる。" },
-        "optionC": { "text": "This is not exciting.", "score": 3, "feedback": "『つまらない』という直接的な感想だな。場の空気を説明するより、自分の感情を述べている。" },
-        "optionD": { "text": "The vibe is off.", "score": 9, "feedback": "かなりネイティブっぽい表現だ。vibe is off で『雰囲気がおかしい』というニュアンスが伝わる。" }
-      }
-    },
-    {
-      "id": "q006",
-      "difficultJapanese": "ご迷惑をおかけしますが",
-      "trainer_prompt_1": "まだ何もしてないのに謝るな。その癖が、お前を弱く見せる。忙しそうな同僚に少し手伝ってほしい。本当に伝えたいのは『謝罪』か？『相手への気遣い』か？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "忙しいところごめん", "score": 10 },
-        "optionB": { "text": "お願いがあります", "score": 8 },
-        "optionC": { "text": "謝ります", "score": 0 },
-        "optionD": { "text": "すみません", "score": 5 }
-      },
-      "trainer_prompt_2": "そうだ、『相手の状況を気遣う』のが本質だ。じゃあ、それをスマートに切り出すには？",
-      "englishOptions": {
-        "optionA": { "text": "Sorry to bother you, but can you help me for a second?", "score": 10, "feedback": "これだ。相手の時間を邪魔することを詫びつつ、本題に入る。完璧な流れ。" },
-        "optionB": { "text": "I'm sorry to cause you trouble.", "score": 1, "feedback": "大げさすぎる。何か重大なミスでもしたのか？これから頼み事をする人間が使う言葉じゃない。" },
-        "optionC": { "text": "Can you do me a favor?", "score": 6, "feedback": "ストレートで悪くない。だが、相手への気遣いの一言があると、もっとスムーズだ。" },
-        "optionD": { "text": "Excuse me, I have a question.", "score": 7, "feedback": "丁寧で良い。だが『手伝ってほしい』というニュアンスより『質問』の意図が強い。" }
-      }
-    },
-    {
-      "id": "q007",
-      "difficultJapanese": "恐縮です",
-      "trainer_prompt_1": "感謝、謙遜、申し訳なさ…色々混ざった便利な言葉だな。だが、大先輩から過分な褒め言葉をいただいた。この場面で一番伝えたい感情はなんだ？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "もったいないお言葉です", "score": 10 },
-        "optionB": { "text": "ありがとうございます", "score": 8 },
-        "optionC": { "text": "恥ずかしいです", "score": 5 },
-        "optionD": { "text": "すみません", "score": 2 }
-      },
-      "trainer_prompt_2": "そう、『もったいない（＝自分にはふさわしくない）』という謙遜の気持ちだ。それを英語で表現してみろ。",
-      "englishOptions": {
-        "optionA": { "text": "I'm flattered.", "score": 10, "feedback": "完璧だ。『お世辞でも嬉しい』という、謙遜と喜びが同居した最高の表現。" },
-        "optionB": { "text": "That's too much for me.", "score": 3, "feedback": "直訳に近い。『荷が重い』のように聞こえ、褒め言葉を拒否している印象を与える。" },
-        "optionC": { "text": "Thank you, I'm honored.", "score": 8, "feedback": "非常に良い表現だ。『光栄です』というニュアンス。I'm flattered より少しフォーマル。" },
-        "optionD": { "text": "I'm so shy.", "score": 1, "feedback": "『恥ずかしい』の直訳。子供っぽく聞こえる。この文脈では使わない。" }
-      }
-    },
-    {
-      "id": "q008",
-      "difficultJapanese": "前向きに検討します",
-      "trainer_prompt_1": "政治家みたいな言い回しだな。本心では『断りたい』が、角は立てたくない。その意図を、もっと正直な日本語にしてみろ。",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "約束はできないけど、考えてみます", "score": 10 },
-        "optionB": { "text": "可能性を探ってみます", "score": 8 },
-        "optionC": { "text": "やれるかもしれません", "score": 5 },
-        "optionD": { "text": "はい、やります", "score": 0 }
-      },
-      "trainer_prompt_2": "よし、『約束はできない』という予防線を張るのが本質だな。じゃあ、そのニュアンスをビジネス英語でどう伝える？",
-      "englishOptions": {
-        "optionA": { "text": "I can't make any promises, but I'll look into it.", "score": 10, "feedback": "これだ。『約束はできない』と明確に伝えつつ、『検討はする』という誠意も見せる。完璧なリスク管理。" },
-        "optionB": { "text": "We'll positively consider it.", "score": 0, "feedback": "最悪の直訳。相手に過度な期待をさせるだけ。後でトラブルになるぞ。" },
-        "optionC": { "text": "Let me think about it positively.", "score": 1, "feedback": "これも直訳。Positiveという単語を使うと、相手は『やる気がある』と勘違いする。" },
-        "optionD": { "text": "I'll see what I can do.", "score": 8, "feedback": "かなり良い。約束はしていないが、前向きな姿勢は示せる。覚えておけ。" }
-      }
-    },
-    {
-      "id": "q009",
-      "difficultJapanese": "頑張ります",
-      "trainer_prompt_1": "『頑張る』ね。小学生の感想文じゃないんだから。上司から大きな仕事を任された。上司が聞きたいのは、お前の『意気込み』か？それとも『結果を出すという約束』か？",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "お任せください", "score": 10 },
-        "optionB": { "text": "全力を尽くします", "score": 8 },
-        "optionC": { "text": "やってみます", "score": 4 },
-        "optionD": { "text": "ベストを尽くします", "score": 7 }
-      },
-      "trainer_prompt_2": "そうだ、『やり遂げてみせる』という覚悟を示すのがプロだ。じゃあ、その信頼感を英語でどう表現する？",
-      "englishOptions": {
-        "optionA": { "text": "You can count on me.", "score": 10, "feedback": "これだ。『私に任せてください』という、絶対的な自信と責任感を示す言葉。" },
-        "optionB": { "text": "I'll do my best.", "score": 5, "feedback": "定番だが、少し弱い。『ベストは尽くすが、結果は保証しない』という言い訳の余地を残している。" },
-        "optionC": { "text": "I got this.", "score": 9, "feedback": "これも素晴らしい。自信に満ち溢れた、ネイティブがよく使う表現だ。" },
-        "optionD": { "text": "Leave it to me.", "score": 8, "feedback": "これも『任せて』という強い意志表示。You can count on me より少しカジュアル。" }
-      }
-    },
-    {
-      "id": "q010",
-      "difficultJapanese": "（ちょっと）厳しいかも",
-      "trainer_prompt_1": "『厳しい“かも”』だと？望みがあるように聞こえるが、本心はどうなんだ。午後3時までの仕事を頼まれた。お前は『できる』のか、『できない』のか、ハッキリしろ。",
-      "simpleJapaneseOptions": {
-        "optionA": { "text": "多分できません", "score": 10 },
-        "optionB": { "text": "難しいです", "score": 7 },
-        "optionC": { "text": "努力してみます", "score": 2 },
-        "optionD": { "text": "時間が足りません", "score": 8 }
-      },
-      "trainer_prompt_2": "OK、『多分できない』という本心を認めたな。じゃあ、それを相手にプロとしてどう伝える？",
-      "englishOptions": {
-        "optionA": { "text": "I don't think I can make it by then.", "score": 10, "feedback": "完璧だ。丁寧かつ明確に、締め切りに間に合わないことを伝えている。" },
-        "optionB": { "text": "I'm afraid that might be difficult.", "score": 8, "feedback": "非常に丁寧で良い表現。だが、まだ少しだけ曖昧さが残る。一歩踏み込め。" },
-        "optionC": { "text": "That's a bit of a stretch.", "score": 7, "feedback": "ネイティブらしい良い表現だ。『少し無理がある』というニュアンスが伝わる。" },
-        "optionD": { "text": "It's tough.", "score": 3, "feedback": "少しぶっきらぼうで、説明不足に聞こえる。ビジネスでは避けろ。" }
-      }
-    }
-  ]
+  {
+    "id": "q001", "genre": "business", "difficultJapanese": "よろしくお願いします", "trainer_prompt_1": "新しいチームでの挨拶だ。この場で最も伝えたい『ポジティブな気持ち』はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "一緒に仕事ができて嬉しいです", "score": 10}, "optionB": {"text": "手伝ってください", "score": 2}, "optionC": {"text": "仲良くしてください", "score": 5}, "optionD": {"text": "頑張ります", "score": 4} },
+    "trainer_prompt_2": "OK、そのポジティブな意気込みだ。じゃあ、それをプロフェッショナルな英語でどう伝える？",
+    "englishOptions": { "optionA": {"text": "I'm looking forward to working with you.", "score": 10, "feedback": "完璧だ。やる気と協調性を示す、最もプロフェッショナルな一手。"}, "optionB": {"text": "Let's work hard together.", "score": 5, "feedback": "悪くない。熱意は伝わるが、少し学生っぽく聞こえることもある。"}, "optionC": {"text": "Please be nice to me.", "score": 0, "feedback": "最悪の直訳。対等な関係性を自ら放棄するな。"}, "optionD": {"text": "Thank you for accepting me.", "score": 2, "feedback": "少しズレている。感謝より、未来への期待を述べるのがセオリーだ。"}}
+  },
+  {
+    "id": "q002", "genre": "business", "difficultJapanese": "いったん持ち帰ります", "trainer_prompt_1": "会議で想定外の質問が来たな。「持ち帰る」という言葉の、最もシンプルで正直な意味はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "今すぐには判断できません", "score": 10}, "optionB": {"text": "上司に相談します", "score": 5}, "optionC": {"text": "これは重要な問題です", "score": 2}, "optionD": {"text": "時間をください", "score": 7} },
+    "trainer_prompt_2": "そうだ、正直に『即断できない』と伝えるのがビジネスの基本だ。じゃあ、それを相手に失礼なく、かつ有能に見せるには？",
+    "englishOptions": { "optionA": {"text": "Let me get back to you on that.", "score": 10, "feedback": "完璧な回答だ。相手の意見を尊重しつつ、ボールを自分のコートに持ち帰るプロの技。"}, "optionB": {"text": "I need to think about it.", "score": 5, "feedback": "間違いではないが、少し準備不足に見えるリスクがある。"}, "optionC": {"text": "I'll take it back.", "score": 0, "feedback": "モノじゃないんだから「持ち帰る」な。典型的な直訳ミス。"}, "optionD": {"text": "I can't decide now.", "score": 3, "feedback": "正しいが、少しぶっきらぼうだ。『できない』と防御するより、次へのアクションを示せ。"}}
+  },
+  {
+    "id": "q003", "genre": "daily", "difficultJapanese": "大丈夫です", "trainer_prompt_1": "コンビニで「袋はご利用になりますか？」。この曖昧な言葉を、明確な『YES』か『NO』に変換しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "いりません", "score": 10}, "optionB": {"text": "はい、ください", "score": 0}, "optionC": {"text": "問題ありません", "score": 2}, "optionD": {"text": "結構です", "score": 8} },
+    "trainer_prompt_2": "よし、『不要』の意思を明確にしたな。じゃあ、それを店員に失礼なく、かつ一瞬で伝えるには？",
+    "englishOptions": { "optionA": {"text": "No, thank you.", "score": 10, "feedback": "これ以上ないほど完璧だ。明確、丁寧、迅速。非の打ち所がない。"}, "optionB": {"text": "I'm fine.", "score": 5, "feedback": "通じる。だが、No, thank you. の方が10倍クリアだ。曖昧さを捨てるトレーニングをしろ。"}, "optionC": {"text": "I don't need it.", "score": 6, "feedback": "意図は正確に伝わる。だが、Thank you. の一言で丁寧さが格段に上がる。"}, "optionD": {"text": "It's okay.", "score": 3, "feedback": "これも通じるが、相手を許すようなニュアンスも含む。この状況ではベストじゃない。"}}
+  },
+  {
+    "id": "q004", "genre": "social", "difficultJapanese": "お疲れ様です", "trainer_prompt_1": "退勤する同僚にかける言葉だ。この状況での『お疲れ様』が持つ、最も重要な機能はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "また明日、という挨拶", "score": 10}, "optionB": {"text": "頑張りを褒める", "score": 7}, "optionC": {"text": "先に帰ることを詫びる", "score": 2}, "optionD": {"text": "会話を始めるきっかけ", "score": 4} },
+    "trainer_prompt_2": "OK、『別れの挨拶』がこの言葉の役割だな。じゃあ、それをサラッと伝えるには？",
+    "englishOptions": { "optionA": {"text": "See you tomorrow.", "score": 10, "feedback": "その通り。日常の別れの挨拶は、これくらいシンプルでいい。"}, "optionB": {"text": "Have a good evening.", "score": 8, "feedback": "これも素晴らしい。丁寧で感じがいいな。『また明日』の意図も汲み取れる。"}, "optionC": {"text": "You worked hard.", "score": 2, "feedback": "直訳だ。上司が部下を評価するような、上から目線のニュアンスになる。同僚には使うな。"}, "optionD": {"text": "Good work.", "score": 4, "feedback": "これも上から目線に聞こえることが多い。シンプルだが、使う相手を選ぶ言葉だ。"}}
+  },
+  {
+    "id": "q005", "genre": "social", "difficultJapanese": "（空気が）微妙", "trainer_prompt_1": "飲み会が静まり返っている。この『微妙』という感覚を、もっと具体的な感情の言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "なんだか気まずい", "score": 10}, "optionB": {"text": "つまらない", "score": 6}, "optionC": {"text": "静かだ", "score": 7}, "optionD": {"text": "変な感じ", "score": 8} },
+    "trainer_prompt_2": "よし、『気まずい』という感情だな。じゃあ、その場の雰囲気を友人にこっそり伝えるには、どんな英語がフィットする？",
+    "englishOptions": { "optionA": {"text": "The atmosphere is a bit awkward.", "score": 10, "feedback": "完璧な表現だ。awkwardという単語がこの『気まずさ』を的確に捉えている。"}, "optionB": {"text": "It's strange.", "score": 5, "feedback": "悪くはないが、『奇妙だ』というニュアンスが強い。『気まずい』とは少しズレる。"}, "optionC": {"text": "This is not exciting.", "score": 3, "feedback": "『つまらない』という直接的な感想だな。場の空気を説明するより、自分の感情を述べている。"}, "optionD": {"text": "The vibe is off.", "score": 9, "feedback": "かなりネイティブっぽい表現だ。vibe is off で『雰囲気がおかしい』というニュアンスが伝わる。"}}
+  },
+  {
+    "id": "q006", "genre": "business", "difficultJapanese": "ご迷惑をおかけしますが", "trainer_prompt_1": "まだ何もしてないのに謝るな。その癖が、お前を弱く見せる。忙しそうな同僚に少し手伝ってほしい。この前置きの意図を、よりシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "忙しいところごめん", "score": 10}, "optionB": {"text": "お願いがあります", "score": 8}, "optionC": {"text": "謝罪します", "score": 0}, "optionD": {"text": "すみません", "score": 5} },
+    "trainer_prompt_2": "そうだ、『相手の状況を気遣う』のが本質だ。じゃあ、それをスマートに切り出すには？",
+    "englishOptions": { "optionA": {"text": "Sorry to bother you, but can you help me for a second?", "score": 10, "feedback": "これだ。相手の時間を邪魔することを詫びつつ、本題に入る。完璧な流れ。"}, "optionB": {"text": "I'm sorry to cause you trouble.", "score": 1, "feedback": "大げさすぎる。何か重大なミスでもしたのか？これから頼み事をする人間が使う言葉じゃない。"}, "optionC": {"text": "Can you do me a favor?", "score": 6, "feedback": "ストレートで悪くない。だが、相手への気遣いの一言があると、もっとスムーズだ。"}, "optionD": {"text": "Excuse me, I have a question.", "score": 7, "feedback": "丁寧で良い。だが『手伝ってほしい』というニュアンスより『質問』の意図が強い。"}}
+  },
+  {
+    "id": "q007", "genre": "onomatopoeia", "difficultJapanese": "一日中ダラダラ過ごす",
+    "trainer_prompt_1": "『ダラダラ』ね。その無気力な感じを、もっと具体的な『行動』の言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "何もしないで過ごす", "score": 10}, "optionB": {"text": "リラックスする", "score": 7}, "optionC": {"text": "時間を無駄にする", "score": 8}, "optionD": {"text": "怠けている", "score": 9} },
+    "trainer_prompt_2": "OK、『何もしない』が本質だな。じゃあ、家でゴロゴロしている時の、あの感じを英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "I'm just vegging out.", "score": 10, "feedback": "完璧なスラングだ。『野菜のように、ただ存在する』という意味。"}, "optionB": {"text": "I'm doing nothing.", "score": 8, "feedback": "正しい。最もシンプルで直接的な表現だ。"}, "optionC": {"text": "I'm lazy today.", "score": 6, "feedback": "自分の性格について述べているな。『怠けている』というより、そういう行動をしている、と伝えたい。"}, "optionD": {"text": "I'm killing time.", "score": 7, "feedback": "『時間つぶし』のニュアンス。少し違うが、近い。"}}
+  },
+  {
+    "id": "q008", "genre": "feelings", "difficultJapanese": "恐縮です", "trainer_prompt_1": "大先輩から過分な褒め言葉をいただいた。この複雑な感情を、最も近い、より一般的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "もったいないお言葉です", "score": 10}, "optionB": {"text": "とても光栄です", "score": 9}, "optionC": {"text": "恥ずかしいです", "score": 5}, "optionD": {"text": "ありがとうございます", "score": 8} },
+    "trainer_prompt_2": "そう、『もったいない（＝自分にはふさわしくない）』という謙遜の気持ちだ。それを英語で表現してみろ。",
+    "englishOptions": { "optionA": {"text": "I'm flattered.", "score": 10, "feedback": "完璧だ。『お世辞でも嬉しい』という、謙遜と喜びが同居した最高の表現。"}, "optionB": {"text": "That's too much for me.", "score": 3, "feedback": "直訳に近い。『荷が重い』のように聞こえ、褒め言葉を拒否している印象を与える。"}, "optionC": {"text": "Thank you, I'm honored.", "score": 8, "feedback": "非常に良い表現だ。『光栄です』というニュアンス。I'm flattered より少しフォーマル。"}, "optionD": {"text": "I'm so shy.", "score": 1, "feedback": "『恥ずかしい』の直訳。子供っぽく聞こえる。この文脈では使わない。"}}
+  },
+  {
+    "id": "q009", "genre": "business", "difficultJapanese": "前向きに検討します", "trainer_prompt_1": "政治家みたいな言い回しだな。この『期待させる』言葉の、正直な言い換えはどれだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "約束はできないけど、考えてみます", "score": 10}, "optionB": {"text": "可能性を探ってみます", "score": 8}, "optionC": {"text": "良い返事を期待してください", "score": 1}, "optionD": {"text": "はい、やります", "score": 0} },
+    "trainer_prompt_2": "よし、『約束はできない』という予防線を張るのが本質だな。じゃあ、そのニュアンスをビジネス英語でどう伝える？",
+    "englishOptions": { "optionA": {"text": "I can't make any promises, but I'll look into it.", "score": 10, "feedback": "これだ。『約束はできない』と明確に伝えつつ、『検討はする』という誠意も見せる。完璧なリスク管理。"}, "optionB": {"text": "We'll positively consider it.", "score": 0, "feedback": "最悪の直訳。相手に過度な期待をさせるだけ。後でトラブルになるぞ。"}, "optionC": {"text": "Let me think about it positively.", "score": 1, "feedback": "これも直訳。Positiveという単語を使うと、相手は『やる気がある』と勘違いする。"}, "optionD": {"text": "I'll see what I can do.", "score": 8, "feedback": "かなり良い。約束はしていないが、前向きな姿勢は示せる。覚えておけ。"}}
+  },
+  {
+    "id": "q010", "genre": "business", "difficultJapanese": "頑張ります", "trainer_prompt_1": "小学生の感想文じゃないんだから。上司から大きな仕事を任された。この言葉で示すべきは『意気込み』より『覚悟』だ。どれが一番伝わる？",
+    "simpleJapaneseOptions": { "optionA": {"text": "お任せください", "score": 10}, "optionB": {"text": "全力を尽くします", "score": 8}, "optionC": {"text": "やってみます", "score": 4}, "optionD": {"text": "ベストを尽くします", "score": 7} },
+    "trainer_prompt_2": "そうだ、『やり遂げてみせる』という覚悟を示すのがプロだ。じゃあ、その信頼感を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "You can count on me.", "score": 10, "feedback": "これだ。『私に任せてください』という、絶対的な自信と責任感を示す言葉。"}, "optionB": {"text": "I'll do my best.", "score": 5, "feedback": "定番だが、少し弱い。『ベストは尽くすが、結果は保証しない』という言い訳の余地を残している。"}, "optionC": {"text": "I got this.", "score": 9, "feedback": "これも素晴らしい。自信に満ち溢れた、ネイティブがよく使う表現だ。"}, "optionD": {"text": "Leave it to me.", "score": 8, "feedback": "これも『任せて』という強い意志表示。You can count on me より少しカジュアル。"}}
+  },
+  {
+    "id": "q011", "genre": "onomatopoeia", "difficultJapanese": "お腹がペコペコ",
+    "trainer_prompt_1": "子供っぽい表現だな。大人として、その状態を普通の言葉でどう表現する？",
+    "simpleJapaneseOptions": { "optionA": {"text": "すごくお腹が空いた", "score": 10}, "optionB": {"text": "何か食べたい", "score": 8}, "optionC": {"text": "食欲がある", "score": 5}, "optionD": {"text": "お腹が鳴っている", "score": 6} },
+    "trainer_prompt_2": "OK、『すごくお腹が空いた』だな。その『飢え』の感覚を、ネイティブらしい表現で言ってみろ。",
+    "englishOptions": { "optionA": {"text": "I'm starving.", "score": 10, "feedback": "完璧だ。『飢えている』という、非常に強い空腹感を表す一般的な表現。"}, "optionB": {"text": "I'm very hungry.", "score": 8, "feedback": "正しい。だが、I'm starving. の方が『ペコペコ』のニュアンスに近い。"}, "optionC": {"text": "I'm famished.", "score": 9, "feedback": "これも良い。『飢えている』という少しフォーマルな言い方。"}, "optionD": {"text": "My stomach is empty.", "score": 3, "feedback": "直訳。物理的な状態を説明しているだけで、感情が乗っていない。"}}
+  },
+  {
+    "id": "q012", "genre": "daily", "difficultJapanese": "しょうがないよ",
+    "trainer_prompt_1": "諦めの言葉だな。この気持ちを、最もシンプルに表現するとどうなる？",
+    "simpleJapaneseOptions": { "optionA": {"text": "どうしようもない", "score": 10}, "optionB": {"text": "我慢するしかない", "score": 6}, "optionC": {"text": "運が悪かった", "score": 7}, "optionD": {"text": "気にしない", "score": 8} },
+    "trainer_prompt_2": "OK、『どうしようもない』という状況を受け入れるニュアンスだな。じゃあ、それをネイティブはどう表現する？",
+    "englishOptions": { "optionA": {"text": "It is what it is.", "score": 10, "feedback": "完璧なネイティブ表現。『そういうもんだよ』という、諦めと受容のニュアンス。"}, "optionB": {"text": "I can't help it.", "score": 8, "feedback": "これも良い。『自分ではどうしようもできない』というニュアンスが強く伝わる。"}, "optionC": {"text": "No choice.", "score": 4, "feedback": "少しぶっきらぼうだが、意図は伝わる。もっと自然な言い方があるぞ。"}, "optionD": {"text": "It can't be helped.", "score": 7, "feedback": "教科書的な正しい表現。間違いではないが、It is what it is. の方がこなれている。"}}
+  },
+  {
+    "id": "q013", "genre": "social", "difficultJapanese": "（相手を褒めて）センスいいですね",
+    "trainer_prompt_1": "相手を気持ちよくさせる言葉だな。この言葉の最も直接的で、シンプルな言い換えはどれだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "それ、すごくいいね！", "score": 10}, "optionB": {"text": "選ぶのが上手だね", "score": 7}, "optionC": {"text": "おしゃれだね", "score": 9}, "optionD": {"text": "あなたは良い趣味をしています", "score": 2} },
+    "trainer_prompt_2": "OK、『いいね！』と褒めるのが一番だ。じゃあ、相手の『持ち物』ではなく、『その人自身』を褒めるには？",
+    "englishOptions": { "optionA": {"text": "You have great taste.", "score": 10, "feedback": "これ以上ない表現。『素晴らしいセンス（審美眼）をお持ちですね』という、人そのものを褒める言葉。"}, "optionB": {"text": "I like your shirt.", "score": 6, "feedback": "モノを褒めているな。悪くはないが、人を褒める方がより深い。"}, "optionC": {"text": "Great sense!", "score": 3, "feedback": "単語の直訳。文法的に不自然だ。"}, "optionD": {"text": "That's very stylish.", "score": 8, "feedback": "良い表現だ。『おしゃれですね』というニュアンスが伝わる。"}}
+  },
+  {
+    "id": "q014", "genre": "feelings", "difficultJapanese": "（嬉しいけど）なんか複雑な気持ち",
+    "trainer_prompt_1": "一言では表せない感情だな。ポジティブとネガティブが混ざっている。この感情の芯を、最も的確に表す言葉はどれだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "嬉しいような、悲しいような", "score": 8}, "optionB": {"text": "どう感じていいか分からない", "score": 10}, "optionC": {"text": "色々な感情がある", "score": 7}, "optionD": {"text": "なんとも言えない", "score": 9} },
+    "trainer_prompt_2": "OK、『どう感じていいか分からない』という混乱が本質だな。それを英語で表現してみろ。",
+    "englishOptions": { "optionA": {"text": "I have mixed feelings about it.", "score": 10, "feedback": "完璧なイディオム。『いくつかの感情が混ざっている』という、まさにこの状況のための表現。"}, "optionB": {"text": "It's complicated.", "score": 8, "feedback": "これも良い。『複雑なんだ』というニュアンスが伝わる。"}, "optionC": {"text": "My feeling is complex.", "score": 2, "feedback": "直訳。不自然に聞こえる。feelingは通常、複数形で使うことが多い。"}, "optionD": {"text": "I don't know how to feel.", "score": 9, "feedback": "これも素晴らしい。日本語の意図に非常に近い、素直な表現だ。"}}
+  },
+  {
+    "id": "q015", "genre": "onomatopoeia", "difficultJapanese": "頭がガンガンする",
+    "trainer_prompt_1": "その音、まさに痛みの表現だな。この擬音語が示す、具体的な症状はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "ひどい頭痛がする", "score": 10}, "optionB": {"text": "頭が痛い", "score": 8}, "optionC": {"text": "二日酔いだ", "score": 5}, "optionD": {"text": "考えすぎている", "score": 3} },
+    "trainer_prompt_2": "OK、『ひどい頭痛』だな。その『割れるような痛み』を、ネイティブらしい表現で言ってみろ。",
+    "englishOptions": { "optionA": {"text": "My head is pounding.", "score": 10, "feedback": "素晴らしい表現だ。『ガンガン叩かれている』というニュアンスが完璧に伝わる。"}, "optionB": {"text": "I have a splitting headache.", "score": 9, "feedback": "これも完璧だ。『頭が割れるような』という、ひどい頭痛を表す決まり文句。"}, "optionC": {"text": "I have a bad headache.", "score": 7, "feedback": "正しい。だが、『ガンガン』というほどの強さは伝わらない。"}, "optionD": {"text": "My head hurts.", "score": 5, "feedback": "最もシンプルだが、痛みの度合いが全く伝わらないな。" } }
+  },
+  {
+    "id": "q016", "genre": "daily", "difficultJapanese": "ごちそうさまでした", "trainer_prompt_1": "食事の後の感謝の言葉だな。この言葉で伝えるべき最も重要なメッセージはなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "とても美味しかったです", "score": 10}, "optionB": {"text": "作ってくれてありがとう", "score": 9}, "optionC": {"text": "お腹いっぱいです", "score": 5}, "optionD": {"text": "食べ終わりました", "score": 3} },
+    "trainer_prompt_2": "そう、作ってくれた人への感謝として『美味しかった』と伝えるのが本質だ。じゃあ、それをどう伝える？",
+    "englishOptions": { "optionA": {"text": "Thank you for the meal. It was delicious.", "score": 10, "feedback": "感謝と感想を伝える、完璧なフルセンテンスだ。"}, "optionB": {"text": "I'm full.", "score": 3, "feedback": "単なる自分の状態報告だな。感謝の気持ちが足りん。"}, "optionC": {"text": "I'm done.", "score": 2, "feedback": "『終わった』という事実だけ。失礼に聞こえることもある。"}, "optionD": {"text": "That was great, thank you.", "score": 9, "feedback": "これも素晴らしい。シンプルで、感謝と満足が伝わる良い表現だ。"}}
+  },
+  {
+    "id": "q017", "genre": "social", "difficultJapanese": "お先に失礼します", "trainer_prompt_1": "職場から先に帰る時の決まり文句だな。この言葉の本質は『謝罪』じゃない、『挨拶』だ。最もシンプルな挨拶に言い換えろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "お先に帰ります", "score": 10}, "optionB": {"text": "すみません、帰ります", "score": 4}, "optionC": {"text": "仕事は終わりました", "score": 6}, "optionD": {"text": "さようなら", "score": 8} },
+    "trainer_prompt_2": "そうだ、『先に帰る』という事実と挨拶を伝えれば十分だ。謝る必要はない。じゃあ、英語ではどう言う？",
+    "englishOptions": { "optionA": {"text": "I'm heading out. See you tomorrow!", "score": 10, "feedback": "完璧だ。『もう行きますね』というカジュアルな宣言と挨拶の組み合わせ。"}, "optionB": {"text": "I'm sorry, I have to go now.", "score": 3, "feedback": "なぜ謝る？何か悪いことでもしたのか？過剰な謝罪は不要だ。"}, "optionC": {"text": "I'm leaving now.", "score": 7, "feedback": "間違いではない。だが、I'm heading out. の方が少し柔らかいニュアンスだ。"}, "optionD": {"text": "Goodbye.", "score": 5, "feedback": "少し硬すぎる。同僚への日常の挨拶としては、See you の方が一般的だ。"}}
+  },
+  {
+    "id": "q018", "genre": "feelings", "difficultJapanese": "（感動して）鳥肌が立った", "trainer_prompt_1": "強い感情の動きだな。この身体的な反応が意味する『感情』を、直接的な言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "感動で震えた", "score": 10}, "optionB": {"text": "すごく興奮した", "score": 9}, "optionC": {"text": "寒気がした", "score": 5}, "optionD": {"text": "すごかった", "score": 8} },
+    "trainer_prompt_2": "OK、『感動で震える』ほどの体験だな。それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I got goosebumps.", "score": 10, "feedback": "これだ。『鳥肌』の直訳だが、英語でも感動と恐怖の両方で使う完璧な表現。"}, "optionB": {"text": "That gave me chills.", "score": 9, "feedback": "これも素晴らしい。『ゾクゾクした』というニュアンスで、感動・興奮・恐怖に使える。"}, "optionC": {"text": "I was so moved.", "score": 8, "feedback": "『感動した』という気持ちを直接伝える、良い表現だ。"}, "optionD": {"text": "My skin got rough.", "score": 0, "feedback": "直訳の失敗例。肌が荒れたのか？"}}
+  },
+  {
+    "id": "q019", "genre": "proverb", "difficultJapanese": "石橋を叩いて渡る",
+    "trainer_prompt_1": "ことわざだな。この行動が示している『性格』を、もっとシンプルな言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "すごく慎重だ", "score": 10}, "optionB": {"text": "心配性だ", "score": 8}, "optionC": {"text": "準備が良い", "score": 7}, "optionD": {"text": "疑い深い", "score": 6} },
+    "trainer_prompt_2": "そうだ、『すごく慎重』ということだな。じゃあ、その性格を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "You're very cautious.", "score": 10, "feedback": "的確な表現だ。cautious は『用心深い、慎重な』という意味の基本単語。"}, "optionB": {"text": "Better safe than sorry.", "score": 9, "feedback": "素晴らしいことわざだ。『後で後悔するより、安全な方が良い』という意味で、この状況にぴったり。"}, "optionC": {"text": "You think too much.", "score": 4, "feedback": "少しネガティブなニュアンスだな。『考えすぎだ』と、相手を非難しているように聞こえる。"}, "optionD": {"text": "You're a careful person.", "score": 7, "feedback": "正しい。cautious ほど『危険を避ける』ニュアンスは強くないが、十分に伝わる。" } }
+  },
+  {
+    "id": "q020", "genre": "proverb", "difficultJapanese": "猫の手も借りたい",
+    "trainer_prompt_1": "ことわざだな。猫の手ですら役に立つ、というほどの状況だ。要するに、どういうことだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "めちゃくちゃ忙しい", "score": 10}, "optionB": {"text": "人手が足りない", "score": 9}, "optionC": {"text": "助けが必要だ", "score": 8}, "optionD": {"text": "パニックになっている", "score": 5} },
+    "trainer_prompt_2": "その通り、『めちゃくちゃ忙しい』んだ。その極限状態を、ネイティブらしい表現で言ってみろ。",
+    "englishOptions": { "optionA": {"text": "I'm swamped.", "score": 10, "feedback": "完璧な表現だ。『沼にはまっている』という比喩で、仕事に埋もれている様子が伝わる。"}, "optionB": {"text": "I'm buried in work.", "score": 9, "feedback": "これも素晴らしい。『仕事に埋められている』という、非常に分かりやすい比喩。"}, "optionC": {"text": "I'm extremely busy.", "score": 7, "feedback": "正しい。だが、少し教科書的だ。I'm swamped. の方がこなれている。"}, "optionD": {"text": "I need a cat's paw.", "score": 0, "feedback": "直訳。意味不明だ。ペットショップにでも行くのか？"}}
+  },
+  {
+    "id": "q021",
+    "genre": "social",
+    "difficultJapanese": "（自慢話に）さしすせそ",
+    "trainer_prompt_1": "相手を気持ちよくさせる相槌のテクニックだな。だが、その本質はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "すごい！と褒める", "score": 10}, "optionB": {"text": "知らなかった！と驚く", "score": 8}, "optionC": {"text": "さすが！と感心する", "score": 9}, "optionD": {"text": "勉強になります！と学ぶ姿勢を見せる", "score": 7} },
+    "trainer_prompt_2": "OK、『褒める・感心する』が基本だな。じゃあ、相手の話を肯定する、最もシンプルで力強い英語は？",
+    "englishOptions": { "optionA": {"text": "That's awesome!", "score": 10, "feedback": "素晴らしい。awesome は『すごい』という気持ちを伝える、非常にポジティブな言葉だ。"}, "optionB": {"text": "Sashisuseso.", "score": 0, "feedback": "直訳するな。意味が全く通じないぞ。"}, "optionC": {"text": "I see.", "score": 4, "feedback": "『なるほど』か。相槌としては弱すぎる。相手への興味が感じられない。"}, "optionD": {"text": "Really? Tell me more.", "score": 9, "feedback": "これも良い。『本当に？もっと教えて』と、強い興味を示すことで相手を喜ばせられる。"}}
+  },
+  {
+    "id": "q022",
+    "genre": "feelings",
+    "difficultJapanese": "身も蓋もない",
+    "trainer_prompt_1": "婉曲表現ゼロの、あまりに直接的な物言いだな。この言葉の『芯』を捉えろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "あまりに直接的すぎる", "score": 10}, "optionB": {"text": "夢がない", "score": 7}, "optionC": {"text": "正直すぎる", "score": 8}, "optionD": {"text": "思いやりがない", "score": 9} },
+    "trainer_prompt_2": "そうだ、『直接的すぎる』ということだ。じゃあ、その『オブラートに包まない感じ』を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "That's very blunt.", "score": 10, "feedback": "完璧な単語だ。blunt は『無遠慮な、ぶっきらぼうな』という意味で、この状況にぴったり。"}, "optionB": {"text": "That's too direct.", "score": 8, "feedback": "これも正しい。『直接的すぎる』という、分かりやすい表現だ。"}, "optionC": {"text": "No body, no lid.", "score": 0, "feedback": "直訳の典型例。何の話をしているんだ？"}, "optionD": {"text": "You're so frank.", "score": 6, "feedback": "frankは『率直な』という意味だが、必ずしもネガティブな意味ではない。blunt の方が的確だ。"}}
+  },
+  {
+    "id": "q023",
+    "genre": "daily",
+    "difficultJapanese": "ピンからキリまで",
+    "trainer_prompt_1": "品質や価格の『幅』を表す言葉だな。これを、もっとシンプルな言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "上から下まで色々ある", "score": 10}, "optionB": {"text": "たくさん種類がある", "score": 8}, "optionC": {"text": "良いものも悪いものもある", "score": 9}, "optionD": {"text": "値段が違う", "score": 6} },
+    "trainer_prompt_2": "OK、『上から下まで』という幅広い範囲を示すのが本質だな。じゃあ、それを表現する英語のイディオムは？",
+    "englishOptions": { "optionA": {"text": "It runs the gamut.", "score": 10, "feedback": "素晴らしい。run the gamut は『全範囲にわたる』という意味の完璧なイディオムだ。"}, "optionB": {"text": "There's a wide range.", "score": 9, "feedback": "これも非常に良い表現だ。『幅広い範囲がある』と、分かりやすく伝えられる。"}, "optionC": {"text": "From pin to kiri.", "score": 0, "feedback": "直訳。日本のことわざに詳しい人以外には通じない。"}, "optionD": {"text": "There are all sorts.", "score": 7, "feedback": "『いろんな種類がある』ということだな。意図は伝わるが、幅の広さは少し弱い。"}}
+  },
+  {
+    "id": "q024",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（雨が）ザーザー降る",
+    "trainer_prompt_1": "雨の擬音語だな。この音が表現している雨の『強さ』を、普通の言葉でどう言う？",
+    "simpleJapaneseOptions": { "optionA": {"text": "とても強く降っている", "score": 10}, "optionB": {"text": "大雨だ", "score": 9}, "optionC": {"text": "雨がひどい", "score": 8}, "optionD": {"text": "たくさん降っている", "score": 7} },
+    "trainer_prompt_2": "そうだ、『とても強く降っている』んだ。その激しさを、ネイティブらしい比喩で表現してみろ。",
+    "englishOptions": { "optionA": {"text": "It's raining cats and dogs.", "score": 10, "feedback": "完璧なイディオムだ。まさに『土砂降り』を表す、最も有名な表現。"}, "optionB": {"text": "It's pouring.", "score": 9, "feedback": "これも素晴らしい。『注ぐように降っている』という、非常に一般的な表現。"}, "optionC": {"text": "It's raining heavily.", "score": 7, "feedback": "正しい。だが、少し教科書的だ。もっと面白い言い方があるぞ。"}, "optionD": {"text": "The rain is noisy.", "score": 3, "feedback": "『雨がうるさい』か。音に注目したのは良いが、雨の強さは伝わらない。"}}
+  },
+  {
+    "id": "q025",
+    "genre": "proverb",
+    "difficultJapanese": "一長一短",
+    "trainer_prompt_1": "物事の二面性を表す言葉だな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "良い所も悪い所もある", "score": 10}, "optionB": {"text": "完璧ではない", "score": 7}, "optionC": {"text": "メリットとデメリットがある", "score": 9}, "optionD": {"text": "どっちもどっちだ", "score": 8} },
+    "trainer_prompt_2": "その通り、『良い所も悪い所もある』ということだ。じゃあ、それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "There are pros and cons.", "score": 10, "feedback": "完璧だ。pros (賛成点) と cons (反対点) は、まさにこの状況のための単語。"}, "optionB": {"text": "It has its ups and downs.", "score": 8, "feedback": "これも良い表現だ。人生の浮き沈みなど、時間的な変化を伴うことによく使う。"}, "optionC": {"text": "Every coin has two sides.", "score": 9, "feedback": "素晴らしいことわざだ。『すべてのコインには裏と表がある』。物事の二面性を的確に表している。"}, "optionD": {"text": "One strength, one weakness.", "score": 2, "feedback": "直訳。不自然だし、それぞれ一つずつしかない、と誤解される。"}}
+  },
+  {
+    "id": "q026",
+    "genre": "feelings",
+    "difficultJapanese": "（呆れて）やれやれ",
+    "trainer_prompt_1": "呆れや、軽い落胆を示す言葉だな。この感情を、もっと直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "まったく、もう…", "score": 10}, "optionB": {"text": "信じられない", "score": 8}, "optionC": {"text": "しょうがないな", "score": 7}, "optionD": {"text": "疲れるよ", "score": 9} },
+    "trainer_prompt_2": "OK、『まったく、もう…』という呆れた気持ちだな。それを、ネイティブがよく使う感嘆詞で表現してみろ。",
+    "englishOptions": { "optionA": {"text": "Good grief.", "score": 10, "feedback": "これだ。スヌーピーのセリフで有名だな。『やれやれ』という呆れや軽い絶望感を完璧に表現する。"}, "optionB": {"text": "Oh my god.", "score": 7, "feedback": "驚きを表すが、呆れのニュアンスは少し弱い。"}, "optionC": {"text": "Give me a break.", "score": 9, "feedback": "これも素晴らしい。『勘弁してくれよ』という、うんざりした気持ちがよく伝わる。"}, "optionD": {"text": "Unbelievable.", "score": 8, "feedback": "『信じられない』か。良い悪い両方の意味で使えるが、呆れの文脈でもフィットする。"}}
+  },
+  {
+    "id": "q027",
+    "genre": "daily",
+    "difficultJapanese": "二度手間",
+    "trainer_prompt_1": "同じ作業を2回やる、無駄な状況だな。この言葉の本質を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "無駄な作業を繰り返すこと", "score": 10}, "optionB": {"text": "効率が悪い", "score": 8}, "optionC": {"text": "やり直し", "score": 7}, "optionD": {"text": "余計な仕事", "score": 9} },
+    "trainer_prompt_2": "そうだ、『無駄な作業の繰り返し』だな。じゃあ、それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's a waste of effort.", "score": 9, "feedback": "良い表現だ。『努力の無駄だ』と、状況を的確に説明している。"}, "optionB": {"text": "I have to do it all over again.", "score": 8, "feedback": "『全部やり直しだ』ということだな。状況は伝わる。"}, "optionC": {"text": "It's double the work.", "score": 10, "feedback": "素晴らしい。『仕事が2倍になる』と、無駄を分かりやすく表現している。"}, "optionD": {"text": "Twice the effort.", "score": 4, "feedback": "惜しい。文法的に不完全だ。It's をつけるだけで良くなる。"}}
+  },
+  {
+    "id": "q028",
+    "genre": "social",
+    "difficultJapanese": "（自虐的に）いえいえ、とんでもないです",
+    "trainer_prompt_1": "褒められた時の、過度な謙遜だな。この言葉で本当に伝えたい意図はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "そんなにすごくないですよ", "score": 10}, "optionB": {"text": "ありがとう、でも、まだまだです", "score": 9}, "optionC": {"text": "私なんて大したことないです", "score": 8}, "optionD": {"text": "いいえ、違います", "score": 3} },
+    "trainer_prompt_2": "OK、『そんなにすごくない』という謙遜だな。だが、英語でこれをそのまま言うと、相手の褒め言葉を否定することになる。どう返すべきだ？",
+    "englishOptions": { "optionA": {"text": "Oh, it was nothing.", "score": 8, "feedback": "よく使われる表現だ。『大したことないですよ』という謙遜のニュアンス。"}, "optionB": {"text": "Thank you, but I still have a long way to go.", "score": 9, "feedback": "これも良い。『ありがとう、でもまだまだです』という、日本的な謙遜に近い。"}, "optionC": {"text": "I'm just doing my job.", "score": 7, "feedback": "『仕事をしたまでです』か。少し硬いが、プロフェッショナルな響きもある。"}, "optionD": {"text": "Thank you. That's very kind of you to say.", "score": 10, "feedback": "完璧な返しだ。相手の言葉を否定せず、その『親切な言葉』に感謝する。これが欧米式のスマートな謙遜だ。"}}
+  },
+  {
+    "id": "q029",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "ツルツルしている",
+    "trainer_prompt_1": "物の表面の状態を表す言葉だな。この擬態語が意味する、物理的な性質はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "なめらかで滑りやすい", "score": 10}, "optionB": {"text": "光っている", "score": 6}, "optionC": {"text": "平らだ", "score": 7}, "optionD": {"text": "抵抗がない", "score": 8} },
+    "trainer_prompt_2": "そうだ、『なめらかで滑りやすい』が本質だな。その質感を、英語の基本単語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's slippery.", "score": 9, "feedback": "『滑りやすい』だな。氷の道など、ネガティブな文脈でよく使う。"}, "optionB": {"text": "It's smooth.", "score": 10, "feedback": "完璧だ。smooth は『なめらかな』という意味で、ポジティブな文脈で使われることが多い。"}, "optionC": {"text": "It's shiny.", "score": 4, "feedback": "『光っている』か。ツルツルしたものは光っていることが多いが、イコールではない。"}, "optionD": {"text": "Tsuru-tsuru.", "score": 0, "feedback": "擬音語の直訳は通じない。"}}
+  },
+  {
+    "id": "q030",
+    "genre": "proverb",
+    "difficultJapanese": "類は友を呼ぶ",
+    "trainer_prompt_1": "ことわざだな。似た者同士が集まる、ということだ。この現象を、もっと簡単な言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "似た人たちが集まる", "score": 10}, "optionB": {"text": "友達は自分に似る", "score": 8}, "optionC": {"text": "同じ趣味の人が好き", "score": 7}, "optionD": {"text": "仲間を見つける", "score": 6} },
+    "trainer_prompt_2": "その通り、『似た者同士が集まる』だ。じゃあ、それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "Birds of a feather flock together.", "score": 10, "feedback": "完璧なことわざだ。『同じ羽の鳥は一緒に群れる』という意味で、まさにこの状況を表す。"}, "optionB": {"text": "Similar people gather.", "score": 6, "feedback": "直訳。意味は通じるが、ことわざの持つ響きがない。"}, "optionC": {"text": "Likes attract likes.", "score": 7, "feedback": "『似たものは似たものを引き寄せる』。科学の法則のようだが、意図は伝わる。"}, "optionD": {"text": "Friends call friends.", "score": 1, "feedback": "直訳の失敗例。『友達が友達を呼ぶ』では、意味が全く違う。"}}
+  },
+  {
+    "id": "q031",
+    "genre": "daily",
+    "difficultJapanese": "（予定が）カツカツです",
+    "trainer_prompt_1": "余裕がない状態だな。この『カツカツ』という感覚を、もっと具体的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "スケジュールがぎっしり詰まっている", "score": 10}, "optionB": {"text": "とても忙しい", "score": 9}, "optionC": {"text": "時間がない", "score": 8}, "optionD": {"text": "ギリギリだ", "score": 7} },
+    "trainer_prompt_2": "OK、『スケジュールがぎっしり』ということだな。それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I have a tight schedule.", "score": 10, "feedback": "完璧な表現だ。『きついスケジュール』で、余裕のなさが伝わる。"}, "optionB": {"text": "I'm very busy.", "score": 7, "feedback": "正しいが、『カツカツ』というほどの切迫感は伝わらない。"}, "optionC": {"text": "My schedule is packed.", "score": 9, "feedback": "これも素晴らしい。『予定が詰め込まれている』という、非常に分かりやすい表現。"}, "optionD": {"text": "My schedule is cutting it close.", "score": 5, "feedback": "cut it close は『ギリギリ間に合う』という意味。少しニュアンスが違うな。"}}
+  },
+  {
+    "id": "q032",
+    "genre": "feelings",
+    "difficultJapanese": "（安心したりがっかりしたり）気が抜けた",
+    "trainer_prompt_1": "緊張の糸が切れた状態だな。この感覚を、もっとシンプルな感情の言葉で言い換えろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "ホッとした", "score": 10}, "optionB": {"text": "やる気がなくなった", "score": 7}, "optionC": {"text": "力が抜けた", "score": 8}, "optionD": {"text": "疲れた", "score": 6} },
+    "trainer_prompt_2": "そうだ、『ホッとした』という安堵感が本質だな。じゃあ、その気持ちを英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "What a relief.", "score": 10, "feedback": "完璧だ。『なんて安心なんだろう』という、心からの安堵を表す感嘆文。"}, "optionB": {"text": "I feel relieved.", "score": 9, "feedback": "これも良い。『安心した』という自分の気持ちを直接的に説明している。"}, "optionC": {"text": "I lost my spirit.", "score": 2, "feedback": "spirit を失ってはダメだ。『気力がない』という意味になってしまう。"}, "optionD": {"text": "I'm exhausted.", "score": 5, "feedback": "『疲れ果てた』か。緊張の後は疲れるが、『安心』のニュアンスが抜けている。"}}
+  },
+  {
+    "id": "q033",
+    "genre": "social",
+    "difficultJapanese": "（話を）聞き流す",
+    "trainer_prompt_1": "相手の話を、意図的に真剣に聞いていない状態だな。この行動を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "わざと聞いていないフリをする", "score": 10}, "optionB": {"text": "半分しか聞いていない", "score": 8}, "optionC": {"text": "無視する", "score": 7}, "optionD": {"text": "他のことを考えている", "score": 9} },
+    "trainer_prompt_2": "OK、『わざと聞いていないフリ』が本質だな。じゃあ、そのニュアンスを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I'm tuning him out.", "score": 10, "feedback": "完璧な表現だ。ラジオの周波数を合わせないように、『彼の話から周波数をずらしている』という比喩。"}, "optionB": {"text": "I'm ignoring him.", "score": 8, "feedback": "『無視している』。正しいが、もっと積極的な敵意のニュアンスを含むことがある。"}, "optionC": {"text": "It goes in one ear and out the other.", "score": 9, "feedback": "素晴らしいイディオムだ。『片方の耳から入って、もう片方から出ていく』。話が全く頭に残っていない様子が伝わる。"}, "optionD": {"text": "I'm not listening.", "score": 6, "feedback": "直接的だが、少し子供っぽい言い方だな。"}}
+  },
+  {
+    "id": "q034",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "ドキドキする",
+    "trainer_prompt_1": "心臓の鼓動を表す擬音語だな。この身体反応が起きる『感情』はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "緊張しているか、興奮している", "score": 10}, "optionB": {"text": "恋をしている", "score": 7}, "optionC": {"text": "怖い", "score": 6}, "optionD": {"text": "心臓が速く動いている", "score": 8} },
+    "trainer_prompt_2": "そうだ、『緊張』や『興奮』が原因だな。その心臓の感覚を、英語の比喩でどう表現する？",
+    "englishOptions": { "optionA": {"text": "My heart is pounding.", "score": 10, "feedback": "完璧だ。pounding は『ガンガン叩く』という意味で、激しい鼓動を的確に表す。"}, "optionB": {"text": "I have butterflies in my stomach.", "score": 9, "feedback": "これも素晴らしい表現だ。『お腹の中に蝶々がいる』という比喩で、緊張や恋のドキドキ感を表す。"}, "optionC": {"text": "I'm nervous.", "score": 7, "feedback": "『緊張している』という感情そのものだな。身体的な感覚はあまり伝わらない。"}, "optionD": {"text": "Doki-doki.", "score": 0, "feedback": "擬音語の直訳は通じない。"}}
+  },
+  {
+    "id": "q035",
+    "genre": "proverb",
+    "difficultJapanese": "元の鞘に収まる",
+    "trainer_prompt_1": "一度壊れた関係が元に戻ることだな。この状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "よりを戻す", "score": 10}, "optionB": {"text": "仲直りする", "score": 9}, "optionC": {"text": "昔の関係に戻る", "score": 8}, "optionD": {"text": "問題が解決する", "score": 5} },
+    "trainer_prompt_2": "OK、『よりを戻す』だな。じゃあ、その関係の修復を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "We got back together.", "score": 10, "feedback": "これだ。最も一般的で、自然な言い方。"}, "optionB": {"text": "We're back in the original sheath.", "score": 0, "feedback": "直訳。サムライでもない限り、鞘の話はするな。"}, "optionC": {"text": "We reconciled.", "score": 8, "feedback": "reconcile は『和解する』という、少しフォーマルな言葉。間違いではない。"}, "optionD": {"text": "We made up.", "score": 9, "feedback": "これも素晴らしい。『仲直りした』という、非常に一般的な表現だ。"}}
+  },
+  {
+    "id": "q036",
+    "genre": "daily",
+    "difficultJapanese": "（料理の）さじ加減",
+    "trainer_prompt_1": "料理だけでなく、物事の微妙な調整を指す言葉だな。この言葉の『芯』となる意味はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "ちょうどいい具合に調整すること", "score": 10}, "optionB": {"text": "感覚でやること", "score": 7}, "optionC": {"text": "経験と勘", "score": 8}, "optionD": {"text": "匙で測ること", "score": 1} },
+    "trainer_prompt_2": "そうだ、『ちょうどいい具合に調整する』が本質だな。その絶妙なバランス感覚を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's all about finding the right balance.", "score": 10, "feedback": "完璧だ。『重要なのは、正しいバランスを見つけることだ』と、本質を的確に説明している。"}, "optionB": {"text": "You have to wing it.", "score": 8, "feedback": "wing it は『即興でやる、アドリブでやる』という意味。近いが、必ずしも良い結果になるとは限らない。"}, "optionC": {"text": "Spoon condition.", "score": 0, "feedback": "直訳。スプーンの健康状態でも気遣っているのか？"}, "optionD": {"text": "It's an art, not a science.", "score": 9, "feedback": "これも素晴らしい。『それは科学ではなく、芸術だ』と、理論やレシピ通りにいかない微妙な感覚を表現している。"}}
+  },
+  {
+    "id": "q037",
+    "genre": "feelings",
+    "difficultJapanese": "（人が良くて）お人好し",
+    "trainer_prompt_1": "人の良さを表すが、少しネガティブなニュアンスを含む言葉だな。この言葉が指す、具体的な性格はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "頼みを断れない、だまされやすい", "score": 10}, "optionB": {"text": "とても親切だ", "score": 5}, "optionC": {"text": "人が好きだ", "score": 3}, "optionD": {"text": "世間知らずだ", "score": 7} },
+    "trainer_prompt_2": "OK、『頼みを断れず、だまされやすい』という危うさだな。じゃあ、その性格を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "He's too nice for his own good.", "score": 10, "feedback": "完璧な表現だ。『彼自身の利益のためには、あまりに人が良すぎる』と、親切さが仇となっている状況を的確に表す。"}, "optionB": {"text": "He's a good person.", "score": 3, "feedback": "単に『良い人だ』という意味。ネガティブなニュアンスが全くない。"}, "optionC": {"text": "He's naive.", "score": 8, "feedback": "naive は『うぶな、世間知らずな』。かなり近いが、『お人好し』の親切心のニュアンスは少し薄い。"}, "optionD": {"text": "He's a sucker.", "score": 7, "feedback": "sucker は『カモ、だまされやすい人』というスラング。少し強すぎるが、意図は伝わる。"}}
+  },
+  {
+    "id": "q038",
+    "genre": "social",
+    "difficultJapanese": "（パーティなどで）盛り上がる",
+    "trainer_prompt_1": "場の雰囲気が活気づくことだな。この状態を、もっとシンプルな言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "とても楽しい時間を過ごす", "score": 10}, "optionB": {"text": "にぎやかになる", "score": 8}, "optionC": {"text": "興奮する", "score": 7}, "optionD": {"text": "みんなが話している", "score": 6} },
+    "trainer_prompt_2": "そうだ、『とても楽しい時間を過ごす』ことだな。その活気ある感じを、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "The party is popping.", "score": 10, "feedback": "素晴らしいスラングだ。popping は『活気がある、盛り上がっている』という意味で、ネイティブがよく使う。"}, "optionB": {"text": "We're having a blast.", "score": 9, "feedback": "これも良い表現だ。have a blast は『最高の時間を過ごす』という意味。"}, "optionC": {"text": "The party is lively.", "score": 8, "feedback": "lively は『活気のある』という意味。正しいが、popping ほどの熱気は感じられない。"}, "optionD": {"text": "We're excited.", "score": 5, "feedback": "『興奮している』か。少し違うな。自分たちが興奮しているのではなく、場が盛り上がっているんだ。"}}
+  },
+  {
+    "id": "q039",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（道が）ガタガタだ",
+    "trainer_prompt_1": "表面が平らでない様子を表す擬態語だな。この言葉が示す、道の具体的な状態はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "でこぼこだ", "score": 10}, "optionB": {"text": "揺れる", "score": 7}, "optionC": {"text": "壊れている", "score": 6}, "optionD": {"text": "運転しにくい", "score": 8} },
+    "trainer_prompt_2": "OK、『でこぼこ』が本質だな。その表面の状態を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "The road is bumpy.", "score": 10, "feedback": "完璧な単語だ。bumpy はまさに『でこぼこの、ガタガタの』という意味。"}, "optionB": {"text": "The road is rough.", "score": 8, "feedback": "これも良い。rough は『荒い、ザラザラした』という意味で、ニュアンスは近い。"}, "optionC": {"text": "The road is shaky.", "score": 5, "feedback": "shaky は『揺れる、ぐらぐらする』。道の状態ではなく、その結果だな。"}, "optionD": {"text": "Gata-gata.", "score": 0, "feedback": "擬態語の直訳は通じない。"}}
+  },
+  {
+    "id": "q040",
+    "genre": "proverb",
+    "difficultJapanese": "一石二鳥",
+    "trainer_prompt_1": "一つの行動で、二つの利益を得る。この効率的な状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "一挙両得", "score": 9}, "optionB": {"text": "同時に二つのことを達成する", "score": 10}, "optionC": {"text": "効率が良い", "score": 8}, "optionD": {"text": "ラッキーだ", "score": 6} },
+    "trainer_prompt_2": "そうだ、『同時に二つのことを達成する』だな。それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "Kill two birds with one stone.", "score": 10, "feedback": "完璧なことわざだ。日本語と全く同じ発想の、有名な表現。"}, "optionB": {"text": "Two birds, one stone.", "score": 8, "feedback": "ことわざを省略した形。カジュアルな会話ではよく使われる。"}, "optionC": {"text": "It's very efficient.", "score": 7, "feedback": "『効率的だ』という説明だな。ことわざの持つ面白みがない。"}, "optionD": {"text": "One stone, two birds.", "score": 2, "feedback": "語順が違う。惜しいが、間違いだ。"}}
+  },
+  {
+    "id": "q041",
+    "genre": "feelings",
+    "difficultJapanese": "（がっかりして）肩を落とす",
+    "trainer_prompt_1": "失望や落胆を表す身体的な仕草だな。この行動が示す、内面の感情はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "がっかりしている", "score": 10}, "optionB": {"text": "落ち込んでいる", "score": 9}, "optionC": {"text": "悲しんでいる", "score": 7}, "optionD": {"text": "疲れている", "score": 5} },
+    "trainer_prompt_2": "そうだ、『がっかりしている』が本質だな。その気持ちを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I'm so disappointed.", "score": 10, "feedback": "完璧だ。disappointedは『がっかりした、失望した』という、この感情にぴったりの単語。"}, "optionB": {"text": "It's a letdown.", "score": 9, "feedback": "これも素晴らしい表現だ。letdownは『期待外れ、がっかりさせること』を意味する名詞。"}, "optionC": {"text": "My shoulders dropped.", "score": 2, "feedback": "直訳。身体的な描写だな。感情そのものを伝えろ。"}, "optionD": {"text": "What a bummer.", "score": 8, "feedback": "ネイティブがよく使うカジュアルな表現だ。bummerは『がっかりなこと』を意味する。"}}
+  },
+  {
+    "id": "q042",
+    "genre": "daily",
+    "difficultJapanese": "（値段が）お手頃ですね",
+    "trainer_prompt_1": "単に『安い』と言うよりも、ポジティブなニュアンスを持つ言葉だな。この言葉の芯にある意味はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "値段がちょうどいい", "score": 9}, "optionB": {"text": "安くて品質も良い", "score": 10}, "optionC": {"text": "高すぎない", "score": 8}, "optionD": {"text": "買うことができる", "score": 7} },
+    "trainer_prompt_2": "OK、『安くて質も良い』というお得感だな。それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's very reasonable.", "score": 10, "feedback": "完璧だ。reasonableは『（値段が）手頃な、理にかなった』という意味で、安かろう悪かろうではないニュアンス。"}, "optionB": {"text": "It's affordable.", "score": 9, "feedback": "これも良い。『（経済的に）余裕で買える』というニュアンスが伝わる。"}, "optionC": {"text": "It's cheap.", "score": 5, "feedback": "cheapは『安い』だが、『安っぽい』というネガティブな意味を含むことがある。注意しろ。"}, "optionD": {"text": "That's a good deal.", "score": 8, "feedback": "『良い取引だ』か。お買い得感は伝わるな。"}}
+  },
+  {
+    "id": "q043",
+    "genre": "social",
+    "difficultJapanese": "話が早い",
+    "trainer_prompt_1": "物事がスムーズに進むことだな。なぜ話が早いんだ？その原因を具体的にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "理解が早くて助かる", "score": 10}, "optionB": {"text": "説明する必要がない", "score": 8}, "optionC": {"text": "コミュニケーションが楽だ", "score": 9}, "optionD": {"text": "すぐに行動してくれる", "score": 7} },
+    "trainer_prompt_2": "そうだ、『理解が早い』から話も早いんだ。その感謝と尊敬の気持ちを、どう伝える？",
+    "englishOptions": { "optionA": {"text": "I'm glad we're on the same page.", "score": 10, "feedback": "完璧だ。『同じページにいる（同じ認識を共有している）ことが嬉しい』と、スムーズな意思疎通を喜ぶ表現。"}, "optionB": {"text": "You get it.", "score": 8, "feedback": "カジュアルだが、良い表現だ。『（言わなくても）分かってくれるね』というニュアンス。"}, "optionC": {"text": "You're quick to understand.", "score": 7, "feedback": "直接的だが、少し評価しているような上から目線に聞こえることもある。"}, "optionD": {"text": "Your story is fast.", "score": 0, "feedback": "直訳の失敗例。物語の展開でも速いのか？"}}
+  },
+  {
+    "id": "q044",
+    "genre": "proverb",
+    "difficultJapanese": "念には念を入れよ",
+    "trainer_prompt_1": "慎重さの重要性を説くことわざだな。この言葉が促している行動はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "やりすぎなくらい確認する", "score": 10}, "optionB": {"text": "何度もチェックする", "score": 9}, "optionC": {"text": "用心する", "score": 8}, "optionD": {"text": "間違いがないようにする", "score": 7} },
+    "trainer_prompt_2": "OK、『やりすぎなくらい確認する』が本質だな。じゃあ、それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "You can never be too careful.", "score": 10, "feedback": "これだ。『いくら注意してもしすぎることはない』という、まさにこのことわざにぴったりの表現。"}, "optionB": {"text": "Better safe than sorry.", "score": 9, "feedback": "これも素晴らしいことわざだ。『後で後悔するより、安全な方が良い』。"}, "optionC": {"text": "Double-check everything.", "score": 8, "feedback": "『すべてを二重にチェックしろ』か。具体的な行動指示として分かりやすい。"}, "optionD": {"text": "Just to be safe.", "score": 7, "feedback": "『念のためね』という、行動の前に付け加える便利なフレーズだ。"}}
+  },
+  {
+    "id": "q045",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（髪が）サラサラ",
+    "trainer_prompt_1": "髪の状態を表す擬態語だな。この言葉が意味する、具体的な髪質はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "なめらかで、まとまっている", "score": 10}, "optionB": {"text": "柔らかい", "score": 7}, "optionC": {"text": "ツヤがある", "score": 8}, "optionD": {"text": "きれいだ", "score": 6} },
+    "trainer_prompt_2": "OK、『なめらかでまとまっている』感じだな。その質感を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "Your hair is so silky.", "score": 10, "feedback": "完璧だ。silkyは『絹のような』という意味で、なめらかな髪を褒める最高の言葉。"}, "optionB": {"text": "Your hair is so smooth.", "score": 9, "feedback": "これも良い。smoothは『なめらかな』。silkyの方がより髪を褒めるニュアンスが強い。"}, "optionC": {"text": "Your hair is not dry.", "score": 4, "feedback": "『乾燥していない』か。消極的な褒め方だな。もっとポジティブに伝えろ。"}, "optionD": {"text": "Sara-sara.", "score": 0, "feedback": "擬態語をそのまま言うな。"}}
+  },
+  {
+    "id": "q046",
+    "genre": "feelings",
+    "difficultJapanese": "（期待で）ワクワクする",
+    "trainer_prompt_1": "これから起こる良いことへの期待感だな。この感情を、最も直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "すごく楽しみだ", "score": 10}, "optionB": {"text": "待ちきれない", "score": 9}, "optionC": {"text": "興奮している", "score": 8}, "optionD": {"text": "嬉しい", "score": 6} },
+    "trainer_prompt_2": "そうだ、『すごく楽しみ』なんだ。その高揚感を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I'm so excited.", "score": 10, "feedback": "完璧だ。excitedは『ワクワクする、興奮する』という、この感情にぴったりの基本単語。"}, "optionB": {"text": "I can't wait.", "score": 9, "feedback": "これも素晴らしい。『待ちきれない』という、強い期待感が伝わる表現。"}, "optionC": {"text": "I'm looking forward to it.", "score": 8, "feedback": "丁寧で良い表現だ。だが、excitedほどの子供のようなワクワク感は少し薄れる。"}, "optionD": {"text": "It's gonna be fun.", "score": 7, "feedback": "『楽しくなりそうだね』か。自分の気持ちを直接伝える方が、よりワクワク感が伝わるぞ。"}}
+  },
+  {
+    "id": "q047",
+    "genre": "daily",
+    "difficultJapanese": "話のつじつまが合わない",
+    "trainer_prompt_1": "相手の話に矛盾がある状態だな。この状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "言っていることが矛盾している", "score": 10}, "optionB": {"text": "意味が通じない", "score": 8}, "optionC": {"text": "論理的ではない", "score": 7}, "optionD": {"text": "おかしい", "score": 6} },
+    "trainer_prompt_2": "OK、『言っていることが矛盾している』だな。その論理の破綻を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "That doesn't make sense.", "score": 10, "feedback": "完璧だ。『それでは意味をなさない』と、話の矛盾を的確に指摘する表現。"}, "optionB": {"text": "Your story is contradictory.", "score": 8, "feedback": "contradictoryは『矛盾した』。正しいが、少し硬い学術的な響きがある。"}, "optionC": {"text": "What you're saying doesn't add up.", "score": 9, "feedback": "これも素晴らしいイディオムだ。add upは『計算が合う、つじつまが合う』という意味。"}, "optionD": {"text": "The context is not matching.", "score": 2, "feedback": "惜しい。文脈（context）ではなく、話の内容（story）の矛盾だ。"}}
+  },
+  {
+    "id": "q048",
+    "genre": "social",
+    "difficultJapanese": "（飲み会などで）今日は無礼講で",
+    "trainer_prompt_1": "上下関係を一時的に忘れて楽しもう、という提案だな。この言葉の本当の意図はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "今日は堅苦しいのはやめにしよう", "score": 10}, "optionB": {"text": "リラックスして楽しもう", "score": 9}, "optionC": {"text": "遠慮しないで", "score": 8}, "optionD": {"text": "礼儀を忘れて良い", "score": 2} },
+    "trainer_prompt_2": "そうだ、『堅苦しいのはなしにしよう』ということだな。じゃあ、その場の空気を和らげる一言を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "Let's just be ourselves tonight.", "score": 9, "feedback": "素晴らしい。『今夜はただ、自分らしくいよう』と、場の緊張をほぐす良い表現だ。"}, "optionB": {"text": "Please, make yourself at home.", "score": 8, "feedback": "『自分の家のようにくつろいでください』。これも歓迎の意を示す良い言葉だ。"}, "optionC": {"text": "Forget about the formalities.", "score": 10, "feedback": "完璧だ。『堅苦しいことは忘れよう』と、意図を直接的に伝えている。"}, "optionD": {"text": "No rules today.", "score": 4, "feedback": "『今日はルールなし』か。少し極端すぎる。誤解を招く可能性があるな。"}}
+  },
+  {
+    "id": "q049",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（肌が）カサカサ",
+    "trainer_prompt_1": "肌の水分が足りない状態を表す擬態語だな。この言葉が意味する、具体的な肌の状態はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "乾燥している", "score": 10}, "optionB": {"text": "潤いがない", "score": 9}, "optionC": {"text": "荒れている", "score": 7}, "optionD": {"text": "粉をふいている", "score": 8} },
+    "trainer_prompt_2": "OK、『乾燥している』が本質だな。その状態を、英語の基本単語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "My skin is dry.", "score": 10, "feedback": "完璧だ。dryは『乾燥した』。これ以上ないほどシンプルで的確な表現。"}, "optionB": {"text": "My skin is rough.", "score": 7, "feedback": "roughは『荒れている』。乾燥の結果として肌は荒れるが、直接的な原因はdryだ。"}, "optionC": {"text": "My skin lacks moisture.", "score": 8, "feedback": "『水分が足りない』。科学的には正しいが、日常会話ではdryの方が一般的だ。"}, "optionD": {"text": "Kasa-kasa.", "score": 0, "feedback": "擬態語をそのまま言うな。"}}
+  },
+  {
+    "id": "q050",
+    "genre": "proverb",
+    "difficultJapanese": "郷に入っては郷に従え",
+    "trainer_prompt_1": "新しい場所やコミュニティでの振る舞い方を説くことわざだな。この言葉が教えている、最も重要なルールはなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "その場所のルールに従う", "score": 10}, "optionB": {"text": "周りの人と同じようにする", "score": 9}, "optionC": {"text": "自分のやり方を押し通さない", "score": 8}, "optionD": {"text": "文句を言わない", "score": 5} },
+    "trainer_prompt_2": "その通り、『その場所のルールに従う』ということだな。じゃあ、それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "When in Rome, do as the Romans do.", "score": 10, "feedback": "完璧なことわざだ。『ローマにいる時は、ローマ人がするようにせよ』。"}, "optionB": {"text": "Follow the local customs.", "score": 8, "feedback": "『現地の習慣に従え』。ことわざではないが、意図は正確に伝わる。"}, "optionC": {"text": "You should adapt to the new environment.", "score": 7, "feedback": "『新しい環境に適応すべきだ』。正論だが、ことわざの持つ面白みがないな。"}, "optionD": {"text": "When in the village, follow the village.", "score": 1, "feedback": "直訳。通じないことはないだろうが、元々のことわざを使うのがベストだ。"}}
+  },
+  {
+    "id": "q051",
+    "genre": "daily",
+    "difficultJapanese": "（電気などを）つけっぱなし",
+    "trainer_prompt_1": "消し忘れた状態だな。この状況を、もっとシンプルな動詞で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "つけたままにしておく", "score": 10}, "optionB": {"text": "消し忘れる", "score": 9}, "optionC": {"text": "ずっとついている", "score": 7}, "optionD": {"text": "電気がもったいない", "score": 5} },
+    "trainer_prompt_2": "OK、『つけたままにしておく』だな。その状態を、英語ではどう表現する？",
+    "englishOptions": { "optionA": {"text": "You left the light on.", "score": 10, "feedback": "完璧だ。leave something on で『〜をつけっぱなしにする』という、まさにこのための表現。"}, "optionB": {"text": "You forgot to turn it off.", "score": 9, "feedback": "これも良い。『消すのを忘れた』という、原因を説明する言い方。"}, "optionC": {"text": "The light is still on.", "score": 8, "feedback": "『まだ電気がついている』。状態は説明できているな。"}, "optionD": {"text": "Don't waste electricity.", "score": 4, "feedback": "『電気を無駄にするな』か。説教が始まってしまったな。"}}
+  },
+  {
+    "id": "q052",
+    "genre": "feelings",
+    "difficultJapanese": "（何かに気づいて）ハッとする",
+    "trainer_prompt_1": "突然の気づきや驚きを表す言葉だな。この瞬間の、頭の中の状態を表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "急に思い出す・気づく", "score": 10}, "optionB": {"text": "驚く", "score": 8}, "optionC": {"text": "我に返る", "score": 9}, "optionD": {"text": "息をのむ", "score": 7} },
+    "trainer_prompt_2": "そうだ、『急に思い出す・気づく』が本質だな。そのひらめきの瞬間を、英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "It just dawned on me.", "score": 10, "feedback": "素晴らしい表現だ。dawn on (someone) で『（事が）〜に分かり始める』という意味のイディオム。"}, "optionB": {"text": "I just realized...", "score": 9, "feedback": "これも完璧だ。realizeは『気づく』という意味の基本単語。"}, "optionC": {"text": "It suddenly hit me.", "score": 9, "feedback": "これもネイティブらしい。『考えが突然、私を打った』という比喩で、ひらめきを表現する。"}, "optionD": {"text": "I was surprised.", "score": 6, "feedback": "『驚いた』か。気づいた結果として驚くことはあるが、気づきの瞬間そのものは表現できていない。"}}
+  },
+  {
+    "id": "q053",
+    "genre": "social",
+    "difficultJapanese": "（相手の成功を）自分のことのように嬉しい",
+    "trainer_prompt_1": "相手への強い共感だな。この気持ちを、もっとシンプルに表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "あなたのために、すごく嬉しい", "score": 10}, "optionB": {"text": "私も嬉しい", "score": 8}, "optionC": {"text": "本当に良かったね", "score": 9}, "optionD": {"text": "感動した", "score": 7} },
+    "trainer_prompt_2": "OK、『あなたのために嬉しい』という気持ちだな。その共感の心を、英語でどう伝える？",
+    "englishOptions": { "optionA": {"text": "I'm so happy for you.", "score": 10, "feedback": "完璧だ。for you をつけることで、『あなたのために』という、自分のことのように喜ぶ気持ちが伝わる。"}, "optionB": {"text": "I'm happy too.", "score": 6, "feedback": "『私も嬉しい』か。悪くはないが、何に対して嬉しいのか少し曖昧だ。"}, "optionC": {"text": "Congratulations!", "score": 8, "feedback": "『おめでとう！』。もちろん言うべきだが、自分の気持ちを伝えるなら I'm so happy for you. がベスト。"}, "optionD": {"text": "That's great news!", "score": 7, "feedback": "『それは素晴らしい知らせだね！』。良い反応だが、自分の感情をより直接的に伝えたい。"}}
+  },
+  {
+    "id": "q054",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（秘密などを）ペラペラしゃべる",
+    "trainer_prompt_1": "軽率に秘密を漏らす様子だな。この行動が示す、その人の性格はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "口が軽い", "score": 10}, "optionB": {"text": "おしゃべりだ", "score": 9}, "optionC": {"text": "秘密を守れない", "score": 8}, "optionD": {"text": "考えなしに話す", "score": 7} },
+    "trainer_prompt_2": "そうだ、『口が軽い』んだ。じゃあ、その性格を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "He has a big mouth.", "score": 10, "feedback": "完璧なイディオムだ。『大きな口を持っている』で、『口が軽い、おしゃべりだ』という意味。"}, "optionB": {"text": "He can't keep a secret.", "score": 9, "feedback": "これも良い。『彼は秘密を守れない』と、行動を直接的に説明している。"}, "optionC": {"text": "He's talkative.", "score": 6, "feedback": "talkativeは単に『話好き』。必ずしも秘密を漏らすというニュアンスはない。"}, "optionD": {"text": "His mouth is light.", "score": 1, "feedback": "直訳。通じないぞ。"}}
+  },
+  {
+    "id": "q055",
+    "genre": "proverb",
+    "difficultJapanese": "火に油を注ぐ",
+    "trainer_prompt_1": "悪い状況を、さらに悪化させる行動だな。このことわざの要点はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "状況をさらに悪くする", "score": 10}, "optionB": {"text": "相手をさらに怒らせる", "score": 9}, "optionC": {"text": "問題を大きくする", "score": 8}, "optionD": {"text": "余計なことをする", "score": 7} },
+    "trainer_prompt_2": "OK、『状況をさらに悪くする』だな。じゃあ、それを表現する英語のイディオムは？",
+    "englishOptions": { "optionA": {"text": "You're just adding fuel to the fire.", "score": 10, "feedback": "完璧だ。『火に燃料を足している』と、日本語と全く同じ発想の表現。"}, "optionB": {"text": "You're making it worse.", "score": 8, "feedback": "『君は状況を悪化させている』。直接的で分かりやすい。"}, "optionC": {"text": "You're pouring oil on the fire.", "score": 3, "feedback": "直訳。英語では fuel (燃料) を使うのが一般的だ。"}, "optionD": {"text": "Don't poke the bear.", "score": 7, "feedback": "『熊を突つくな』。面白いイディオムだが、これは『寝た子を起こすな』に近い。少しニュアンスが違う。"}}
+  },
+  {
+    "id": "q056",
+    "genre": "daily",
+    "difficultJapanese": "（食べ物が）味が薄い",
+    "trainer_prompt_1": "味付けが足りない状態だな。この感覚を、もっと直接的な言葉でどう言う？",
+    "simpleJapaneseOptions": { "optionA": {"text": "もっと味付けが必要だ", "score": 10}, "optionB": {"text": "風味がない", "score": 9}, "optionC": {"text": "水っぽい", "score": 8}, "optionD": {"text": "おいしくない", "score": 5} },
+    "trainer_prompt_2": "そうだ、『風味がない』んだ。その物足りなさを、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's a bit bland.", "score": 10, "feedback": "完璧だ。blandは『風味のない、味の薄い』という意味の基本単語。"}, "optionB": {"text": "It needs more seasoning.", "score": 9, "feedback": "これも良い。『もっと味付けが必要だ』と、具体的な要求を伝えている。"}, "optionC": {"text": "The taste is weak.", "score": 4, "feedback": "直訳。weakは普通、味には使わない。"}, "optionD": {"text": "It's watery.", "score": 7, "feedback": "『水っぽい』か。スープなどには使えるが、すべての料理には当てはまらないな。"}}
+  },
+  {
+    "id": "q057",
+    "genre": "feelings",
+    "difficultJapanese": "（安堵して）胸をなでおろす",
+    "trainer_prompt_1": "心配事がなくなり、安心する様子だな。この身体的な仕草が示す感情はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "安心した", "score": 10}, "optionB": {"text": "ホッとした", "score": 9}, "optionC": {"text": "心配がなくなった", "score": 8}, "optionD": {"text": "緊張が解けた", "score": 7} },
+    "trainer_prompt_2": "OK、『安心した』んだな。その深い安堵感を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I can finally breathe a sigh of relief.", "score": 10, "feedback": "完璧な表現だ。『ついに安堵のため息をつける』と、心からの安心感が伝わる。"}, "optionB": {"text": "I'm so relieved.", "score": 9, "feedback": "『すごく安心した』。シンプルで、どんな場面でも使える良い表現だ。"}, "optionC": {"text": "I feel much better now.", "score": 7, "feedback": "『気分がずっと良くなった』。安心感は伝わるな。"}, "optionD": {"text": "I stroked my chest.", "score": 0, "feedback": "直訳。何をしているんだ？"}}
+  },
+  {
+    "id": "q058",
+    "genre": "social",
+    "difficultJapanese": "（皮肉で）結構なご身分ですね",
+    "trainer_prompt_1": "相手の恵まれた状況への、嫉妬や皮肉がこもった言葉だな。この言葉の、オブラートに包む前の本心はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "うらやましいよ", "score": 10}, "optionB": {"text": "いいね、君は", "score": 9}, "optionC": {"text": "気楽でいいね", "score": 8}, "optionD": {"text": "すごいですね（棒読み）", "score": 7} },
+    "trainer_prompt_2": "そう、本心は『うらやましい』んだ。その気持ちを、少し皮肉を込めて英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "Must be nice.", "score": 10, "feedback": "完璧だ。『（そうなれて）さぞかし良い気分でしょうね』と、皮肉と羨望が混じった最高の表現。"}, "optionB": {"text": "I'm jealous.", "score": 8, "feedback": "『嫉妬している』。直接的だが、冗談っぽく言えば皮肉になる。"}, "optionC": {"text": "Look at you.", "score": 7, "feedback": "言い方次第で『おやおや、すごいですね』という皮肉になる。上級者向けだ。"}, "optionD": {"text": "Good for you.", "score": 6, "feedback": "これも言い方次第。『よかったじゃないですか（棒読み）』という皮肉でよく使われる。"}}
+  },
+  {
+    "id": "q059",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（物が）ゴチャゴチャしている",
+    "trainer_prompt_1": "整理されていない、散らかった状態だな。この擬態語が示す、部屋などの具体的な状況はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "散らかっている", "score": 10}, "optionB": {"text": "整理されていない", "score": 9}, "optionC": {"text": "物が多すぎる", "score": 7}, "optionD": {"text": "汚い", "score": 8} },
+    "trainer_prompt_2": "OK、『散らかっている』が本質だな。その状態を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "This room is a mess.", "score": 10, "feedback": "これだ。a messは『散らかった状態、めちゃくちゃな状態』を指す最も一般的な言葉。"}, "optionB": {"text": "It's messy.", "score": 9, "feedback": "これも良い。messyは『散らかった』という意味の形容詞。"}, "optionC": {"text": "It's cluttered.", "score": 8, "feedback": "clutteredは『物でごちゃごちゃしている』。物が多すぎて散らかっているニュアンス。"}, "optionD": {"text": "It's untidy.", "score": 7, "feedback": "tidy（整頓された）の反対語。正しいが、少し硬い表現だな。"}}
+  },
+  {
+    "id": "q060",
+    "genre": "proverb",
+    "difficultJapanese": "知らぬが仏",
+    "trainer_prompt_1": "知らない方が幸せでいられる、ということだな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "知らない方が幸せだ", "score": 10}, "optionB": {"text": "真実を知るのが怖い", "score": 6}, "optionC": {"text": "見ないフリをする", "score": 7}, "optionD": {"text": "考えない方がいい", "score": 8} },
+    "trainer_prompt_2": "その通り、『知らない方が幸せだ』ということだな。じゃあ、それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "Ignorance is bliss.", "score": 10, "feedback": "完璧なことわざだ。『無知は至福である』と、まさにこの状況を表す。"}, "optionB": {"text": "What you don't know can't hurt you.", "score": 9, "feedback": "これも素晴らしい。『知らないことは、あなたを傷つけられない』。非常に分かりやすい。"}, "optionC": {"text": "Not knowing is Buddha.", "score": 0, "feedback": "直訳。仏教の話でも始めるのか？"}, "optionD": {"text": "It's better not to know.", "score": 8, "feedback": "『知らない方が良い』。ことわざではないが、意図は正確に伝わる。"}}
+  },
+  {
+    "id": "q061",
+    "genre": "daily",
+    "difficultJapanese": "（物が）ギリギリ入る",
+    "trainer_prompt_1": "スペースに余裕がない状態だな。この状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "かろうじて収まる", "score": 10}, "optionB": {"text": "ぴったりだ", "score": 9}, "optionC": {"text": "きつい", "score": 8}, "optionD": {"text": "これ以上入らない", "score": 7} },
+    "trainer_prompt_2": "OK、『かろうじて収まる』が本質だな。その『ギリギリ感』を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's a tight squeeze.", "score": 10, "feedback": "完璧な表現だ。squeezeは『押し込むこと』。まさにギリギリで押し込んだニュアンス。"}, "optionB": {"text": "It barely fits.", "score": 9, "feedback": "これも良い。barelyは『かろうじて〜する』という意味で、この状況にぴったり。"}, "optionC": {"text": "It fits perfectly.", "score": 6, "feedback": "『完璧にフィットする』か。これは『シンデレラフィット』のニュアンスで、ギリギリ感は薄い。"}, "optionD": {"text": "It's a close call.", "score": 5, "feedback": "惜しい。a close callは『危機一髪』という意味で、危険を回避した時に使うことが多い。"}}
+  },
+  {
+    "id": "q062",
+    "genre": "feelings",
+    "difficultJapanese": "（悔しくて）歯がゆい",
+    "trainer_prompt_1": "思い通りにならず、いらだたしい気持ちだな。この感情の芯にあるものはなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "もどかしい", "score": 10}, "optionB": {"text": "悔しい", "score": 9}, "optionC": {"text": "イライラする", "score": 8}, "optionD": {"text": "じれったい", "score": 9} },
+    "trainer_prompt_2": "そうだ、『もどかしい』んだ。自分の無力さや、状況が動かないことへの焦り。それを英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "It's so frustrating.", "score": 10, "feedback": "完璧だ。frustratingは『イライラする、もどかしい』という、この感情にぴったりの単語。"}, "optionB": {"text": "I'm so annoyed.", "score": 8, "feedback": "『イライラする』。正しいが、annoyedは主に外部の何かに対して使われる。frustratingは内面の感情にも使える。"}, "optionC": {"text": "I feel helpless.", "score": 7, "feedback": "『無力感を感じる』か。歯がゆい原因の一つではあるが、感情そのものではないな。"}, "optionD": {"text": "It's a shame.", "score": 5, "feedback": "shameは『残念だ』。悔しさのニュアンスは少し薄い。"}}
+  },
+  {
+    "id": "q063",
+    "genre": "social",
+    "difficultJapanese": "（相手に）恩着せがましい",
+    "trainer_prompt_1": "親切にしたことを、ことさらにアピールする態度だな。この行動の本質を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "見返りを求めているように聞こえる", "score": 10}, "optionB": {"text": "『ありがとう』と言わせたいのが見え見え", "score": 9}, "optionC": {"text": "偉そうだ", "score": 7}, "optionD": {"text": "親切の押し売りだ", "score": 8} },
+    "trainer_prompt_2": "OK、『見返りを求めている』ように感じさせるのが問題なんだな。じゃあ、その恩着せがましい態度を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "He's always holding it over my head.", "score": 10, "feedback": "素晴らしい表現だ。hold something over someone's headで『恩に着せる』という意味の完璧なイディオム。"}, "optionB": {"text": "He keeps reminding me of what he did for me.", "score": 9, "feedback": "これも良い。『彼が私にしてくれたことを、何度も思い出させてくる』と、状況を的確に説明している。"}, "optionC": {"text": "He expects something in return.", "score": 8, "feedback": "『彼は見返りを期待している』。その通りだが、態度そのものを表現するならAやBが良い。"}, "optionD": {"text": "He's not genuinely kind.", "score": 6, "feedback": "『彼は心から親切なわけじゃない』か。核心は突いているな。"}}
+  },
+  {
+    "id": "q064",
+    "genre": "proverb",
+    "difficultJapanese": "後悔先に立たず",
+    "trainer_prompt_1": "終わってから悔やんでも遅い、ということだな。このことわざが教えている教訓はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "済んでしまったことは仕方がない", "score": 10}, "optionB": {"text": "くよくよしても意味がない", "score": 9}, "optionC": {"text": "過去は変えられない", "score": 8}, "optionD": {"text": "反省しても遅い", "score": 7} },
+    "trainer_prompt_2": "そうだ、『済んだことは仕方がない』という諦めが本質だな。じゃあ、それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "There's no use crying over spilled milk.", "score": 10, "feedback": "完璧なことわざだ。『こぼれた牛乳を嘆いても無駄だ』と、取り返しのつかないことを悔やむな、と教えている。"}, "optionB": {"text": "What's done is done.", "score": 9, "feedback": "これも素晴らしい。『なされたことは、なされたことだ』と、済んだことを受け入れるニュアンス。"}, "optionC": {"text": "Don't regret what you've done.", "score": 6, "feedback": "『したことを後悔するな』か。少し直接的すぎる。ことわざの持つ深みがない。"}, "optionD": {"text": "Regret doesn't come first.", "score": 0, "feedback": "直訳。意味不明だ。"}}
+  },
+  {
+    "id": "q065",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（物が）ベタベタする",
+    "trainer_prompt_1": "粘り気のあるものが付着した感触だな。この擬態語が示す、具体的な状態はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "粘りついて、くっつく感じ", "score": 10}, "optionB": {"text": "甘いものがついている", "score": 6}, "optionC": {"text": "汚れている", "score": 7}, "optionD": {"text": "気持ち悪い", "score": 8} },
+    "trainer_prompt_2": "OK、『粘りついて、くっつく感じ』だな。その不快な感触を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's sticky.", "score": 10, "feedback": "完璧だ。stickyは『ベタベタする、ねばねばする』という意味の基本単語。"}, "optionB": {"text": "It's tacky.", "score": 9, "feedback": "これも良い。tackyは、ペンキの生乾きのような『まだ少しベタつく』ニュアンスでよく使われる。"}, "optionC": {"text": "It's gooey.", "score": 8, "feedback": "gooeyは、チーズやキャラメルのような『ねっとりした』感じ。美味しそうなものにも使う。"}, "optionD": {"text": "Beto-beto.", "score": 0, "feedback": "擬態語をそのまま言うな。"}}
+  },
+  {
+    "id": "q066",
+    "genre": "feelings",
+    "difficultJapanese": "（嫉妬して）やきもちを焼く",
+    "trainer_prompt_1": "好きな人が他の人と親しくしているのを見て、不快になる感情だな。この感情を、もっと直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "嫉妬する", "score": 10}, "optionB": {"text": "独占したい", "score": 8}, "optionC": {"text": "不安になる", "score": 7}, "optionD": {"text": "腹が立つ", "score": 6} },
+    "trainer_prompt_2": "そうだ、『嫉妬』だな。その感情を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I'm jealous.", "score": 10, "feedback": "完璧だ。jealousは『嫉妬深い、やきもち焼きの』という意味。"}, "optionB": {"text": "I feel envious.", "score": 7, "feedback": "惜しい。enviousは、他人の物や才能などを『羨む』気持ち。恋愛の嫉妬にはjealousを使うのが一般的だ。"}, "optionC": {"text": "I want you all to myself.", "score": 8, "feedback": "『君を独り占めしたい』か。やきもちの原因を説明しているな。"}, "optionD": {"text": "I'm baking mochi.", "score": 0, "feedback": "直訳するな。餅を焼いてどうするんだ？"}}
+  },
+  {
+    "id": "q067",
+    "genre": "daily",
+    "difficultJapanese": "（服などが）裏返しだよ",
+    "trainer_prompt_1": "服の表と裏が逆になっている状態だな。この状況を、もっとシンプルに説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "服を裏返しに着ている", "score": 10}, "optionB": {"text": "服が逆だ", "score": 8}, "optionC": {"text": "タグが見えている", "score": 7}, "optionD": {"text": "間違っている", "score": 5} },
+    "trainer_prompt_2": "OK、『裏返しに着ている』だな。それを相手に伝える、最も一般的な英語表現は？",
+    "englishOptions": { "optionA": {"text": "Your shirt is inside out.", "score": 10, "feedback": "これだ。inside outで『裏返しに』という意味の、完璧なイディオム。"}, "optionB": {"text": "Your shirt is backwards.", "score": 7, "feedback": "惜しい。backwardsは『後ろ前が逆』という意味だ。"}, "optionC": {"text": "Your shirt is upside down.", "score": 5, "feedback": "upside downは『上下が逆』。どうやって着たんだ？"}, "optionD": {"text": "Your shirt is reversed.", "score": 6, "feedback": "間違いではないが、inside outの方が圧倒的に自然だ。"}}
+  },
+  {
+    "id": "q068",
+    "genre": "social",
+    "difficultJapanese": "（自慢話に対して）へぇ、そうなんだ",
+    "trainer_prompt_1": "明らかに興味がなさそうな相槌だな。この言葉の裏にある、本当の気持ちはなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "あまり興味がない", "score": 10}, "optionB": {"text": "どうでもいい", "score": 9}, "optionC": {"text": "話を変えたい", "score": 8}, "optionD": {"text": "すごいとは思わない", "score": 7} },
+    "trainer_prompt_2": "そうだ、『興味がない』んだ。だが、それを直接言うと角が立つ。じゃあ、興味がないことを、失礼にならない程度に伝えるには？",
+    "englishOptions": { "optionA": {"text": "Oh, really?", "score": 8, "feedback": "言い方次第だな。平坦に言えば『へぇ、そう』という無関心さを表現できる。"}, "optionB": {"text": "Is that so?", "score": 9, "feedback": "これも良い。『左様でございますか』というような、少し距離を置いた相槌。"}, "optionC": {"text": "That's... interesting.", "score": 10, "feedback": "完璧な皮肉だ。interestingの前に少し間を置くことで、『（変な意味で）興味深いですね』というニュアンスになる。"}, "optionD": {"text": "I'm not interested.", "score": 2, "feedback": "直接的すぎる。相手を傷つけるぞ。"}}
+  },
+  {
+    "id": "q069",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（人が）ワラワラ集まる",
+    "trainer_prompt_1": "たくさんの人が、まとまりなく集まってくる様子だな。この擬態語が示す状況を、普通の言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "大勢が次々と集まってくる", "score": 10}, "optionB": {"text": "人が群がっている", "score": 9}, "optionC": {"text": "だんだん人が増えていく", "score": 8}, "optionD": {"text": "混雑している", "score": 7} },
+    "trainer_prompt_2": "OK、『大勢が次々と集まってくる』だな。その様子を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "People are flocking to see it.", "score": 10, "feedback": "完璧だ。flockは鳥などが『群がる』という意味で、人にも使える。"}, "optionB": {"text": "A crowd is gathering.", "score": 9, "feedback": "これも良い。『人だかりができている』という、分かりやすい表現。"}, "optionC": {"text": "People are swarming.", "score": 8, "feedback": "swarmは蜂などが『群がる』。少しカオスなニュアンスが加わる。"}, "optionD": {"text": "People are coming one after another.", "score": 7, "feedback": "『人が次々と来ている』。状況は説明できているが、群がっている感じは薄い。"}}
+  },
+  {
+    "id": "q070",
+    "genre": "proverb",
+    "difficultJapanese": "背に腹はかえられぬ",
+    "trainer_prompt_1": "大切なものを守るためなら、他の犠牲は仕方ない、ということだな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "大事なことのためには、他を犠牲にするしかない", "score": 10}, "optionB": {"text": "他に選択肢がない", "score": 8}, "optionC": {"text": "やむを得ない", "score": 9}, "optionD": {"text": "我慢するしかない", "score": 7} },
+    "trainer_prompt_2": "そうだ、『大事なことのためには、他の犠牲もやむなし』だ。じゃあ、その切羽詰まった状況を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "I have no choice.", "score": 9, "feedback": "『他に選択肢がない』。シンプルだが、状況の深刻さが伝わる。"}, "optionB": {"text": "Beggars can't be choosers.", "score": 10, "feedback": "素晴らしいことわざだ。『物乞いは選り好みできない』と、選択の余地がない状況を表す。"}, "optionC": {"text": "My back and stomach...", "score": 0, "feedback": "直訳。身体のどこかが痛いのか？"}, "optionD": {"text": "Needs must.", "score": 8, "feedback": "古い言い方だが、『必要に迫られては、仕方がない』という意味のことわざだ。"}}
+  },
+  {
+    "id": "q071",
+    "genre": "daily",
+    "difficultJapanese": "（食べ放題などで）元を取る",
+    "trainer_prompt_1": "支払った金額以上の価値を得ようとする行動だな。この考えを、もっと直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "払った分だけ、めいっぱい楽しむ", "score": 10}, "optionB": {"text": "できるだけたくさん食べる", "score": 9}, "optionC": {"text": "損をしないようにする", "score": 8}, "optionD": {"text": "元金を取り戻す", "score": 2} },
+    "trainer_prompt_2": "OK、『払った分、めいっぱい楽しむ』だな。その意気込みを、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I'm going to get my money's worth.", "score": 10, "feedback": "完璧だ。get one's money's worth で『元を取る、値段分の価値を得る』という意味。"}, "optionB": {"text": "I want to eat as much as possible.", "score": 8, "feedback": "『できるだけたくさん食べたい』。意図は正しいが、少し品がないように聞こえることもある。"}, "optionC": {"text": "I need to break even.", "score": 5, "feedback": "break evenは、ビジネスで『損益分岐点に達する』という意味。食べ放題で使うのは少し大げさだ。"}, "optionD": {"text": "Let's get our initial investment back.", "score": 3, "feedback": "これもビジネス用語だ。『初期投資を回収しよう』。レストランではなく、会議室で使え。"}}
+  },
+  {
+    "id": "q072",
+    "genre": "feelings",
+    "difficultJapanese": "（疲れて）ヘトヘトだ",
+    "trainer_prompt_1": "極度の疲労状態だな。この感覚を、もっとシンプルな言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "ものすごく疲れた", "score": 10}, "optionB": {"text": "もう動けない", "score": 9}, "optionC": {"text": "くたくただ", "score": 9}, "optionD": {"text": "エネルギーが残っていない", "score": 8} },
+    "trainer_prompt_2": "そうだ、『ものすごく疲れた』んだ。その極限の疲労感を、英語の表現で言ってみろ。",
+    "englishOptions": { "optionA": {"text": "I'm exhausted.", "score": 9, "feedback": "良い。exhaustedは『疲れ果てた』という、基本的な単語だ。"}, "optionB": {"text": "I'm beat.", "score": 10, "feedback": "素晴らしいスラングだ。beatは『打ちのめされた』という意味で、ヘトヘト感を完璧に表現する。"}, "optionC": {"text": "I'm worn out.", "score": 9, "feedback": "これも良い。『使い古されてボロボロだ』という比喩で、疲労感を表す。"}, "optionD": {"text": "I'm running on empty.", "score": 8, "feedback": "『空っぽの状態で走っている』。燃料切れの車に例えた、面白い表現だ。"}}
+  },
+  {
+    "id": "q073",
+    "genre": "social",
+    "difficultJapanese": "（相手に）釘を刺す",
+    "trainer_prompt_1": "後で問題が起きないように、前もって念を押すことだな。この行動の目的はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "大事なことを前もって、はっきり言っておく", "score": 10}, "optionB": {"text": "警告する", "score": 8}, "optionC": {"text": "言い訳できないようにする", "score": 7}, "optionD": {"text": "約束させる", "score": 6} },
+    "trainer_prompt_2": "OK、『大事なことをはっきり言っておく』のが本質だな。じゃあ、その念押しのニュアンスをどう伝える？",
+    "englishOptions": { "optionA": {"text": "Let me make one thing perfectly clear.", "score": 10, "feedback": "完璧だ。『一つだけ、完全に明確にさせてくれ』と、非常に強い調子で念を押す表現。"}, "optionB": {"text": "I need to warn you.", "score": 7, "feedback": "『警告する必要がある』か。少し強すぎる。相手を脅しているように聞こえることもある。"}, "optionC": {"text": "Just so we're clear...", "score": 9, "feedback": "これも素晴らしい。『我々の認識が合っているように、念のため言っておくけど…』という、よく使う前置きだ。"}, "optionD": {"text": "I'm putting a nail in it.", "score": 0, "feedback": "直訳。釘を刺してどうするんだ？大工でもないのに。"}}
+  },
+  {
+    "id": "q074",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（部屋が）シーンとしている",
+    "trainer_prompt_1": "音が全くしない、静寂な状態だな。この擬態語が示す状況を、普通の言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "とても静かだ", "score": 10}, "optionB": {"text": "物音がしない", "score": 9}, "optionC": {"text": "誰も話していない", "score": 8}, "optionD": {"text": "気まずいほど静かだ", "score": 7} },
+    "trainer_prompt_2": "そうだ、『とても静か』なんだ。その静寂を、英語の比喩を使って表現してみろ。",
+    "englishOptions": { "optionA": {"text": "You could hear a pin drop.", "score": 10, "feedback": "完璧な表現だ。『ピンが落ちる音さえ聞こえるだろう』と、極度の静寂を表すイディオム。"}, "optionB": {"text": "It's dead silent.", "score": 9, "feedback": "これも良い。『死んだように静かだ』と、静寂を強調する表現。"}, "optionC": {"text": "It's very quiet.", "score": 7, "feedback": "正しい。だが、面白みがない。『シーン』というほどの静けさは伝わらない。"}, "optionD": {"text": "It's completely silent.", "score": 8, "feedback": "『完全に静かだ』。正しいが、AやBの方が表現として豊かだ。"}}
+  },
+  {
+    "id": "q075",
+    "genre": "proverb",
+    "difficultJapanese": "後の祭り",
+    "trainer_prompt_1": "手遅れな状況だな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "もう手遅れだ", "score": 10}, "optionB": {"text": "今さらどうしようもない", "score": 9}, "optionC": {"text": "間に合わなかった", "score": 8}, "optionD": {"text": "終わったことだ", "score": 7} },
+    "trainer_prompt_2": "OK、『もう手遅れだ』ということだな。じゃあ、その状況を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's too late.", "score": 10, "feedback": "その通り。これ以上ないほどシンプルで、的確な表現だ。"}, "optionB": {"text": "That ship has sailed.", "score": 9, "feedback": "素晴らしいイディオムだ。『その船はもう出航してしまった』と、機会を逃したことを表現する。"}, "optionC": {"text": "It's after the festival.", "score": 0, "feedback": "直訳。何の祭りの話をしているんだ？"}, "optionD": {"text": "The train has left the station.", "score": 9, "feedback": "これも船と同じ。乗り遅れた、というニュアンスで手遅れを表す良いイディオムだ。"}}
+  },
+  {
+    "id": "q076",
+    "genre": "daily",
+    "difficultJapanese": "（予定を）ドタキャンする",
+    "trainer_prompt_1": "直前で約束をキャンセルする、失礼な行為だな。この俗語を、もっと普通の言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "直前にキャンセルする", "score": 10}, "optionB": {"text": "約束を破る", "score": 8}, "optionC": {"text": "急に行けなくなる", "score": 9}, "optionD": {"text": "土壇場でキャンセルする", "score": 10} },
+    "trainer_prompt_2": "そうだ、『直前にキャンセルする』だな。その行為を、英語のカジュアルな表現でどう言う？",
+    "englishOptions": { "optionA": {"text": "He flaked on me.", "score": 10, "feedback": "完璧なスラングだ。flake on (someone) で、まさに『ドタキャンする』という意味。"}, "optionB": {"text": "He bailed on me.", "score": 9, "feedback": "これも良い。bail on (someone) も、『（土壇場で）見捨てる、すっぽかす』という意味でよく使う。"}, "optionC": {"text": "He cancelled at the last minute.", "score": 8, "feedback": "『彼は土壇場でキャンセルした』。正しい説明だが、AやBの方がこなれている。"}, "optionD": {"text": "He cancelled suddenly.", "score": 6, "feedback": "『彼は突然キャンセルした』か。直前とは限らないな。"}}
+  },
+  {
+    "id": "q077",
+    "genre": "feelings",
+    "difficultJapanese": "（人の不幸を喜んで）いい気味だ",
+    "trainer_prompt_1": "あまり良くない感情だな。相手が当然の報いを受けたと感じる時の言葉だ。この気持ちを、もっと直接的に表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "自業自得だ", "score": 10}, "optionB": {"text": "当然の報いだ", "score": 9}, "optionC": {"text": "ざまあみろ", "score": 10}, "optionD": {"text": "いい薬になっただろう", "score": 8} },
+    "trainer_prompt_2": "OK、『自業自得だ』という気持ちだな。じゃあ、その感情を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "He got what he deserved.", "score": 10, "feedback": "これだ。『彼は、彼が受けるに値するものを受け取った』と、当然の報いであることを示す表現。"}, "optionB": {"text": "It serves him right.", "score": 9, "feedback": "これも完璧な表現だ。『それが彼にふさわしい仕打ちだ』という意味。"}, "optionC": {"text": "You reap what you sow.", "score": 8, "feedback": "『自分のまいた種は、自分で刈り取らねばならない』。ことわざだな。"}, "optionD": {"text": "Good for you!", "score": 2, "feedback": "皮肉で言えば通じるかもしれないが、普通は『よかったね！』というポジティブな意味だぞ。"}}
+  },
+  {
+    "id": "q078",
+    "genre": "social",
+    "difficultJapanese": "（相槌として）なるほど",
+    "trainer_prompt_1": "相手の話を理解したことを示す相槌だな。だが、使い方によっては無関心にも聞こえる。この言葉のポジティブな意図はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "理解しました、面白いですね", "score": 10}, "optionB": {"text": "それは知らなかったです", "score": 9}, "optionC": {"text": "言いたいことは分かりました", "score": 8}, "optionD": {"text": "はい、はい", "score": 3} },
+    "trainer_prompt_2": "そうだ、『理解して、さらに興味を持った』と伝えるのがベストだ。じゃあ、そのニュアンスを英語の相槌でどう言う？",
+    "englishOptions": { "optionA": {"text": "That makes sense.", "score": 10, "feedback": "完璧だ。『それで理屈が通るね、納得だ』と、深く理解したことを示せる。"}, "optionB": {"text": "I see.", "score": 6, "feedback": "『なるほど』。最も基本的だが、興味が薄いと思われることもある。"}, "optionC": {"text": "Gotcha.", "score": 7, "feedback": "I got you. の略。カジュアルな会話で『了解、わかった』という時に使う。"}, "optionD": {"text": "Right.", "score": 8, "feedback": "『うん、そうだね』と、相手の話を肯定する良い相槌だ。"}}
+  },
+  {
+    "id": "q079",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（緊張で）ソワソワする",
+    "trainer_prompt_1": "落ち着きがない様子を表す擬態語だな。この行動の裏にある、内面の感情はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "緊張や不安で落ち着かない", "score": 10}, "optionB": {"text": "じっとしていられない", "score": 9}, "optionC": {"text": "興奮している", "score": 7}, "optionD": {"text": "何かを待っている", "score": 8} },
+    "trainer_prompt_2": "OK、『落ち着かない』が本質だな。その様子を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I have ants in my pants.", "score": 10, "feedback": "面白いイディオムだ。『ズボンの中にアリがいる』という比喩で、ソワソワして落ち着かない様子を表す。"}, "optionB": {"text": "I'm fidgety.", "score": 9, "feedback": "fidgetyは、まさに『そわそわした、もじもじした』という意味の形容詞。"}, "optionC": {"text": "I can't sit still.", "score": 8, "feedback": "『じっと座っていられない』。行動を直接的に説明しているな。"}, "optionD": {"text": "I'm on pins and needles.", "score": 9, "feedback": "『針と針の上にいるようだ』。ハラハラ・ドキドキして落ち着かない様子を表す良い表現だ。"}}
+  },
+  {
+    "id": "q080",
+    "genre": "proverb",
+    "difficultJapanese": "焼け石に水",
+    "trainer_prompt_1": "わずかな努力や助けが、全く効果のないことの例えだな。この状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "ほとんど効果がない", "score": 10}, "optionB": {"text": "無駄だ", "score": 8}, "optionC": {"text": "気休めに過ぎない", "score": 9}, "optionD": {"text": "量が足りない", "score": 7} },
+    "trainer_prompt_2": "そうだ、『ほとんど効果がない』ということだな。じゃあ、その無力な感じを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's just a drop in the bucket.", "score": 10, "feedback": "完璧なイディオムだ。『バケツの中の一滴にすぎない』と、全体から見れば微々たるものであることを表す。"}, "optionB": {"text": "It won't make much difference.", "score": 9, "feedback": "これも良い。『大した違いは生まないだろう』と、効果の薄さを的確に説明している。"}, "optionC": {"text": "It's like putting a bandage on a bullet wound.", "score": 8, "feedback": "『銃創に絆創膏を貼るようなものだ』。これも気休めに過ぎない、という面白い比喩だ。"}, "optionD": {"text": "Water on a hot stone.", "score": 0, "feedback": "直訳。通じないぞ。"}}
+  },
+  {
+    "id": "q081",
+    "genre": "daily",
+    "difficultJapanese": "（料理などが）味が染み込んでいる",
+    "trainer_prompt_1": "食材に味がしっかり入っている状態だな。この状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "味がよく染みている", "score": 10}, "optionB": {"text": "よく煮込まれている", "score": 9}, "optionC": {"text": "美味しい", "score": 6}, "optionD": {"text": "中まで味がする", "score": 8} },
+    "trainer_prompt_2": "OK、『味がよく染みている』だな。その状態を英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "The flavor has really soaked in.", "score": 10, "feedback": "完璧だ。soak in は『染み込む』という意味で、まさにこの状況を表す。"}, "optionB": {"text": "It's well-seasoned.", "score": 8, "feedback": "『よく味付けされている』か。正しいが、中まで染み込んでいるニュアンスは少し弱い。"}, "optionC": {"text": "It's rich in flavor.", "score": 9, "feedback": "『風味が豊かだ』。これも素晴らしい表現だ。"}, "optionD": {"text": "The taste has infused.", "score": 7, "feedback": "infuseも『染み込ませる』という意味だが、お茶やハーブの香りを移すような、より繊細なニュアンスで使われることが多い。"}}
+  },
+  {
+    "id": "q082",
+    "genre": "feelings",
+    "difficultJapanese": "（人の目が）気になる",
+    "trainer_prompt_1": "他人にどう思われるかを、過剰に意識している状態だな。この感情の芯にあるものはなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "他人の評価を心配している", "score": 10}, "optionB": {"text": "見られている気がする", "score": 8}, "optionC": {"text": "恥ずかしい", "score": 7}, "optionD": {"text": "自信がない", "score": 9} },
+    "trainer_prompt_2": "そうだ、『他人の評価を心配している』んだ。その気持ちを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I'm self-conscious.", "score": 10, "feedback": "完璧な単語だ。self-consciousは『自意識過剰な、人目を気にする』という、まさにこの感情を表す。"}, "optionB": {"text": "I'm worried about what others think of me.", "score": 9, "feedback": "これも良い。『他人が私のことをどう思うか心配だ』と、状況を正確に説明している。"}, "optionC": {"text": "I feel like I'm being watched.", "score": 7, "feedback": "『見られている気がする』か。少し妄想がかっているな。"}, "optionD": {"text": "I care too much about what people think.", "score": 9, "feedback": "これも素晴らしい。『人がどう思うか気にしすぎている』と、自分の性格を的確に表現している。"}}
+  },
+  {
+    "id": "q083",
+    "genre": "social",
+    "difficultJapanese": "（人が）空気が読めない",
+    "trainer_prompt_1": "その場の雰囲気や、暗黙のルールを理解できない人だな。この性格を、もっと直接的な言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "状況判断が苦手だ", "score": 10}, "optionB": {"text": "相手の気持ちを察することができない", "score": 9}, "optionC": {"text": "鈍感だ", "score": 8}, "optionD": {"text": "無神経だ", "score": 8} },
+    "trainer_prompt_2": "OK、『状況判断が苦手で、相手の気持ちを察せない』ということだな。じゃあ、その性格を英語でどう言う？",
+    "englishOptions": { "optionA": {"text": "He can't read the room.", "score": 10, "feedback": "完璧な表現だ。『部屋の空気を読めない』と、日本語と全く同じ発想。"}, "optionB": {"text": "He's socially awkward.", "score": 9, "feedback": "これも良い。『社会的に不器用だ』と、コミュニケーションが苦手な様子が伝わる。"}, "optionC": {"text": "He doesn't get the hint.", "score": 8, "feedback": "『彼はヒントを理解しない』。遠回しな言い方を察せない、ということだな。"}, "optionD": {"text": "He's clueless.", "score": 9, "feedback": "『彼は状況が全く分かっていない』。これも非常に近いニュアンスでよく使われる。"}}
+  },
+  {
+    "id": "q084",
+    "genre": "proverb",
+    "difficultJapanese": "蛙の子は蛙",
+    "trainer_prompt_1": "子供は親に似る、ということだな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "子供は親に似るものだ", "score": 10}, "optionB": {"text": "血は争えない", "score": 9}, "optionC": {"text": "親子はそっくりだ", "score": 8}, "optionD": {"text": "親と同じ道を進む", "score": 6} },
+    "trainer_prompt_2": "そうだ、『子供は親に似る』だな。じゃあ、それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "The apple doesn't fall far from the tree.", "score": 10, "feedback": "完璧なことわざだ。『リンゴは木から遠くには落ちない』と、子供が親の影響を強く受けることを表す。"}, "optionB": {"text": "Like father, like son.", "score": 9, "feedback": "これも有名だな。『この父にして、この子あり』。母親と娘の場合は Like mother, like daughter. となる。"}, "optionC": {"text": "He's a chip off the old block.", "score": 8, "feedback": "『古い木のブロックから削り取られたチップのようだ』。父親にそっくりな息子を指す、面白い表現だ。"}, "optionD": {"text": "A frog's child is a frog.", "score": 0, "feedback": "直訳。生物学の授業か？"}}
+  },
+  {
+    "id": "q085",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（髪が）ボサボサ",
+    "trainer_prompt_1": "整えられていない、乱れた髪だな。この擬態語が示す、具体的な状態はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "髪が乱れている", "score": 10}, "optionB": {"text": "寝癖がついている", "score": 9}, "optionC": {"text": "手入れされていない", "score": 8}, "optionD": {"text": "まとまりがない", "score": 7} },
+    "trainer_prompt_2": "OK、『髪が乱れている』だな。その状態を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "Your hair is a mess.", "score": 10, "feedback": "完璧だ。a messは『めちゃくちゃな状態』。髪にも部屋にも使える便利な言葉。"}, "optionB": {"text": "You have bed hair.", "score": 8, "feedback": "『寝癖があるね』。ボサボサの原因の一つとしては正しい。"}, "optionC": {"text": "Your hair is untidy.", "score": 7, "feedback": "tidy（整頓された）の反対語。正しいが、少し硬い表現だな。"}, "optionD": {"text": "Your hair is messy.", "score": 9, "feedback": "これも良い。messyは『散らかった』という意味で、非常によく使う。"}}
+  },
+  {
+    "id": "q086",
+    "genre": "feelings",
+    "difficultJapanese": "（うんざりして）もうたくさんだ",
+    "trainer_prompt_1": "我慢の限界を超えた時の言葉だな。この感情を、もっと直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "もう我慢できない", "score": 10}, "optionB": {"text": "うんざりだ", "score": 9}, "optionC": {"text": "もう十分だ", "score": 8}, "optionD": {"text": "やめてくれ", "score": 7} },
+    "trainer_prompt_2": "そうだ、『もう我慢できない』んだ。その爆発寸前の気持ちを、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I've had enough.", "score": 10, "feedback": "これだ。『もう十分いただいた（＝もうたくさんだ）』と、我慢の限界を表す完璧な表現。"}, "optionB": {"text": "I can't take it anymore.", "score": 9, "feedback": "これも素晴らしい。『これ以上、耐えられない』と、限界であることを伝える。"}, "optionC": {"text": "That's it!", "score": 8, "feedback": "『もう、そこまでだ！』という、強い警告の言葉。言い方次第で、我慢の限界を伝えられる。"}, "optionD": {"text": "Stop it.", "score": 6, "feedback": "『やめろ』。直接的だが、なぜやめてほしいのか、という背景の感情は伝わりにくい。"}}
+  },
+  {
+    "id": "q087",
+    "genre": "daily",
+    "difficultJapanese": "（機械などが）調子が悪い",
+    "trainer_prompt_1": "正常に機能していない状態だな。この漠然とした不調を、もっと具体的な言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "何かがおかしい", "score": 10}, "optionB": {"text": "うまく動かない", "score": 9}, "optionC": {"text": "壊れかけている", "score": 8}, "optionD": {"text": "いつもと違う", "score": 7} },
+    "trainer_prompt_2": "OK、『何かがおかしい』んだな。その原因不明の不調を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "Something is wrong with it.", "score": 10, "feedback": "完璧だ。『それには、何かが間違っている』と、原因不明の不調を表す最も一般的な言い方。"}, "optionB": {"text": "It's acting up.", "score": 9, "feedback": "これもネイティブらしい表現だ。act upは、機械や子供が『普段と違う奇妙な動きをする、言うことを聞かない』という意味。"}, "optionC": {"text": "It's not working properly.", "score": 8, "feedback": "『正常に機能していない』。正しい説明だが、少し硬い。"}, "optionD": {"text": "The condition is bad.", "score": 2, "feedback": "直訳。通じないぞ。"}}
+  },
+  {
+    "id": "q088",
+    "genre": "social",
+    "difficultJapanese": "（相手に）借りがある",
+    "trainer_prompt_1": "相手に何かをしてもらった、という恩義を感じている状態だな。この気持ちを、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "あなたにはお世話になりました", "score": 8}, "optionB": {"text": "いつかこのお返しはします", "score": 10}, "optionC": {"text": "あなたに恩がある", "score": 9}, "optionD": {"text": "あなたに借金があります", "score": 3} },
+    "trainer_prompt_2": "そうだ、『いつかお返しをする』という気持ちだな。その恩義を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I owe you one.", "score": 10, "feedback": "これだ。『君に一つ貸しがある』という、カジュアルで非常に一般的な表現。"}, "optionB": {"text": "I'm indebted to you.", "score": 8, "feedback": "indebtedは『恩義がある』。正しいが、少しフォーマルで重い表現だ。"}, "optionC": {"text": "I'll pay you back someday.", "score": 7, "feedback": "pay backは通常、お金を返す時に使う。恩を返す時にも使えなくはないが、I owe you one. の方が自然だ。"}, "optionD": {"text": "I owe you big time.", "score": 9, "feedback": "『君には大きな借りがある』。owe you oneを強調した、感謝が伝わる良い表現だ。"}}
+  },
+  {
+    "id": "q089",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（食べ物が）モチモチしている",
+    "trainer_prompt_1": "餅のような、弾力のある食感だな。この擬態語が示す、具体的な食感はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "噛み応えがあって、弾力がある", "score": 10}, "optionB": {"text": "柔らかくて、ねばりがある", "score": 8}, "optionC": {"text": "歯ごたえがある", "score": 7}, "optionD": {"text": "グミのようだ", "score": 9} },
+    "trainer_prompt_2": "OK、『噛み応えがあって、弾力がある』だな。その独特な食感を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's chewy.", "score": 10, "feedback": "完璧だ。chewyは、まさに『噛み応えのある、もちもちした』食感を表す。"}, "optionB": {"text": "It has a nice texture.", "score": 6, "feedback": "『良い食感だね』か。褒めているのは分かるが、どんな食感かは全く伝わらない。"}, "optionC": {"text": "It's springy.", "score": 8, "feedback": "springyは『バネのような、弾力のある』。かなり近いが、chewyの方が食べ物によく使う。"}, "optionD": {"text": "Mochi-mochi.", "score": 0, "feedback": "擬態語をそのまま言うな。"}}
+  },
+  {
+    "id": "q090",
+    "genre": "proverb",
+    "difficultJapanese": "口は災いの元",
+    "trainer_prompt_1": "不必要な発言が、災難を引き起こすという教えだな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "余計なことは言わない方がいい", "score": 10}, "optionB": {"text": "沈黙は金だ", "score": 9}, "optionC": {"text": "言葉に気をつけろ", "score": 8}, "optionD": {"text": "話すと損をする", "score": 7} },
+    "trainer_prompt_2": "そうだ、『余計なことは言わない方がいい』ということだな。じゃあ、それを表現する英語のことわざは？",
+    "englishOptions": { "optionA": {"text": "Silence is golden.", "score": 9, "feedback": "『沈黙は金』。これも同じ意味を持つ、有名なことわざだ。"}, "optionB": {"text": "Loose lips sink ships.", "score": 10, "feedback": "完璧なことわざだ。『軽い口は船を沈める』と、うっかりした発言が重大な結果を招くことを表す。"}, "optionC": {"text": "Be careful what you say.", "score": 7, "feedback": "『言うことには気をつけろ』。教訓としては正しいが、ことわざの面白みがない。"}, "optionD": {"text": "Your mouth is the source of disaster.", "score": 1, "feedback": "直訳。詩的だが、ことわざとしては使われない。"}}
+  },
+  {
+    "id": "q091",
+    "genre": "daily",
+    "difficultJapanese": "（問題などが）ややこしい",
+    "trainer_prompt_1": "物事が入り組んでいて、理解や解決が難しい状態だな。この状況を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "複雑で分かりにくい", "score": 10}, "optionB": {"text": "面倒くさい", "score": 9}, "optionC": {"text": "混乱する", "score": 8}, "optionD": {"text": "難しい", "score": 7} },
+    "trainer_prompt_2": "OK、『複雑で分かりにくい』が本質だな。その状態を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's complicated.", "score": 10, "feedback": "完璧だ。complicatedは『複雑な』という意味で、人間関係から機械の仕組みまで幅広く使える。"}, "optionB": {"text": "It's confusing.", "score": 9, "feedback": "これも良い。『混乱させられる』という、受け手側の気持ちを表現している。"}, "optionC": {"text": "It's tricky.", "score": 8, "feedback": "trickyは『巧妙な、扱いにくい』。引っ掛け問題のような、一筋縄ではいかないニュアンス。"}, "optionD": {"text": "It's a hassle.", "score": 7, "feedback": "hassleは『面倒なこと』。解決するのが面倒、というニュアンスが強い。"}}
+  },
+  {
+    "id": "q092",
+    "genre": "feelings",
+    "difficultJapanese": "（残念な気持ち）ついてないな",
+    "trainer_prompt_1": "不運が続いたり、期待外れなことが起きたりした時の言葉だな。この気持ちを、もっと直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "運が悪い", "score": 10}, "optionB": {"text": "うまくいかない日だ", "score": 9}, "optionC": {"text": "がっかりだ", "score": 7}, "optionD": {"text": "最悪だ", "score": 8} },
+    "trainer_prompt_2": "そうだ、『運が悪い』んだ。その不運を嘆く、ネイティブらしいカジュアルな言い方は？",
+    "englishOptions": { "optionA": {"text": "It's just not my day.", "score": 10, "feedback": "これだ。『今日は просто、私の一日じゃない』と、何をやってもうまくいかない日を表すのに最適な表現。"}, "optionB": {"text": "I have bad luck.", "score": 7, "feedback": "『私は運が悪い』。正しいが、少し子供っぽい響きがある。"}, "optionC": {"text": "What a bummer.", "score": 8, "feedback": "『なんてがっかりなことだ』。個別の出来事に対して使うことが多い。"}, "optionD": {"text": "Tough luck.", "score": 9, "feedback": "『運が悪かったね』。他人に対して同情を示す時によく使うが、自分のことにも使える。"}}
+  },
+  {
+    "id": "q093",
+    "genre": "social",
+    "difficultJapanese": "（相手に）花を持たせる",
+    "trainer_prompt_1": "相手を立てて、手柄を譲ることだな。この行動の本質を、もっとシンプルな言葉で説明しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "相手に勝ちを譲る", "score": 10}, "optionB": {"text": "相手を主役にする", "score": 9}, "optionC": {"text": "相手を立てる", "score": 9}, "optionD": {"text": "自分は一歩引く", "score": 8} },
+    "trainer_prompt_2": "OK、『相手に勝ちを譲る』だな。その粋な計らいを、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "I let him win.", "score": 10, "feedback": "完璧だ。let (someone) win で『〜に勝たせる、勝ちを譲る』という、まさにこの状況を表す。"}, "optionB": {"text": "I gave him the floor.", "score": 8, "feedback": "give (someone) the floor は、会議などで『発言権を譲る』という意味。少しニュアンスが違う。"}, "optionC": {"text": "I wanted him to look good.", "score": 9, "feedback": "『彼によく見えてほしかったんだ』。行動の意図を説明する、良い表現だ。"}, "optionD": {"text": "I gave him a flower.", "score": 0, "feedback": "直訳。花をあげてどうするんだ？"}}
+  },
+  {
+    "id": "q094",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（道が）グネグネしている",
+    "trainer_prompt_1": "まっすぐではなく、何度も曲がっている様子だな。この擬態語が示す、道の具体的な形状はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "曲がりくねっている", "score": 10}, "optionB": {"text": "カーブが多い", "score": 9}, "optionC": {"text": "まっすぐではない", "score": 7}, "optionD": {"text": "運転が難しい", "score": 6} },
+    "trainer_prompt_2": "そうだ、『曲がりくねっている』だな。その様子を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "The road is winding.", "score": 10, "feedback": "完璧な単語だ。winding はまさに『曲がりくねった』という意味。"}, "optionB": {"text": "The road is curvy.", "score": 9, "feedback": "これも良い。curvyは『カーブが多い』。女性の体形を褒める時にも使うぞ。"}, "optionC": {"text": "The road has many turns.", "score": 8, "feedback": "『たくさんのカーブがある』。状況は説明できているな。"}, "optionD": {"text": "The road is a zigzag.", "score": 7, "feedback": "『道がジグザグだ』。カクカクとした急なカーブが続くニュアンス。"}}
+  },
+  {
+    "id": "q095",
+    "genre": "proverb",
+    "difficultJapanese": "良薬は口に苦し",
+    "trainer_prompt_1": "ためになる忠告は、聞くのが辛いということだな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "良いアドバイスは、聞くのが辛いものだ", "score": 10}, "optionB": {"text": "厳しい言葉は自分のためになる", "score": 9}, "optionC": {"text": "本当のことは耳が痛い", "score": 8}, "optionD": {"text": "薬は苦い", "score": 1} },
+    "trainer_prompt_2": "そうだ、『良いアドバイスは聞くのが辛い』ということだな。じゃあ、それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "The truth hurts.", "score": 9, "feedback": "素晴らしい。『真実は痛みを伴う』と、このことわざの核心を的確に表現している。"}, "optionB": {"text": "Good medicine tastes bitter.", "score": 7, "feedback": "直訳だが、これは英語でも通じることわざだ。"}, "optionC": {"text": "No pain, no gain.", "score": 8, "feedback": "『痛みなくして、得るものなし』。筋トレでよく使うが、この文脈でもフィットする。"}, "optionD": {"text": "Sometimes you have to swallow a bitter pill.", "score": 10, "feedback": "完璧だ。『時には苦い薬を飲み込まなければならない』と、厳しい現実を受け入れる必要性を説いている。"}}
+  },
+  {
+    "id": "q096",
+    "genre": "daily",
+    "difficultJapanese": "（考えなどが）甘いよ",
+    "trainer_prompt_1": "見通しが楽観的すぎることへの指摘だな。この言葉が示す、相手の問題点はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "物事を簡単に考えすぎている", "score": 10}, "optionB": {"text": "現実的ではない", "score": 9}, "optionC": {"text": "準備が足りない", "score": 7}, "optionD": {"text": "世間知らずだ", "score": 8} },
+    "trainer_prompt_2": "OK、『物事を簡単に考えすぎている』んだな。その浅はかさを、英語でどう指摘する？",
+    "englishOptions": { "optionA": {"text": "You're being naive.", "score": 10, "feedback": "完璧だ。naiveは『考えが甘い、世間知らずな』という意味で、この状況にぴったり。"}, "optionB": {"text": "That's too optimistic.", "score": 9, "feedback": "『それは楽観的すぎる』。これも的確な指摘だ。"}, "optionC": {"text": "You're not thinking straight.", "score": 7, "feedback": "『まともに考えていないな』。少し強い言い方だが、意図は伝わる。"}, "optionD": {"text": "Your idea is sweet.", "score": 2, "feedback": "直訳。お菓子の話か？『あなたのアイデアは素敵だ』と、むしろ褒めているように聞こえるぞ。"}}
+  },
+  {
+    "id": "q097",
+    "genre": "feelings",
+    "difficultJapanese": "（状況が）気まずい",
+    "trainer_prompt_1": "その場に居続けるのが不快な、落ち着かない雰囲気だな。この感情を、もっと直接的な言葉で表現しろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "居心地が悪い", "score": 10}, "optionB": {"text": "緊張する", "score": 7}, "optionC": {"text": "変な空気だ", "score": 8}, "optionD": {"text": "何を話していいか分からない", "score": 9} },
+    "trainer_prompt_2": "そうだ、『居心地が悪い』んだ。その感覚を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "This is awkward.", "score": 10, "feedback": "これだ。awkwardは『気まずい、ぎこちない』という意味で、この状況を説明するのに最適な単語。"}, "optionB": {"text": "I feel uncomfortable.", "score": 9, "feedback": "『不快に感じる』。これも正しい。自分の感情を直接的に説明している。"}, "optionC": {"text": "The tension is so thick you could cut it with a knife.", "score": 8, "feedback": "面白い表現だ。『ナイフで切れるほど、緊張感が濃い』と、場の張り詰めた空気を比喩している。"}, "optionD": {"text": "There's an elephant in the room.", "score": 6, "feedback": "『部屋に象がいる』。皆が気づいているのに、あえて誰も触れない大きな問題がある、という意味。気まずさの原因としてはあり得るな。"}}
+  },
+  {
+    "id": "q098",
+    "genre": "social",
+    "difficultJapanese": "（皮肉で）ご苦労様です",
+    "trainer_prompt_1": "相手の無駄な努力や、的外れな行動を、遠回しに揶揄する言葉だな。この言葉の、オブラートに包む前の本心はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "無駄なことしてるね", "score": 10}, "optionB": {"text": "お疲れ様（笑）", "score": 9}, "optionC": {"text": "そんなことして何になるの？", "score": 8}, "optionD": {"text": "ご親切にどうも", "score": 7} },
+    "trainer_prompt_2": "OK、『無駄なことしてるね』という皮肉だな。じゃあ、その気持ちを英語でどう伝える？",
+    "englishOptions": { "optionA": {"text": "Thanks for nothing.", "score": 10, "feedback": "完璧な皮肉だ。『何にもならないことしてくれて、どうも』と、感謝の言葉を使って非難している。"}, "optionB": {"text": "Well, that was a waste of time.", "score": 9, "feedback": "『さて、時間の無駄だったな』。これも直接的だが、効果的な皮肉だ。"}, "optionC": {"text": "You're trying so hard.", "score": 7, "feedback": "『一生懸命やっているね（笑）』。言い方次第で、相手の努力を馬鹿にしたニュアンスになる。"}, "optionD": {"text": "Thank you for your hard work.", "score": 2, "feedback": "本心からの感謝に聞こえるぞ。皮肉として使うには、かなりの演技力が必要だ。"}}
+  },
+  {
+    "id": "q099",
+    "genre": "onomatopoeia",
+    "difficultJapanese": "（物が）フワフワしている",
+    "trainer_prompt_1": "軽くて柔らかい感触を表す擬態語だな。この言葉が示す、具体的な質感はなんだ？",
+    "simpleJapaneseOptions": { "optionA": {"text": "軽くて柔らかい", "score": 10}, "optionB": {"text": "雲のようだ", "score": 8}, "optionC": {"text": "綿のようだ", "score": 9}, "optionD": {"text": "弾力がある", "score": 6} },
+    "trainer_prompt_2": "そうだ、『軽くて柔らかい』が本質だな。その質感を、英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "It's so fluffy.", "score": 10, "feedback": "完璧だ。fluffyは、雲や動物の毛、パンケーキなど、軽くて柔らかいもの全般に使える。"}, "optionB": {"text": "It's soft.", "score": 7, "feedback": "softは『柔らかい』。正しいが、fluffyの持つ『軽やかさ』や『空気を含んだ感じ』は伝わらない。"}, "optionC": {"text": "It's airy.", "score": 8, "feedback": "airyは『空気のような、軽い』。メレンゲのような食感にはぴったりだ。"}, "optionD": {"text": "It's light.", "score": 6, "feedback": "『軽い』か。重さについては正しいが、質感は伝わらないな。"}}
+  },
+  {
+    "id": "q100",
+    "genre": "proverb",
+    "difficultJapanese": "どんぐりの背比べ",
+    "trainer_prompt_1": "どれも似たり寄ったりで、抜きん出たものがない状況だな。このことわざの『芯』となる考えを、もっとシンプルな言葉にしろ。",
+    "simpleJapaneseOptions": { "optionA": {"text": "どれも大して変わらない", "score": 10}, "optionB": {"text": "似たようなレベルだ", "score": 9}, "optionC": {"text": "誰もすごくない", "score": 8}, "optionD": {"text": "低いレベルで争っている", "score": 8} },
+    "trainer_prompt_2": "その通り、『どれも大して変わらない』ということだな。じゃあ、それを英語でどう表現する？",
+    "englishOptions": { "optionA": {"text": "There's not much to choose between them.", "score": 10, "feedback": "完璧だ。『彼らの間には、選ぶべきほどの差はあまりない』と、状況を的確に説明している。"}, "optionB": {"text": "They're all about the same.", "score": 9, "feedback": "これも良い。『大体みんな同じくらいだ』と、シンプルで分かりやすい。"}, "optionC": {"text": "It's like comparing acorns.", "score": 1, "feedback": "直訳。ドングリを集めているのか？"}, "optionD": {"text": "Six of one, half a dozen of the other.", "score": 10, "feedback": "素晴らしいイディオムだ。『一方の6個と、もう一方の半ダース（6個）』と、どちらを選んでも同じ、という状況を表す。"}}
+  }
+]
