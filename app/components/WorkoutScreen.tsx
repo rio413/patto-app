@@ -30,15 +30,14 @@ interface WorkoutScreenProps {
 }
 
 export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
-  const { user } = useAuth();
+  const { user, brainFatPercentage, updateBrainFatPercentage } = useAuth();
   
   // Session state management
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [totalBcalBurned, setTotalBcalBurned] = useState(0);
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(7); // Start with 7 seconds for step 1
   const [isSessionComplete, setIsSessionComplete] = useState(false);
-  const [brainFatPercentage, setBrainFatPercentage] = useState(35.0);
   
   // Current question state
   const [currentStep, setCurrentStep] = useState(1);
@@ -92,6 +91,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
         workoutHistory: arrayUnion(workoutRecord)
       });
       
+      // Update brainFatPercentage in AuthContext
+      await updateBrainFatPercentage(newBrainFatPercentage);
+      
       console.log('Workout results saved successfully');
     } catch (error) {
       console.error('Error saving workout results:', error);
@@ -139,16 +141,17 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     const interval = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
-          // Time's up - give 0 BCal and move to next question
+          // Time's up - give 0 BCal and move to next step or question
           handleTimeUp();
-          return 10; // Reset timer for next question
+          // Reset timer based on current step
+          return currentStep === 1 ? 7 : 10;
         }
         return prevTimer - 1;
       });
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [currentQuestionIndex, isSessionComplete, loading, error]);
+  }, [currentQuestionIndex, currentStep, isSessionComplete, loading, error]);
 
   // Initial load
   useEffect(() => {
@@ -165,9 +168,12 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Save workout results when session is complete
   useEffect(() => {
     if (isSessionComplete && user) {
-      saveWorkoutResult(totalBcalBurned, brainFatPercentage);
+      // Calculate new brain fat percentage based on total BCal burned
+      const reduction = totalBcalBurned / 1000;
+      const newBrainFatPercentage = Math.max(brainFatPercentage - reduction, 0);
+      saveWorkoutResult(totalBcalBurned, newBrainFatPercentage);
     }
-  }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user]);
+  }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user, updateBrainFatPercentage]);
 
   const handleTimeUp = () => {
     // Give 0 BCal for timeout
@@ -175,8 +181,12 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setTotalBcalBurned(prev => prev + setScore);
     setSetScores(prev => [...prev, setScore]);
     
-    if (currentQuestionIndex < 4) {
-      // Show instant feedback for timeout
+    if (currentStep === 1) {
+      // Time's up on step 1, move to step 2
+      setCurrentStep(2);
+      setTimer(10); // Reset timer for step 2
+    } else if (currentQuestionIndex < 4) {
+      // Time's up on step 2, move to next question
       setFeedbackScore(setScore);
       setShowFeedback(true);
       setTimeout(() => {
@@ -184,14 +194,11 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
         setCurrentQuestionIndex(prev => prev + 1);
         setCurrentStep(1);
         setJapaneseScore(null);
-        setTimer(10);
+        setTimer(7); // Reset timer for step 1 of next question
       }, 1000);
     } else {
       // Session complete
       setIsSessionComplete(true);
-      // Calculate brain fat reduction based on total BCal burned
-      const reduction = (totalBcalBurned + setScore) / 1000;
-      setBrainFatPercentage(prev => Math.max(prev - reduction, 0));
     }
   };
 
@@ -203,6 +210,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     
     setJapaneseScore(score);
     setCurrentStep(2);
+    setTimer(10); // Reset timer for step 2
   };
 
   const handleEnglishOptionClick = (score: number) => {
@@ -236,7 +244,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
             setCurrentQuestionIndex(prev => prev + 1);
             setCurrentStep(1);
             setJapaneseScore(null);
-            setTimer(10);
+            setTimer(7); // Reset timer for step 1 of next question
             // Reset timing for next question
             setStep1Time(0);
             setStep2Time(0);
@@ -245,9 +253,6 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
         } else {
           // Session complete
           setIsSessionComplete(true);
-          // Calculate brain fat reduction based on total BCal burned
-          const reduction = newTotal / 1000;
-          setBrainFatPercentage(prev => Math.max(prev - reduction, 0));
         }
         
         return newTotal;
@@ -255,14 +260,12 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     }
   };
 
-
-
   const handleStartNewSession = () => {
     // Reset all states
     setWorkoutQuestions([]);
     setCurrentQuestionIndex(0);
     setTotalBcalBurned(0);
-    setTimer(10);
+    setTimer(7); // Start with step 1 timer
     setIsSessionComplete(false);
     setCurrentStep(1);
     setJapaneseScore(null);
@@ -321,7 +324,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
           
           <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
             <p className="text-lg md:text-xl text-gray-300 font-sans mb-4">
-              BRAIN FAT %: 35.0% → {brainFatPercentage.toFixed(1)}%
+              BRAIN FAT %: 100% → {brainFatPercentage.toFixed(1)}%
             </p>
             
             {/* Set scores summary */}

@@ -28,7 +28,7 @@ interface UserData {
 }
 
 export default function ProfilePage() {
-  const { user, isLoading, logout } = useAuth();
+  const { user, isLoading, logout, brainFatPercentage } = useAuth();
   const [userData, setUserData] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -276,7 +276,7 @@ export default function ProfilePage() {
                 <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
                   <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Brain Fat %</h3>
                   <p className="text-2xl md:text-3xl font-bold text-white font-sans">
-                    {userData?.brainFatPercentage?.toFixed(1) || '35.0'}%
+                    {brainFatPercentage.toFixed(1)}%
                   </p>
                   <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {userData?.lastWorkoutBcal ? `Last workout: ${userData.lastWorkoutBcal} BCal` : 'No workouts yet'}
