@@ -172,15 +172,18 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       console.log("Report: totalBcalBurned =", totalBcalBurned);
       console.log("Report: brainFatPercentage (raw) =", brainFatPercentage);
       
-      // Ensure brainFatPercentage is a number before calculations
-      const currentBrainFat = typeof brainFatPercentage === 'number' ? brainFatPercentage : parseFloat(brainFatPercentage) || 100;
-      console.log("Report: currentBrainFat (converted) =", currentBrainFat);
+      // Ensure both values are numbers using parseFloat()
+      const currentPercentage = typeof brainFatPercentage === 'string' ? parseFloat(brainFatPercentage) : brainFatPercentage || 100;
+      const totalBcalBurnedNumber = totalBcalBurned; // Already a number
       
-      // Calculate new brain fat percentage based on total BCal burned
-      const reduction = totalBcalBurned / 500; // Changed from /1000 to /500
-      console.log("Report: calculated reduction =", reduction);
+      console.log("Report: currentPercentage (converted) =", currentPercentage);
+      console.log("Report: totalBcalBurnedNumber (converted) =", totalBcalBurnedNumber);
       
-      const newBrainFatPercentage = Math.max(currentBrainFat - reduction, 0);
+      // Calculate new brain fat percentage using exact formula: newPercentage = currentPercentage - (totalBcalBurned / 500)
+      const newPercentage = currentPercentage - (totalBcalBurnedNumber / 500);
+      const newBrainFatPercentage = Math.max(newPercentage, 0);
+      
+      console.log("Report: calculated newPercentage =", newPercentage);
       console.log("Report: newBrainFatPercentage =", newBrainFatPercentage);
       
       saveWorkoutResult(totalBcalBurned, newBrainFatPercentage);
@@ -313,14 +316,18 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     console.log("Report Display: totalBcalBurned =", totalBcalBurned);
     console.log("Report Display: brainFatPercentage (raw) =", brainFatPercentage);
     
-    // Calculate final brain fat percentage once
-    const currentBrainFat = typeof brainFatPercentage === 'number' ? brainFatPercentage : parseFloat(brainFatPercentage) || 100;
-    console.log("Report Display: currentBrainFat (converted) =", currentBrainFat);
+    // Ensure both values are numbers using parseFloat()
+    const currentPercentage = typeof brainFatPercentage === 'string' ? parseFloat(brainFatPercentage) : brainFatPercentage || 100;
+    const totalBcalBurnedNumber = totalBcalBurned; // Already a number
     
-    const reduction = totalBcalBurned / 500; // Changed from /1000 to /500
-    console.log("Report Display: calculated reduction =", reduction);
+    console.log("Report Display: currentPercentage (converted) =", currentPercentage);
+    console.log("Report Display: totalBcalBurnedNumber (converted) =", totalBcalBurnedNumber);
     
-    const finalBrainFatPercentage = Math.max(currentBrainFat - reduction, 0);
+    // Calculate new brain fat percentage using exact formula: newPercentage = currentPercentage - (totalBcalBurned / 500)
+    const newPercentage = currentPercentage - (totalBcalBurnedNumber / 500);
+    const finalBrainFatPercentage = Math.max(newPercentage, 0);
+    
+    console.log("Report Display: calculated newPercentage =", newPercentage);
     console.log("Report Display: finalBrainFatPercentage =", finalBrainFatPercentage);
     
     // Determine performance rating
@@ -350,7 +357,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
           
           <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
             <p className="text-lg md:text-xl text-gray-300 font-sans mb-4">
-              BRAIN FAT %: {finalBrainFatPercentage.toFixed(1)}%
+              BRAIN FAT %: {currentPercentage.toFixed(1)}% → {finalBrainFatPercentage.toFixed(1)}%
             </p>
             
             {/* Set scores summary */}
