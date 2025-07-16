@@ -30,7 +30,7 @@ interface WorkoutScreenProps {
 }
 
 export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
-  const { user, brainFatPercentage, updateBrainFatPercentage } = useAuth();
+  const { user, brainFatPercentage } = useAuth();
   
   // Session state management
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
@@ -39,6 +39,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   const [timer, setTimer] = useState(7); // Start with step 1 timer
   const [isSessionComplete, setIsSessionComplete] = useState(false);
   const [hasCalculatedResult, setHasCalculatedResult] = useState(false);
+  
+  // Store the initial brainFatPercentage for the report display
+  const [initialBrainFatPercentage, setInitialBrainFatPercentage] = useState(100);
   
   // Current question state
   const [currentStep, setCurrentStep] = useState(1);
@@ -92,7 +95,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
         workoutHistory: arrayUnion(workoutRecord)
       });
       
-      console.log('Workout results saved successfully');
+      console.log('Workout results saved to Firestore successfully');
+      console.log('New brainFatPercentage saved to Firestore:', newBrainFatPercentage);
+      console.log('AuthContext will automatically update via real-time listener');
     } catch (error) {
       console.error('Error saving workout results:', error);
     }
@@ -154,7 +159,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Initial load
   useEffect(() => {
     fetchWorkoutQuestions();
-  }, []);
+    // Capture the initial brainFatPercentage for the report display
+    setInitialBrainFatPercentage(brainFatPercentage);
+  }, [brainFatPercentage]);
 
   // Start timing when step 1 begins
   useEffect(() => {
@@ -168,30 +175,29 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     if (isSessionComplete && user && !hasCalculatedResult) {
       console.log("--- DEBUGGING WORKOUT REPORT ---");
       console.log("User object from AuthContext:", user);
-      console.log("Current Brain Fat from AuthContext state:", brainFatPercentage);
+      console.log("Initial Brain Fat from session start:", initialBrainFatPercentage);
+      console.log("Current Brain Fat from AuthContext:", brainFatPercentage);
       console.log("Total BCal Burned for this session:", totalBcalBurned);
       
       // Implement a Guard Clause
-      if (typeof brainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
+      if (typeof initialBrainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
         console.error("Calculation skipped: Missing necessary data to calculate new brain fat percentage.");
-        console.error("brainFatPercentage type:", typeof brainFatPercentage);
+        console.error("initialBrainFatPercentage type:", typeof initialBrainFatPercentage);
         console.error("totalBcalBurned type:", typeof totalBcalBurned);
         return; // Stop the function if data is not ready
       }
       
       console.log("Report: Starting brain fat calculation...");
       console.log("Report: totalBcalBurned =", totalBcalBurned);
-      console.log("Report: brainFatPercentage (raw) =", brainFatPercentage);
+      console.log("Report: initialBrainFatPercentage =", initialBrainFatPercentage);
       
-      // Ensure both values are numbers using parseFloat()
-      const currentPercentage = typeof brainFatPercentage === 'string' ? parseFloat(brainFatPercentage) : brainFatPercentage || 100;
+      // Calculate new brain fat percentage using the initial value from session start
       const totalBcalBurnedNumber = totalBcalBurned; // Already a number
       
-      console.log("Report: currentPercentage (converted) =", currentPercentage);
       console.log("Report: totalBcalBurnedNumber (converted) =", totalBcalBurnedNumber);
       
-      // Calculate new brain fat percentage using exact formula: newPercentage = currentPercentage - (totalBcalBurned / 500)
-      const newPercentage = currentPercentage - (totalBcalBurnedNumber / 500);
+      // Calculate new brain fat percentage using exact formula: newPercentage = initialPercentage - (totalBcalBurned / 500)
+      const newPercentage = initialBrainFatPercentage - (totalBcalBurnedNumber / 500);
       const newBrainFatPercentage = Math.max(newPercentage, 0);
       
       console.log("Report: calculated newPercentage =", newPercentage);
@@ -202,7 +208,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       // Mark that we've calculated the result for this session
       setHasCalculatedResult(true);
     }
-  }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user, updateBrainFatPercentage, hasCalculatedResult]);
+  }, [isSessionComplete, totalBcalBurned, initialBrainFatPercentage, user, hasCalculatedResult]);
 
   const handleTimeUp = () => {
     // Give 0 BCal for timeout
@@ -329,30 +335,29 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     
     console.log("--- DEBUGGING WORKOUT REPORT DISPLAY ---");
     console.log("User object from AuthContext:", user);
-    console.log("Current Brain Fat from AuthContext state:", brainFatPercentage);
+    console.log("Initial Brain Fat from session start:", initialBrainFatPercentage);
+    console.log("Current Brain Fat from AuthContext:", brainFatPercentage);
     console.log("Total BCal Burned for this session:", totalBcalBurned);
     
     // Implement a Guard Clause for display
-    if (typeof brainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
+    if (typeof initialBrainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
       console.error("Display calculation skipped: Missing necessary data to calculate new brain fat percentage.");
-      console.error("brainFatPercentage type:", typeof brainFatPercentage);
+      console.error("initialBrainFatPercentage type:", typeof initialBrainFatPercentage);
       console.error("totalBcalBurned type:", typeof totalBcalBurned);
       // Continue with default values for display
     }
     
     console.log("Report Display: Starting brain fat calculation...");
     console.log("Report Display: totalBcalBurned =", totalBcalBurned);
-    console.log("Report Display: brainFatPercentage (raw) =", brainFatPercentage);
+    console.log("Report Display: initialBrainFatPercentage =", initialBrainFatPercentage);
     
-    // Ensure both values are numbers using parseFloat()
-    const currentPercentage = typeof brainFatPercentage === 'string' ? parseFloat(brainFatPercentage) : brainFatPercentage || 100;
+    // Calculate final brain fat percentage using the initial value from session start
     const totalBcalBurnedNumber = totalBcalBurned; // Already a number
     
-    console.log("Report Display: currentPercentage (converted) =", currentPercentage);
     console.log("Report Display: totalBcalBurnedNumber (converted) =", totalBcalBurnedNumber);
     
-    // Calculate new brain fat percentage using exact formula: newPercentage = currentPercentage - (totalBcalBurned / 500)
-    const newPercentage = currentPercentage - (totalBcalBurnedNumber / 500);
+    // Calculate new brain fat percentage using exact formula: newPercentage = initialPercentage - (totalBcalBurned / 500)
+    const newPercentage = initialBrainFatPercentage - (totalBcalBurnedNumber / 500);
     const finalBrainFatPercentage = Math.max(newPercentage, 0);
     
     console.log("Report Display: calculated newPercentage =", newPercentage);
@@ -385,7 +390,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
           
           <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
             <p className="text-lg md:text-xl text-gray-300 font-sans mb-4">
-              BRAIN FAT %: {currentPercentage.toFixed(1)}% → {finalBrainFatPercentage.toFixed(1)}%
+              BRAIN FAT %: {initialBrainFatPercentage.toFixed(1)}% → {finalBrainFatPercentage.toFixed(1)}%
             </p>
             
             {/* Set scores summary */}

@@ -18,7 +18,6 @@ interface AuthContextType {
   brainFatPercentage: number;
   login: () => Promise<void>;
   logout: () => Promise<void>;
-  updateBrainFatPercentage: (newPercentage: number) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -130,30 +129,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const updateBrainFatPercentage = async (newPercentage: number) => {
-    if (!user) {
-      console.error("Auth: Cannot update brainFatPercentage - no user logged in");
-      return;
-    }
-
-    try {
-      console.log("Auth: Updating brainFatPercentage to:", newPercentage);
-      const userDocRef = doc(db, 'users', user.uid);
-      await setDoc(userDocRef, { brainFatPercentage: newPercentage }, { merge: true });
-      console.log("Auth: brainFatPercentage updated successfully in Firestore");
-      // Note: No need to update state here - the real-time listener will handle it
-    } catch (error) {
-      console.error("Auth: Error updating brainFatPercentage:", error);
-    }
-  };
-
   const value = {
     user,
     isLoading,
     brainFatPercentage,
     login,
     logout,
-    updateBrainFatPercentage
   };
 
   return (
