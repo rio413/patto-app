@@ -168,12 +168,21 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Save workout results when session is complete
   useEffect(() => {
     if (isSessionComplete && user) {
+      console.log("Report: Starting brain fat calculation...");
+      console.log("Report: totalBcalBurned =", totalBcalBurned);
+      console.log("Report: brainFatPercentage (raw) =", brainFatPercentage);
+      
       // Ensure brainFatPercentage is a number before calculations
       const currentBrainFat = typeof brainFatPercentage === 'number' ? brainFatPercentage : parseFloat(brainFatPercentage) || 100;
+      console.log("Report: currentBrainFat (converted) =", currentBrainFat);
       
       // Calculate new brain fat percentage based on total BCal burned
-      const reduction = totalBcalBurned / 1000;
+      const reduction = totalBcalBurned / 500; // Changed from /1000 to /500
+      console.log("Report: calculated reduction =", reduction);
+      
       const newBrainFatPercentage = Math.max(currentBrainFat - reduction, 0);
+      console.log("Report: newBrainFatPercentage =", newBrainFatPercentage);
+      
       saveWorkoutResult(totalBcalBurned, newBrainFatPercentage);
     }
   }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user, updateBrainFatPercentage]);
@@ -300,10 +309,19 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     const maxPossibleBcal = 600;
     const scorePercentage = totalBcalBurned / maxPossibleBcal;
     
+    console.log("Report Display: Starting brain fat calculation...");
+    console.log("Report Display: totalBcalBurned =", totalBcalBurned);
+    console.log("Report Display: brainFatPercentage (raw) =", brainFatPercentage);
+    
     // Calculate final brain fat percentage once
     const currentBrainFat = typeof brainFatPercentage === 'number' ? brainFatPercentage : parseFloat(brainFatPercentage) || 100;
-    const reduction = totalBcalBurned / 1000;
+    console.log("Report Display: currentBrainFat (converted) =", currentBrainFat);
+    
+    const reduction = totalBcalBurned / 500; // Changed from /1000 to /500
+    console.log("Report Display: calculated reduction =", reduction);
+    
     const finalBrainFatPercentage = Math.max(currentBrainFat - reduction, 0);
+    console.log("Report Display: finalBrainFatPercentage =", finalBrainFatPercentage);
     
     // Determine performance rating
     let performanceRating = "GOOD!";
