@@ -168,9 +168,12 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Save workout results when session is complete
   useEffect(() => {
     if (isSessionComplete && user) {
+      // Ensure brainFatPercentage is a number before calculations
+      const currentBrainFat = typeof brainFatPercentage === 'number' ? brainFatPercentage : parseFloat(brainFatPercentage) || 100;
+      
       // Calculate new brain fat percentage based on total BCal burned
       const reduction = totalBcalBurned / 1000;
-      const newBrainFatPercentage = Math.max(brainFatPercentage - reduction, 0);
+      const newBrainFatPercentage = Math.max(currentBrainFat - reduction, 0);
       saveWorkoutResult(totalBcalBurned, newBrainFatPercentage);
     }
   }, [isSessionComplete, totalBcalBurned, brainFatPercentage, user, updateBrainFatPercentage]);
@@ -324,7 +327,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
           
           <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
             <p className="text-lg md:text-xl text-gray-300 font-sans mb-4">
-              BRAIN FAT %: 100% → {brainFatPercentage.toFixed(1)}%
+              BRAIN FAT %: 100% → {(typeof brainFatPercentage === 'number' ? brainFatPercentage : parseFloat(brainFatPercentage) || 100).toFixed(1)}%
             </p>
             
             {/* Set scores summary */}

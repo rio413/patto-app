@@ -46,7 +46,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            const currentBrainFat = userData.brainFatPercentage || 100;
+            const currentBrainFat = parseFloat(userData.brainFatPercentage) || 100;
             console.log("Auth: Fetched brainFatPercentage from Firestore:", currentBrainFat);
             setBrainFatPercentage(currentBrainFat);
           } else {
@@ -109,7 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           
           if (userDoc.exists()) {
             const userData = userDoc.data();
-            const currentBrainFat = userData.brainFatPercentage || 100;
+            const currentBrainFat = parseFloat(userData.brainFatPercentage) || 100;
             console.log("Auth: Fetched existing user's brainFatPercentage:", currentBrainFat);
             setBrainFatPercentage(currentBrainFat);
           } else {
