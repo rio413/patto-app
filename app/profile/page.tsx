@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import Tooltip from '../components/Tooltip';
 
 interface WorkoutRecord {
   date: Date;
@@ -347,15 +348,33 @@ export default function ProfilePage() {
           <div>
             {/* Processing Speed Section */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6 font-sans">Processing Speed</h2>
+              <div className="flex items-center mb-6">
+                <h2 className="text-2xl font-bold text-white font-sans">Processing Speed</h2>
+                <Tooltip 
+                  title="処理速度とは？"
+                  description="問題を解決するまでにかかった平均時間です。日本語理解と英語翻訳の両方の処理速度を測定しています。"
+                />
+              </div>
               <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-sans">Japanese Phase:</span>
+                    <div className="flex items-center">
+                      <span className="text-gray-300 font-sans">Japanese Phase:</span>
+                      <Tooltip 
+                        title="日本語処理フェーズとは？"
+                        description="問題の日本語を、よりシンプルな意図に変換するまでにかかった平均時間です。"
+                      />
+                    </div>
                     <span className="text-[#FACC15] font-bold font-sans">{step1Avg.toFixed(1)}s</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-sans">English Phase:</span>
+                    <div className="flex items-center">
+                      <span className="text-gray-300 font-sans">English Phase:</span>
+                      <Tooltip 
+                        title="英語処理フェーズとは？"
+                        description="理解した意図を、適切な英語表現に変換するまでにかかった平均時間です。"
+                      />
+                    </div>
                     <span className="text-[#FACC15] font-bold font-sans">{step2Avg.toFixed(1)}s</span>
                   </div>
                 </div>
@@ -364,29 +383,63 @@ export default function ProfilePage() {
 
             {/* Error Patterns Section */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6 font-sans">Error Patterns</h2>
+              <div className="flex items-center mb-6">
+                <h2 className="text-2xl font-bold text-white font-sans">Error Patterns</h2>
+                <Tooltip 
+                  title="エラーパターンとは？"
+                  description="学習中に発生する典型的な間違いのパターンを分析します。これにより改善点を特定できます。"
+                />
+              </div>
               <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                <p className="text-gray-300 font-sans">
-                  Direct Translation Error: {directTranslationErrorPercentage.toFixed(1)}%
-                </p>
+                <div className="flex items-center">
+                  <span className="text-gray-300 font-sans">Direct Translation Error: {directTranslationErrorPercentage.toFixed(1)}%</span>
+                  <Tooltip 
+                    title="直訳依存度とは？"
+                    description="日本語の単語や構造を、そのまま英語に置き換えただけの不自然な選択肢を選んでしまった割合です。この数値が低いほど、英語脳に近づいている証拠です。"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Accuracy Section */}
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6 font-sans">Accuracy</h2>
+              <div className="flex items-center mb-6">
+                <h2 className="text-2xl font-bold text-white font-sans">Accuracy</h2>
+                <Tooltip 
+                  title="精度とは？"
+                  description="問題に対する正解率を測定します。日本語理解と英語翻訳の両方の精度を分析します。"
+                />
+              </div>
               <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-sans">Overall Accuracy:</span>
+                    <div className="flex items-center">
+                      <span className="text-gray-300 font-sans">Overall Accuracy:</span>
+                      <Tooltip 
+                        title="総合精度とは？"
+                        description="全体的な問題解決の正解率です。日本語理解と英語翻訳の両方を総合した精度です。"
+                      />
+                    </div>
                     <span className="text-[#FACC15] font-bold font-sans">--</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-sans">Japanese Comprehension:</span>
+                    <div className="flex items-center">
+                      <span className="text-gray-300 font-sans">Japanese Comprehension:</span>
+                      <Tooltip 
+                        title="日本語理解精度とは？"
+                        description="日本語の意図を正しく理解できた割合です。"
+                      />
+                    </div>
                     <span className="text-[#FACC15] font-bold font-sans">--</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-300 font-sans">English Translation:</span>
+                    <div className="flex items-center">
+                      <span className="text-gray-300 font-sans">English Translation:</span>
+                      <Tooltip 
+                        title="英語翻訳精度とは？"
+                        description="理解した意図を適切な英語に翻訳できた割合です。"
+                      />
+                    </div>
                     <span className="text-[#FACC15] font-bold font-sans">--</span>
                   </div>
                 </div>
