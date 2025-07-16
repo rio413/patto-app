@@ -168,6 +168,19 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   // Save workout results when session is complete
   useEffect(() => {
     if (isSessionComplete && user) {
+      console.log("--- DEBUGGING WORKOUT REPORT ---");
+      console.log("User object from AuthContext:", user);
+      console.log("Current Brain Fat from AuthContext state:", brainFatPercentage);
+      console.log("Total BCal Burned for this session:", totalBcalBurned);
+      
+      // Implement a Guard Clause
+      if (typeof brainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
+        console.error("Calculation skipped: Missing necessary data to calculate new brain fat percentage.");
+        console.error("brainFatPercentage type:", typeof brainFatPercentage);
+        console.error("totalBcalBurned type:", typeof totalBcalBurned);
+        return; // Stop the function if data is not ready
+      }
+      
       console.log("Report: Starting brain fat calculation...");
       console.log("Report: totalBcalBurned =", totalBcalBurned);
       console.log("Report: brainFatPercentage (raw) =", brainFatPercentage);
@@ -311,6 +324,19 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     // Calculate max possible score (5 questions × 120 BCal each)
     const maxPossibleBcal = 600;
     const scorePercentage = totalBcalBurned / maxPossibleBcal;
+    
+    console.log("--- DEBUGGING WORKOUT REPORT DISPLAY ---");
+    console.log("User object from AuthContext:", user);
+    console.log("Current Brain Fat from AuthContext state:", brainFatPercentage);
+    console.log("Total BCal Burned for this session:", totalBcalBurned);
+    
+    // Implement a Guard Clause for display
+    if (typeof brainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
+      console.error("Display calculation skipped: Missing necessary data to calculate new brain fat percentage.");
+      console.error("brainFatPercentage type:", typeof brainFatPercentage);
+      console.error("totalBcalBurned type:", typeof totalBcalBurned);
+      // Continue with default values for display
+    }
     
     console.log("Report Display: Starting brain fat calculation...");
     console.log("Report Display: totalBcalBurned =", totalBcalBurned);
