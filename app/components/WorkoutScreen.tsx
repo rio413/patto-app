@@ -275,16 +275,16 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   if (loading) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
-        <div className="text-white text-xl font-sans">Loading workout session...</div>
+      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+        <div className="text-white text-lg md:text-xl font-sans">Loading workout session...</div>
       </main>
     );
   }
 
   if (error) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
-        <div className="text-red-400 text-xl font-sans">{error}</div>
+      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+        <div className="text-red-400 text-lg md:text-xl font-sans">{error}</div>
       </main>
     );
   }
@@ -303,40 +303,40 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     }
     
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6">
+      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4 md:p-6">
         <div className="max-w-2xl w-full text-center">
-          <h2 className="text-4xl font-bold text-white mb-8 font-sans">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8 font-sans">
             WORKOUT REPORT
           </h2>
           
-          <div className="bg-gray-800 rounded-lg p-8 mb-8">
-            <div className="text-6xl font-bold text-[#FACC15] mb-4">
+          <div className="bg-gray-800 rounded-lg p-6 md:p-8 mb-6 md:mb-8">
+            <div className="text-5xl md:text-6xl font-bold text-[#FACC15] mb-4">
               {totalBcalBurned}
             </div>
-            <p className="text-2xl text-white mb-4 font-sans">TOTAL BURN: {totalBcalBurned} / {maxPossibleBcal} BCal</p>
-            <p className="text-xl text-[#FACC15] font-sans font-bold">
+            <p className="text-lg md:text-2xl text-white mb-4 font-sans">TOTAL BURN: {totalBcalBurned} / {maxPossibleBcal} BCal</p>
+            <p className="text-lg md:text-xl text-[#FACC15] font-sans font-bold">
               {performanceRating}
             </p>
           </div>
           
-          <div className="bg-gray-800 rounded-lg p-6 mb-8">
-            <p className="text-xl text-gray-300 font-sans mb-4">
+          <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
+            <p className="text-lg md:text-xl text-gray-300 font-sans mb-4">
               BRAIN FAT %: 35.0% → {brainFatPercentage.toFixed(1)}%
             </p>
             
             {/* Set scores summary */}
             <div className="text-left space-y-2">
-              <p className="text-lg text-gray-300 font-sans">SET SCORES:</p>
+              <p className="text-base md:text-lg text-gray-300 font-sans">SET SCORES:</p>
               {setScores.map((score, index) => (
                 <div key={index} className="flex justify-between items-center">
-                  <span className="text-gray-400 font-sans">Set {index + 1}:</span>
-                  <span className="text-[#FACC15] font-sans font-bold">{score} BCal</span>
+                  <span className="text-gray-400 font-sans text-sm md:text-base">Set {index + 1}:</span>
+                  <span className="text-[#FACC15] font-sans font-bold text-sm md:text-base">{score} BCal</span>
                 </div>
               ))}
             </div>
             
             {totalBcalBurned === 0 && (
-              <p className="text-lg text-gray-400 font-sans mt-4">
+              <p className="text-base md:text-lg text-gray-400 font-sans mt-4">
                 次はもっと脳に汗をかこう！
               </p>
             )}
@@ -344,7 +344,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
           
           <button
             onClick={handleStartNewSession}
-            className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
+            className="bg-[#FACC15] text-black px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer w-full max-w-sm"
           >
             START NEW SESSION
           </button>
@@ -355,8 +355,8 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   if (workoutQuestions.length === 0) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
-        <div className="text-white text-xl font-sans">No questions available</div>
+      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+        <div className="text-white text-lg md:text-xl font-sans">No questions available</div>
       </main>
     );
   }
@@ -366,7 +366,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   const currentQuestion = workoutQuestions[currentQuestionIndex];
 
   return (
-    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-6 relative">
+    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4 md:p-6 relative">
       {/* Quit button */}
       <button
         onClick={() => {
@@ -374,7 +374,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
             onQuit();
           }
         }}
-        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-lg cursor-pointer"
+        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-base md:text-lg cursor-pointer"
       >
         QUIT
       </button>
@@ -382,7 +382,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       {/* Instant feedback overlay */}
       {showFeedback && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-4xl font-bold text-[#FACC15] animate-bounce">
+          <div className="text-3xl md:text-4xl font-bold text-[#FACC15] animate-bounce">
             +{feedbackScore} BCal
           </div>
         </div>
@@ -390,58 +390,58 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       
       <div className="max-w-2xl w-full text-center">
         {/* Session progress */}
-        <div className="mb-6">
-          <p className="text-2xl font-bold text-white font-sans">
+        <div className="mb-4 md:mb-6">
+          <p className="text-xl md:text-2xl font-bold text-white font-sans">
             SET {currentQuestionIndex + 1} / 5
           </p>
         </div>
 
         {/* Timer */}
-        <div className="mb-8">
-          <p className="text-lg text-gray-300 font-sans mb-2">TIME LEFT:</p>
-          <div className={`text-6xl font-bold font-sans ${
+        <div className="mb-6 md:mb-8">
+          <p className="text-base md:text-lg text-gray-300 font-sans mb-2">TIME LEFT:</p>
+          <div className={`text-5xl md:text-6xl font-bold font-sans ${
             timer <= 3 ? 'text-red-500' : timer <= 6 ? 'text-yellow-500' : 'text-[#FACC15]'
           }`}>
             {timer}
           </div>
-          <p className="text-lg text-gray-300 font-sans">seconds</p>
+          <p className="text-base md:text-lg text-gray-300 font-sans">seconds</p>
         </div>
 
         {/* Trainer's prompt */}
-        <p className="text-xl text-gray-300 mb-8 font-sans">
+        <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 font-sans px-4">
           {currentStep === 1 ? currentQuestion.trainerPrompt1 : currentQuestion.trainerPrompt2}
         </p>
 
         {/* Instructional text */}
         {currentStep === 1 && (
-          <p className="text-lg text-gray-300 mb-6 font-sans">
+          <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 font-sans px-4">
             この日本語の『意図』に最も近いものを、4つの中から選べ！
           </p>
         )}
         {currentStep === 2 && (
-          <p className="text-lg text-gray-300 mb-6 font-sans">
+          <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 font-sans px-4">
             OK！では、その意図に最適な英語を選べ！
           </p>
         )}
 
         {/* Difficult Japanese text */}
         {currentStep === 1 && (
-          <div className="mb-12">
-            <p className="text-4xl font-bold text-white mb-4 font-sans">
+          <div className="mb-8 md:mb-12 px-4">
+            <p className="text-2xl md:text-4xl font-bold text-white mb-4 font-sans">
               {currentQuestion.difficultJapanese}
             </p>
           </div>
         )}
 
         {/* Options buttons */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 px-4">
           {currentStep === 1 ? (
             // Japanese options
             Object.entries(currentQuestion.simpleJapaneseOptions).map(([key, option], index) => (
               <button
                 key={index}
                 onClick={() => handleJapaneseOptionClick(option.score)}
-                className="bg-[#FACC15] text-black px-6 py-4 rounded-lg text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
+                className="bg-[#FACC15] text-black px-4 md:px-6 py-3 md:py-4 rounded-lg text-base md:text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
               >
                 {option.text}
               </button>
@@ -452,7 +452,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
               <button
                 key={index}
                 onClick={() => handleEnglishOptionClick(option.score)}
-                className="bg-[#FACC15] text-black px-6 py-4 rounded-lg text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
+                className="bg-[#FACC15] text-black px-4 md:px-6 py-3 md:py-4 rounded-lg text-base md:text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
               >
                 {option.text}
               </button>

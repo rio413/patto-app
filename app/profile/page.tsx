@@ -168,8 +168,8 @@ export default function ProfilePage() {
   // Loading state
   if (isLoading || loading) {
     return (
-      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
-        <div className="text-white text-xl font-sans">Loading...</div>
+      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+        <div className="text-white text-lg md:text-xl font-sans">Loading...</div>
       </main>
     );
   }
@@ -177,12 +177,12 @@ export default function ProfilePage() {
   // Not logged in
   if (!user) {
     return (
-      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
+      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-6 font-sans">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 font-sans">
             Patto Brain Gym
           </h1>
-          <p className="text-xl text-gray-300 mb-8 font-sans">
+          <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 font-sans">
             Please log in to view your profile
           </p>
         </div>
@@ -193,12 +193,12 @@ export default function ProfilePage() {
   // Error state
   if (error) {
     return (
-      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center">
+      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-6 font-sans">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 font-sans">
             Patto Brain Gym
           </h1>
-          <p className="text-xl text-red-400 mb-8 font-sans">{error}</p>
+          <p className="text-lg md:text-xl text-red-400 mb-6 md:mb-8 font-sans">{error}</p>
         </div>
       </main>
     );
@@ -214,29 +214,29 @@ export default function ProfilePage() {
   return (
     <main className="min-h-screen bg-[#1A1A1A]">
       {/* Header */}
-      <div className="bg-gray-800 border-b border-gray-700 p-6">
+      <div className="bg-gray-800 border-b border-gray-700 p-4 md:p-6">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-white font-sans">
+            <h1 className="text-2xl md:text-3xl font-bold text-white font-sans">
               {userData?.displayName || user.email}
             </h1>
-            <p className="text-gray-400 font-sans">Brain Training Profile</p>
+            <p className="text-gray-400 font-sans text-sm md:text-base">Brain Training Profile</p>
           </div>
           <button
             onClick={logout}
-            className="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans cursor-pointer"
+            className="bg-gray-600 text-white px-3 md:px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans cursor-pointer text-sm md:text-base"
           >
             Sign Out
           </button>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-4xl mx-auto p-4 md:p-6">
         {/* Tab Navigation */}
-        <div className="flex border-b border-gray-700 mb-8">
+        <div className="flex border-b border-gray-700 mb-6 md:mb-8">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-6 py-3 font-bold font-sans transition-all duration-200 cursor-pointer ${
+            className={`px-4 md:px-6 py-2 md:py-3 font-bold font-sans transition-all duration-200 cursor-pointer text-sm md:text-base ${
               activeTab === 'overview'
                 ? 'text-[#FACC15] border-b-2 border-[#FACC15]'
                 : 'text-gray-400 hover:text-white'
@@ -246,7 +246,7 @@ export default function ProfilePage() {
           </button>
           <button
             onClick={() => setActiveTab('insights')}
-            className={`px-6 py-3 font-bold font-sans transition-all duration-200 cursor-pointer ${
+            className={`px-4 md:px-6 py-2 md:py-3 font-bold font-sans transition-all duration-200 cursor-pointer text-sm md:text-base ${
               activeTab === 'insights'
                 ? 'text-[#FACC15] border-b-2 border-[#FACC15]'
                 : 'text-gray-400 hover:text-white'
@@ -260,34 +260,34 @@ export default function ProfilePage() {
         {activeTab === 'overview' && (
           <div>
             {/* KPI Section */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6 font-sans">Performance Overview</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-sans">Performance Overview</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 {/* Brain Fitness Level */}
-                <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                  <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">BRAIN FITNESS LEVEL</h3>
-                  <p className="text-3xl font-bold text-white font-sans">Level {brainFitnessLevel}</p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">
+                <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                  <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">BRAIN FITNESS LEVEL</h3>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">Level {brainFitnessLevel}</p>
+                  <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {userData?.totalBcalBurned ? `${userData.totalBcalBurned.toLocaleString()} BCal total` : 'No workouts yet'}
                   </p>
                 </div>
 
                 {/* Brain Fat % */}
-                <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                  <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Brain Fat %</h3>
-                  <p className="text-3xl font-bold text-white font-sans">
+                <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                  <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Brain Fat %</h3>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">
                     {userData?.brainFatPercentage?.toFixed(1) || '35.0'}%
                   </p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">
+                  <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {userData?.lastWorkoutBcal ? `Last workout: ${userData.lastWorkoutBcal} BCal` : 'No workouts yet'}
                   </p>
                 </div>
 
                 {/* Workout Streak */}
-                <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                  <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Workout Streak</h3>
-                  <p className="text-3xl font-bold text-white font-sans">{workoutStreak} days</p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">
+                <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                  <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Workout Streak</h3>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{workoutStreak} days</p>
+                  <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {workoutStreak === 0 ? 'Start training to build your streak' : 'Keep up the great work!'}
                   </p>
                 </div>
@@ -295,20 +295,20 @@ export default function ProfilePage() {
             </div>
 
             {/* Lifetime Stats Section */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6 font-sans">Lifetime Stats</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                  <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Total Workouts</h3>
-                  <p className="text-3xl font-bold text-white font-sans">{userData?.totalWorkouts || 0}</p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-sans">Lifetime Stats</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                  <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Total Workouts</h3>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{userData?.totalWorkouts || 0}</p>
+                  <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {userData?.totalWorkouts === 0 ? 'Complete your first workout to start tracking' : ''}
                   </p>
                 </div>
-                <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                  <h3 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Total BCal Burned</h3>
-                  <p className="text-3xl font-bold text-white font-sans">{userData?.totalBcalBurned || 0}</p>
-                  <p className="text-gray-400 text-sm font-sans mt-2">
+                <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                  <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Total BCal Burned</h3>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{userData?.totalBcalBurned || 0}</p>
+                  <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {userData?.totalBcalBurned === 0 ? 'Start training to accumulate BCal' : ''}
                   </p>
                 </div>
@@ -316,10 +316,10 @@ export default function ProfilePage() {
             </div>
 
             {/* Recent Activity Section */}
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-white mb-6 font-sans">Recent Activity</h2>
-              <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                <p className="text-gray-300 font-sans">
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-sans">Recent Activity</h2>
+              <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                <p className="text-gray-300 font-sans text-sm md:text-base">
                   {mostRecentWorkoutData ? (
                     <>
                       <strong>Last Workout:</strong> {mostRecentWorkoutData.date.toLocaleDateString()}
@@ -347,52 +347,52 @@ export default function ProfilePage() {
         {activeTab === 'insights' && (
           <div>
             {/* Processing Speed Section */}
-            <div className="mb-8">
-              <div className="flex items-center mb-6">
-                <h2 className="text-2xl font-bold text-white font-sans">Processing Speed</h2>
+            <div className="mb-6 md:mb-8">
+              <div className="flex items-center mb-4 md:mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-white font-sans">Processing Speed</h2>
                 <Tooltip 
                   title="処理速度とは？"
                   description="問題を解決するまでにかかった平均時間です。日本語理解と英語翻訳の両方の処理速度を測定しています。"
                 />
               </div>
-              <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                <div className="space-y-4">
+              <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                <div className="space-y-3 md:space-y-4">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <span className="text-gray-300 font-sans">Japanese Phase:</span>
+                      <span className="text-gray-300 font-sans text-sm md:text-base">Japanese Phase:</span>
                       <Tooltip 
                         title="日本語処理フェーズとは？"
                         description="問題の日本語を、よりシンプルな意図に変換するまでにかかった平均時間です。"
                       />
                     </div>
-                    <span className="text-[#FACC15] font-bold font-sans">{step1Avg.toFixed(1)}s</span>
+                    <span className="text-[#FACC15] font-bold font-sans text-sm md:text-base">{step1Avg.toFixed(1)}s</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <span className="text-gray-300 font-sans">English Phase:</span>
+                      <span className="text-gray-300 font-sans text-sm md:text-base">English Phase:</span>
                       <Tooltip 
                         title="英語処理フェーズとは？"
                         description="理解した意図を、適切な英語表現に変換するまでにかかった平均時間です。"
                       />
                     </div>
-                    <span className="text-[#FACC15] font-bold font-sans">{step2Avg.toFixed(1)}s</span>
+                    <span className="text-[#FACC15] font-bold font-sans text-sm md:text-base">{step2Avg.toFixed(1)}s</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Error Patterns Section */}
-            <div className="mb-8">
-              <div className="flex items-center mb-6">
-                <h2 className="text-2xl font-bold text-white font-sans">Error Patterns</h2>
+            <div className="mb-6 md:mb-8">
+              <div className="flex items-center mb-4 md:mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-white font-sans">Error Patterns</h2>
                 <Tooltip 
                   title="エラーパターンとは？"
                   description="学習中に発生する典型的な間違いのパターンを分析します。これにより改善点を特定できます。"
                 />
               </div>
-              <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
+              <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
                 <div className="flex items-center">
-                  <span className="text-gray-300 font-sans">Direct Translation Error: {directTranslationErrorPercentage.toFixed(1)}%</span>
+                  <span className="text-gray-300 font-sans text-sm md:text-base">Direct Translation Error: {directTranslationErrorPercentage.toFixed(1)}%</span>
                   <Tooltip 
                     title="直訳依存度とは？"
                     description="日本語の単語や構造を、そのまま英語に置き換えただけの不自然な選択肢を選んでしまった割合です。この数値が低いほど、英語脳に近づいている証拠です。"
@@ -402,45 +402,45 @@ export default function ProfilePage() {
             </div>
 
             {/* Accuracy Section */}
-            <div className="mb-8">
-              <div className="flex items-center mb-6">
-                <h2 className="text-2xl font-bold text-white font-sans">Accuracy</h2>
+            <div className="mb-6 md:mb-8">
+              <div className="flex items-center mb-4 md:mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-white font-sans">Accuracy</h2>
                 <Tooltip 
                   title="精度とは？"
                   description="問題に対する正解率を測定します。日本語理解と英語翻訳の両方の精度を分析します。"
                 />
               </div>
-              <div className="bg-gray-800 rounded-lg p-6 border border-gray-700">
-                <div className="space-y-4">
+              <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
+                <div className="space-y-3 md:space-y-4">
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <span className="text-gray-300 font-sans">Overall Accuracy:</span>
+                      <span className="text-gray-300 font-sans text-sm md:text-base">Overall Accuracy:</span>
                       <Tooltip 
                         title="総合精度とは？"
                         description="全体的な問題解決の正解率です。日本語理解と英語翻訳の両方を総合した精度です。"
                       />
                     </div>
-                    <span className="text-[#FACC15] font-bold font-sans">--</span>
+                    <span className="text-[#FACC15] font-bold font-sans text-sm md:text-base">--</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <span className="text-gray-300 font-sans">Japanese Comprehension:</span>
+                      <span className="text-gray-300 font-sans text-sm md:text-base">Japanese Comprehension:</span>
                       <Tooltip 
                         title="日本語理解精度とは？"
                         description="日本語の意図を正しく理解できた割合です。"
                       />
                     </div>
-                    <span className="text-[#FACC15] font-bold font-sans">--</span>
+                    <span className="text-[#FACC15] font-bold font-sans text-sm md:text-base">--</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <div className="flex items-center">
-                      <span className="text-gray-300 font-sans">English Translation:</span>
+                      <span className="text-gray-300 font-sans text-sm md:text-base">English Translation:</span>
                       <Tooltip 
                         title="英語翻訳精度とは？"
                         description="理解した意図を適切な英語に翻訳できた割合です。"
                       />
                     </div>
-                    <span className="text-[#FACC15] font-bold font-sans">--</span>
+                    <span className="text-[#FACC15] font-bold font-sans text-sm md:text-base">--</span>
                   </div>
                 </div>
               </div>
