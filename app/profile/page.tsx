@@ -223,7 +223,7 @@ export default function ProfilePage() {
           </div>
           <button
             onClick={logout}
-            className="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans"
+            className="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans cursor-pointer"
           >
             Sign Out
           </button>
@@ -235,7 +235,7 @@ export default function ProfilePage() {
         <div className="flex border-b border-gray-700 mb-8">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`px-6 py-3 font-bold font-sans transition-all duration-200 ${
+            className={`px-6 py-3 font-bold font-sans transition-all duration-200 cursor-pointer ${
               activeTab === 'overview'
                 ? 'text-[#FACC15] border-b-2 border-[#FACC15]'
                 : 'text-gray-400 hover:text-white'
@@ -245,7 +245,7 @@ export default function ProfilePage() {
           </button>
           <button
             onClick={() => setActiveTab('insights')}
-            className={`px-6 py-3 font-bold font-sans transition-all duration-200 ${
+            className={`px-6 py-3 font-bold font-sans transition-all duration-200 cursor-pointer ${
               activeTab === 'insights'
                 ? 'text-[#FACC15] border-b-2 border-[#FACC15]'
                 : 'text-gray-400 hover:text-white'

@@ -37,7 +37,7 @@ export default function Header() {
               </Link>
               <button
                 onClick={logout}
-                className="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans"
+                className="bg-gray-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-gray-700 transition-all duration-200 font-sans cursor-pointer"
               >
                 Sign Out
               </button>
@@ -45,7 +45,7 @@ export default function Header() {
           ) : (
             <button
               onClick={login}
-              className="bg-[#FACC15] text-black px-6 py-3 rounded-lg font-bold hover:brightness-110 transition-all duration-200 font-sans"
+              className="bg-[#FACC15] text-black px-6 py-3 rounded-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
             >
               Sign In with Google
             </button>

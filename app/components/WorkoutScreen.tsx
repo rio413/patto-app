@@ -344,7 +344,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
           
           <button
             onClick={handleStartNewSession}
-            className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans"
+            className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
           >
             START NEW SESSION
           </button>
@@ -374,7 +374,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
             onQuit();
           }
         }}
-        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-lg"
+        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-lg cursor-pointer"
       >
         QUIT
       </button>
@@ -441,7 +441,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
               <button
                 key={index}
                 onClick={() => handleJapaneseOptionClick(option.score)}
-                className="bg-[#FACC15] text-black px-6 py-4 rounded-lg text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans"
+                className="bg-[#FACC15] text-black px-6 py-4 rounded-lg text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
               >
                 {option.text}
               </button>
@@ -452,7 +452,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
               <button
                 key={index}
                 onClick={() => handleEnglishOptionClick(option.score)}
-                className="bg-[#FACC15] text-black px-6 py-4 rounded-lg text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans"
+                className="bg-[#FACC15] text-black px-6 py-4 rounded-lg text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
               >
                 {option.text}
               </button>

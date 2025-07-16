@@ -58,7 +58,7 @@ export default function Home() {
       
       <button 
         onClick={handleWorkoutStart}
-        className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans"
+        className="bg-[#FACC15] text-black px-8 py-4 rounded-lg text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
       >
         WORKOUT START
       </button>
