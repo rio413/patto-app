@@ -19,6 +19,7 @@ interface AuthContextType {
   login: () => Promise<void>;
   logout: () => Promise<void>;
   updateBrainFatPercentage: (newPercentage: number) => Promise<void>;
+  updateUserBrainFat: (newPercentage: number) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -158,13 +159,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const updateUserBrainFat = (newPercentage: number) => {
+    console.log("Auth: Directly updating brainFatPercentage state to:", newPercentage);
+    setBrainFatPercentage(newPercentage);
+  };
+
   const value = {
     user,
     isLoading,
     brainFatPercentage,
     login,
     logout,
-    updateBrainFatPercentage
+    updateBrainFatPercentage,
+    updateUserBrainFat
   };
 
   return (

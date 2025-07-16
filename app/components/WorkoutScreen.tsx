@@ -30,7 +30,7 @@ interface WorkoutScreenProps {
 }
 
 export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
-  const { user, brainFatPercentage, updateBrainFatPercentage } = useAuth();
+  const { user, brainFatPercentage, updateBrainFatPercentage, updateUserBrainFat } = useAuth();
   
   // Session state management
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
@@ -92,8 +92,8 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
         workoutHistory: arrayUnion(workoutRecord)
       });
       
-      // Update brainFatPercentage in AuthContext
-      await updateBrainFatPercentage(newBrainFatPercentage);
+      // Immediately update the AuthContext state to ensure synchronization
+      updateUserBrainFat(newBrainFatPercentage);
       
       console.log('Workout results saved successfully');
     } catch (error) {
