@@ -9,7 +9,7 @@ import {
   onAuthStateChanged, 
   User 
 } from 'firebase/auth';
-import { doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
+import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 
 interface AuthContextType {
@@ -32,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     console.log("Auth: Setting up authentication listener...");
 
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       console.log("Auth: onAuthStateChanged triggered", user ? "with user" : "with null");
       
       if (user) {
@@ -51,29 +51,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             console.log("Auth: User document doesn't exist, using default brainFatPercentage: 100");
             setBrainFatPercentage(100);
           }
+          // Set loading to false after we get the user data (or default)
+          setIsLoading(false);
         }, (error) => {
           console.error("Auth: Error in real-time listener:", error);
           setBrainFatPercentage(100);
+          // Set loading to false even if there's an error
+          setIsLoading(false);
         });
         
-        // Return cleanup function for the snapshot listener
-        return () => {
-          console.log("Auth: Cleaning up real-time listener");
-          unsubscribeSnapshot();
-        };
+        // Store the snapshot unsubscribe function for cleanup
+        return unsubscribeSnapshot;
       } else {
         console.log("Auth: No user signed in");
         setUser(null);
         setBrainFatPercentage(100);
+        // Set loading to false immediately when user is null
+        setIsLoading(false);
       }
-      
-      setIsLoading(false);
     });
 
-    // Cleanup function
+    // Cleanup function for the auth state listener
     return () => {
       console.log("Auth: Cleaning up authentication listener");
-      unsubscribe();
+      unsubscribeAuth();
     };
   }, []);
 
@@ -123,7 +124,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log("Auth: Signing out user...");
       await signOut(auth);
       console.log("Auth: User signed out successfully");
-      setBrainFatPercentage(100); // Reset to default
+      // Note: No need to reset state here - the auth state listener will handle it
     } catch (error) {
       console.error("Auth: Error signing out:", error);
     }
