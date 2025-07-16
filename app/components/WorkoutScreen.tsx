@@ -163,6 +163,15 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setInitialBrainFatPercentage(brainFatPercentage);
   }, [brainFatPercentage]);
 
+  // Keep initialBrainFatPercentage synchronized with AuthContext when not in an active session
+  useEffect(() => {
+    if (!isSessionComplete && !hasCalculatedResult) {
+      // Only update if we're not in an active session to avoid interfering with ongoing calculations
+      setInitialBrainFatPercentage(brainFatPercentage);
+      console.log("Synchronizing initialBrainFatPercentage with AuthContext:", brainFatPercentage);
+    }
+  }, [brainFatPercentage, isSessionComplete, hasCalculatedResult]);
+
   // Start timing when step 1 begins
   useEffect(() => {
     if (currentStep === 1 && !isSessionComplete && !loading && !error) {
@@ -307,6 +316,10 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setSetScores([]);
     setShowFeedback(false);
     setHasCalculatedResult(false); // Reset calculation flag for new session
+    
+    // Capture the latest brainFatPercentage from AuthContext for the new session
+    console.log("Starting new session with latest brainFatPercentage:", brainFatPercentage);
+    setInitialBrainFatPercentage(brainFatPercentage);
     
     // Fetch new questions
     fetchWorkoutQuestions();
