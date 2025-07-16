@@ -9,7 +9,7 @@ import {
   onAuthStateChanged, 
   User 
 } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 
 interface AuthContextType {
@@ -19,7 +19,6 @@ interface AuthContextType {
   login: () => Promise<void>;
   logout: () => Promise<void>;
   updateBrainFatPercentage: (newPercentage: number) => Promise<void>;
-  updateUserBrainFat: (newPercentage: number) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -40,24 +39,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         console.log("Auth: User is signed in:", user.email);
         setUser(user);
         
-        // Fetch user's brainFatPercentage from Firestore
-        try {
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDoc = await getDoc(userDocRef);
-          
-          if (userDoc.exists()) {
-            const userData = userDoc.data();
+        // Set up real-time listener for user document
+        const userDocRef = doc(db, 'users', user.uid);
+        const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+          if (doc.exists()) {
+            const userData = doc.data();
             const currentBrainFat = parseFloat(userData.brainFatPercentage) || 100;
-            console.log("Auth: Fetched brainFatPercentage from Firestore:", currentBrainFat);
+            console.log("Auth: Real-time update - brainFatPercentage from Firestore:", currentBrainFat);
             setBrainFatPercentage(currentBrainFat);
           } else {
             console.log("Auth: User document doesn't exist, using default brainFatPercentage: 100");
             setBrainFatPercentage(100);
           }
-        } catch (error) {
-          console.error("Auth: Error fetching user data:", error);
+        }, (error) => {
+          console.error("Auth: Error in real-time listener:", error);
           setBrainFatPercentage(100);
-        }
+        });
+        
+        // Return cleanup function for the snapshot listener
+        return () => {
+          console.log("Auth: Cleaning up real-time listener");
+          unsubscribeSnapshot();
+        };
       } else {
         console.log("Auth: No user signed in");
         setUser(null);
@@ -98,29 +101,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             createdAt: new Date()
           });
           console.log("Auth: New user document created successfully with brainFatPercentage: 100");
-          setBrainFatPercentage(100);
+          // Note: No need to set state here - the real-time listener will handle it
         } catch (firestoreError) {
           console.error("Auth: Error creating user document:", firestoreError);
         }
       } else {
-        console.log("Auth: Existing user, fetching brainFatPercentage from Firestore...");
-        try {
-          const userDocRef = doc(db, 'users', result.user.uid);
-          const userDoc = await getDoc(userDocRef);
-          
-          if (userDoc.exists()) {
-            const userData = userDoc.data();
-            const currentBrainFat = parseFloat(userData.brainFatPercentage) || 100;
-            console.log("Auth: Fetched existing user's brainFatPercentage:", currentBrainFat);
-            setBrainFatPercentage(currentBrainFat);
-          } else {
-            console.log("Auth: Existing user but no document found, using default: 100");
-            setBrainFatPercentage(100);
-          }
-        } catch (error) {
-          console.error("Auth: Error fetching existing user data:", error);
-          setBrainFatPercentage(100);
-        }
+        console.log("Auth: Existing user - real-time listener will handle data updates");
+        // Note: No need to fetch data here - the real-time listener will handle it
       }
       
       // Set user state immediately from the popup result
@@ -152,16 +139,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.log("Auth: Updating brainFatPercentage to:", newPercentage);
       const userDocRef = doc(db, 'users', user.uid);
       await setDoc(userDocRef, { brainFatPercentage: newPercentage }, { merge: true });
-      setBrainFatPercentage(newPercentage);
-      console.log("Auth: brainFatPercentage updated successfully in Firestore and state");
+      console.log("Auth: brainFatPercentage updated successfully in Firestore");
+      // Note: No need to update state here - the real-time listener will handle it
     } catch (error) {
       console.error("Auth: Error updating brainFatPercentage:", error);
     }
-  };
-
-  const updateUserBrainFat = (newPercentage: number) => {
-    console.log("Auth: Directly updating brainFatPercentage state to:", newPercentage);
-    setBrainFatPercentage(newPercentage);
   };
 
   const value = {
@@ -170,8 +152,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     brainFatPercentage,
     login,
     logout,
-    updateBrainFatPercentage,
-    updateUserBrainFat
+    updateBrainFatPercentage
   };
 
   return (
