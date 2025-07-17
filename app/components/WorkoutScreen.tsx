@@ -292,7 +292,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   if (loading) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="h-screen flex flex-col items-center justify-center p-4">
         <div className="text-white text-lg md:text-xl font-sans">Loading workout session...</div>
       </main>
     );
@@ -300,7 +300,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   if (error) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="h-screen flex flex-col items-center justify-center p-4">
         <div className="text-red-400 text-lg md:text-xl font-sans">{error}</div>
       </main>
     );
@@ -308,7 +308,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   if (isSessionComplete) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="h-screen flex flex-col items-center justify-center p-4">
         <div className="max-w-2xl w-full text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8 font-sans">
             WORKOUT REPORT
@@ -371,7 +371,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   if (workoutQuestions.length === 0) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="h-screen flex flex-col items-center justify-center p-4">
         <div className="text-white text-lg md:text-xl font-sans">No questions available</div>
       </main>
     );
@@ -380,7 +380,7 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   const currentQuestion = workoutQuestions[currentQuestionIndex];
 
   return (
-    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4 relative">
+    <main className="h-screen flex flex-col items-center justify-center p-4 relative">
       <button
         onClick={onQuit}
         className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-base md:text-lg cursor-pointer"

@@ -167,7 +167,7 @@ export default function ProfilePage() {
   // Loading state
   if (isLoading || loading) {
     return (
-      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="text-white text-lg md:text-xl font-sans">Loading...</div>
       </main>
     );
@@ -176,7 +176,7 @@ export default function ProfilePage() {
   // Not logged in
   if (!user) {
     return (
-      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 font-sans">
             Patto Brain Gym
@@ -192,7 +192,7 @@ export default function ProfilePage() {
   // Error state
   if (error) {
     return (
-      <main className="min-h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 font-sans">
             Patto Brain Gym
@@ -211,7 +211,7 @@ export default function ProfilePage() {
   const mostRecentWorkoutData = getMostRecentWorkout(userDataLocal?.workoutHistory);
 
   return (
-    <main className="min-h-screen bg-[#1A1A1A]">
+    <main className="min-h-screen">
       {/* Header */}
       <div className="bg-gray-800 border-b border-gray-700 p-4 md:p-6">
         <div className="max-w-4xl mx-auto flex justify-between items-center">

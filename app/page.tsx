@@ -18,7 +18,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="h-screen flex flex-col items-center justify-center p-4">
         <div className="text-white text-lg md:text-xl font-sans">Loading...</div>
       </main>
     );
@@ -26,7 +26,7 @@ export default function Home() {
 
   if (!user) {
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+      <main className="h-screen flex flex-col items-center justify-center p-4">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 md:mb-6 font-sans text-center">
           Patto Brain Gym
         </h1>
@@ -47,7 +47,7 @@ export default function Home() {
   }
 
   return (
-    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
+    <main className="h-screen flex flex-col items-center justify-center p-4">
       <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 md:mb-6 font-sans text-center">
         Patto Brain Gym
       </h1>
