@@ -25,6 +25,17 @@ interface QuestionData {
   englishOptions: { [key: string]: EnglishOption };
 }
 
+interface SetAnswer {
+  questionId: string;
+  difficultJapanese: string;
+  japaneseAnswer: { text: string; score: number };
+  englishAnswer: { text: string; score: number; feedback: string };
+  bestJapaneseAnswer: { text: string; score: number };
+  bestEnglishAnswer: { text: string; score: number; feedback: string };
+  bcalBurned: number;
+  setNumber: number;
+}
+
 interface WorkoutScreenProps {
   onQuit: () => void;
 }
@@ -41,6 +52,11 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [hasSaved, setHasSaved] = useState(false);
+  
+  // New state for tracking answers and review modal
+  const [setAnswers, setSetAnswers] = useState<SetAnswer[]>([]);
+  const [selectedSetForReview, setSelectedSetForReview] = useState<SetAnswer | null>(null);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   // Fetch 5 random questions on mount
   useEffect(() => {
@@ -106,6 +122,32 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     } else { // Step 2 timeout - calculate final score and move to next question
       const finalScore = (japaneseScore || 0) * 0; // Assuming English score is 0 for timeout
       setTotalBcalBurned((prev) => prev + finalScore);
+      
+      // Save timeout answers
+      const currentQuestion = workoutQuestions[currentQuestionIndex];
+      const timeoutJapaneseAnswer = { text: "Timeout", score: 0 };
+      const timeoutEnglishAnswer = { text: "Timeout", score: 0, feedback: "No answer provided" };
+      
+      // Find best answers
+      const bestJapaneseAnswer = Object.values(currentQuestion.simpleJapaneseOptions).reduce((best, current) => 
+        current.score > best.score ? current : best
+      );
+      const bestEnglishAnswer = Object.values(currentQuestion.englishOptions).reduce((best, current) => 
+        current.score > best.score ? current : best
+      );
+      
+      const setAnswer: SetAnswer = {
+        questionId: currentQuestion.id,
+        difficultJapanese: currentQuestion.difficultJapanese,
+        japaneseAnswer: timeoutJapaneseAnswer,
+        englishAnswer: timeoutEnglishAnswer,
+        bestJapaneseAnswer,
+        bestEnglishAnswer,
+        bcalBurned: finalScore,
+        setNumber: currentQuestionIndex + 1
+      };
+      
+      setSetAnswers(prev => [...prev, setAnswer]);
       advanceToNextQuestion();
     }
   }
@@ -125,6 +167,34 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     const bcalForSet = intentAccuracy + speedBonus;
     
     setTotalBcalBurned((prev) => prev + bcalForSet);
+    
+    // Save answers for this set
+    const currentQuestion = workoutQuestions[currentQuestionIndex];
+    const japaneseAnswer = Object.values(currentQuestion.simpleJapaneseOptions).find(option => option.score === japaneseScore) || 
+                          { text: "Unknown", score: japaneseScore };
+    const englishAnswer = Object.values(currentQuestion.englishOptions).find(option => option.score === score) || 
+                         { text: "Unknown", score, feedback: "No feedback available" };
+    
+    // Find best answers
+    const bestJapaneseAnswer = Object.values(currentQuestion.simpleJapaneseOptions).reduce((best, current) => 
+      current.score > best.score ? current : best
+    );
+    const bestEnglishAnswer = Object.values(currentQuestion.englishOptions).reduce((best, current) => 
+      current.score > best.score ? current : best
+    );
+    
+    const setAnswer: SetAnswer = {
+      questionId: currentQuestion.id,
+      difficultJapanese: currentQuestion.difficultJapanese,
+      japaneseAnswer,
+      englishAnswer,
+      bestJapaneseAnswer,
+      bestEnglishAnswer,
+      bcalBurned: bcalForSet,
+      setNumber: currentQuestionIndex + 1
+    };
+    
+    setSetAnswers(prev => [...prev, setAnswer]);
     advanceToNextQuestion();
   }
 
@@ -138,6 +208,87 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
       setIsSessionComplete(true);
     }
   }
+
+  function handleSetReview(setAnswer: SetAnswer) {
+    setSelectedSetForReview(setAnswer);
+    setShowReviewModal(true);
+  }
+
+  function closeReviewModal() {
+    setShowReviewModal(false);
+    setSelectedSetForReview(null);
+  }
+
+  // Review Modal Component
+  const ReviewModal = ({ setAnswer, onClose }: { setAnswer: SetAnswer; onClose: () => void }) => {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div className="bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-2xl font-bold text-white font-sans">Set {setAnswer.setNumber} Review</h3>
+              <button
+                onClick={onClose}
+                className="text-gray-400 hover:text-white text-xl font-bold cursor-pointer"
+              >
+                ×
+              </button>
+            </div>
+            
+            {/* Original Question */}
+            <div className="mb-6">
+              <h4 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">Original Question:</h4>
+              <p className="text-xl text-white font-sans">{setAnswer.difficultJapanese}</p>
+            </div>
+            
+            {/* Step 1 Results */}
+            <div className="mb-6">
+              <h4 className="text-lg font-bold text-[#FACC15] mb-3 font-sans">Step 1 - Japanese Intent:</h4>
+              <div className="bg-gray-700 rounded-lg p-4 mb-3">
+                <p className="text-sm text-gray-300 mb-2 font-sans">Your Answer:</p>
+                <p className="text-white font-sans">{setAnswer.japaneseAnswer.text}</p>
+                <p className="text-sm text-gray-300 mt-1 font-sans">Score: {setAnswer.japaneseAnswer.score}</p>
+              </div>
+              <div className="bg-gray-700 rounded-lg p-4">
+                <p className="text-sm text-gray-300 mb-2 font-sans">Best Answer:</p>
+                <p className="text-white font-sans">{setAnswer.bestJapaneseAnswer.text}</p>
+                <p className="text-sm text-gray-300 mt-1 font-sans">Score: {setAnswer.bestJapaneseAnswer.score}</p>
+              </div>
+            </div>
+            
+            {/* Step 2 Results */}
+            <div className="mb-6">
+              <h4 className="text-lg font-bold text-[#FACC15] mb-3 font-sans">Step 2 - English Translation:</h4>
+              <div className="bg-gray-700 rounded-lg p-4 mb-3">
+                <p className="text-sm text-gray-300 mb-2 font-sans">Your Answer:</p>
+                <p className="text-white font-sans">{setAnswer.englishAnswer.text}</p>
+                <p className="text-sm text-gray-300 mt-1 font-sans">Score: {setAnswer.englishAnswer.score}</p>
+              </div>
+              <div className="bg-gray-700 rounded-lg p-4">
+                <p className="text-sm text-gray-300 mb-2 font-sans">Best Answer:</p>
+                <p className="text-white font-sans">{setAnswer.bestEnglishAnswer.text}</p>
+                <p className="text-sm text-gray-300 mt-1 font-sans">Score: {setAnswer.bestEnglishAnswer.score}</p>
+                <p className="text-sm text-gray-300 mt-2 font-sans">Feedback: {setAnswer.bestEnglishAnswer.feedback}</p>
+              </div>
+            </div>
+            
+            {/* BCal Burned */}
+            <div className="mb-6">
+              <h4 className="text-lg font-bold text-[#FACC15] mb-2 font-sans">BCal Burned:</h4>
+              <p className="text-2xl font-bold text-white font-sans">{setAnswer.bcalBurned}</p>
+            </div>
+            
+            <button
+              onClick={onClose}
+              className="w-full bg-[#FACC15] text-black py-3 rounded-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
 
   if (loading) {
     return (
@@ -170,13 +321,50 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
               TOTAL BURN: {totalBcalBurned} BCal
             </p>
           </div>
-          <button
-            onClick={() => window.location.reload()}
-            className="bg-[#FACC15] text-black px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer w-full max-w-sm"
-          >
-            START NEW SESSION
-          </button>
+          
+          {/* Combined Container for Set Scores and New Session Button */}
+          <div className="bg-gray-800 rounded-lg p-6 md:p-8">
+            {/* Set Scores Section */}
+            <div className="mb-8">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 font-sans">SET SCORES</h3>
+              <div className="space-y-3">
+                {setAnswers.map((setAnswer, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleSetReview(setAnswer)}
+                    className="w-full bg-gray-700 hover:bg-gray-600 rounded-lg p-4 text-left transition-all duration-200 cursor-pointer"
+                  >
+                    <div className="flex justify-between items-center">
+                      <span className="text-lg font-bold text-white font-sans">Set {setAnswer.setNumber}</span>
+                      <span className="text-xl font-bold text-[#FACC15] font-sans">{setAnswer.bcalBurned} BCal</span>
+                    </div>
+                    <div className="text-sm text-gray-300 mt-1 font-sans">
+                      Click to review answers
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            {/* Start New Session Button */}
+            <div className="flex justify-center">
+              <button
+                onClick={() => window.location.reload()}
+                className="bg-[#FACC15] text-black px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer w-full max-w-sm"
+              >
+                START NEW SESSION
+              </button>
+            </div>
+          </div>
         </div>
+        
+        {/* Review Modal */}
+        {showReviewModal && selectedSetForReview && (
+          <ReviewModal 
+            setAnswer={selectedSetForReview} 
+            onClose={closeReviewModal} 
+          />
+        )}
       </main>
     );
   }
