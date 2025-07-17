@@ -28,11 +28,14 @@ interface UserData {
 }
 
 export default function ProfilePage() {
-  const { user, isLoading, logout, brainFatPercentage } = useAuth();
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const { user, isLoading, logout, userData } = useAuth();
+  const [userDataLocal, setUserDataLocal] = useState<UserData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'insights'>('overview');
+
+  // Get brainFatPercentage from userData
+  const brainFatPercentage = userData?.brainFatPercentage || 100;
 
   // Calculate workout streak
   const calculateWorkoutStreak = (workoutHistory: WorkoutRecord[] = []): number => {
@@ -150,7 +153,7 @@ export default function ProfilePage() {
         
         if (userDoc.exists()) {
           const data = userDoc.data() as UserData;
-          setUserData(data);
+          setUserDataLocal(data);
         } else {
           setError('User data not found');
         }
@@ -205,11 +208,11 @@ export default function ProfilePage() {
   }
 
   // Calculate values
-  const brainFitnessLevel = calculateBrainFitnessLevel(userData?.totalBcalBurned);
-  const workoutStreak = calculateWorkoutStreak(userData?.workoutHistory);
-  const { step1Avg, step2Avg } = calculateProcessingSpeed(userData?.workoutHistory);
-  const directTranslationErrorPercentage = calculateDirectTranslationErrorPercentage(userData?.workoutHistory);
-  const mostRecentWorkoutData = getMostRecentWorkout(userData?.workoutHistory);
+  const brainFitnessLevel = calculateBrainFitnessLevel(userDataLocal?.totalBcalBurned);
+  const workoutStreak = calculateWorkoutStreak(userDataLocal?.workoutHistory);
+  const { step1Avg, step2Avg } = calculateProcessingSpeed(userDataLocal?.workoutHistory);
+  const directTranslationErrorPercentage = calculateDirectTranslationErrorPercentage(userDataLocal?.workoutHistory);
+  const mostRecentWorkoutData = getMostRecentWorkout(userDataLocal?.workoutHistory);
 
   return (
     <main className="min-h-screen bg-[#1A1A1A]">
@@ -218,7 +221,7 @@ export default function ProfilePage() {
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-white font-sans">
-              {userData?.displayName || user.email}
+              {userDataLocal?.displayName || user.email}
             </h1>
             <p className="text-gray-400 font-sans text-sm md:text-base">Brain Training Profile</p>
           </div>
@@ -268,7 +271,7 @@ export default function ProfilePage() {
                   <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">BRAIN FITNESS LEVEL</h3>
                   <p className="text-2xl md:text-3xl font-bold text-white font-sans">Level {brainFitnessLevel}</p>
                   <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
-                    {userData?.totalBcalBurned ? `${userData.totalBcalBurned.toLocaleString()} BCal total` : 'No workouts yet'}
+                    {userDataLocal?.totalBcalBurned ? `${userDataLocal.totalBcalBurned.toLocaleString()} BCal total` : 'No workouts yet'}
                   </p>
                 </div>
 
@@ -279,7 +282,7 @@ export default function ProfilePage() {
                     {brainFatPercentage.toFixed(1)}%
                   </p>
                   <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
-                    {userData?.lastWorkoutBcal ? `Last workout: ${userData.lastWorkoutBcal} BCal` : 'No workouts yet'}
+                    {userDataLocal?.lastWorkoutBcal ? `Last workout: ${userDataLocal.lastWorkoutBcal} BCal` : 'No workouts yet'}
                   </p>
                 </div>
 
@@ -300,16 +303,16 @@ export default function ProfilePage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
                   <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Total Workouts</h3>
-                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{userData?.totalWorkouts || 0}</p>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{userDataLocal?.totalWorkouts || 0}</p>
                   <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
-                    {userData?.totalWorkouts === 0 ? 'Complete your first workout to start tracking' : ''}
+                    {userDataLocal?.totalWorkouts === 0 ? 'Complete your first workout to start tracking' : ''}
                   </p>
                 </div>
                 <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
                   <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Total BCal Burned</h3>
-                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{userData?.totalBcalBurned || 0}</p>
+                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">{userDataLocal?.totalBcalBurned || 0}</p>
                   <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
-                    {userData?.totalBcalBurned === 0 ? 'Start training to accumulate BCal' : ''}
+                    {userDataLocal?.totalBcalBurned === 0 ? 'Start training to accumulate BCal' : ''}
                   </p>
                 </div>
               </div>

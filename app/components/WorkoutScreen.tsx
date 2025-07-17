@@ -30,7 +30,7 @@ interface WorkoutScreenProps {
 }
 
 export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
-  const { user, brainFatPercentage } = useAuth();
+  const { user, userData, updateUser } = useAuth();
   
   // Session state management
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
@@ -42,6 +42,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   
   // Store the initial brainFatPercentage for the report display
   const [initialBrainFatPercentage, setInitialBrainFatPercentage] = useState(100);
+  
+  // Get current brainFatPercentage from userData
+  const brainFatPercentage = userData?.brainFatPercentage || 100;
   
   // Current question state
   const [currentStep, setCurrentStep] = useState(1);
@@ -63,8 +66,8 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
 
   // Save workout results to Firestore
   const saveWorkoutResult = async (totalBcalBurned: number, newBrainFatPercentage: number) => {
-    if (!user) {
-      console.error('No user logged in');
+    if (!user || !userData) {
+      console.error('No user or userData available');
       return;
     }
 
@@ -85,19 +88,32 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
         setScores: setScores
       };
 
-      // Update user document with new workout data
-      await updateDoc(userDocRef, {
+      // Prepare updated user data
+      const updatedUserData = {
         brainFatPercentage: newBrainFatPercentage,
         lastWorkoutBcal: totalBcalBurned,
         lastWorkoutDate: new Date(),
         totalBcalBurned: (currentData.totalBcalBurned || 0) + totalBcalBurned,
         totalWorkouts: (currentData.totalWorkouts || 0) + 1,
         workoutHistory: arrayUnion(workoutRecord)
-      });
+      };
+
+      // Update user document with new workout data
+      await updateDoc(userDocRef, updatedUserData);
       
       console.log('Workout results saved to Firestore successfully');
       console.log('New brainFatPercentage saved to Firestore:', newBrainFatPercentage);
-      console.log('AuthContext will automatically update via real-time listener');
+      
+      // Immediately update the AuthContext state with the new data
+      updateUser({
+        brainFatPercentage: newBrainFatPercentage,
+        lastWorkoutBcal: totalBcalBurned,
+        lastWorkoutDate: new Date(),
+        totalBcalBurned: (userData.totalBcalBurned || 0) + totalBcalBurned,
+        totalWorkouts: (userData.totalWorkouts || 0) + 1
+      });
+      
+      console.log('AuthContext state updated immediately after Firestore save');
     } catch (error) {
       console.error('Error saving workout results:', error);
     }
@@ -160,17 +176,19 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   useEffect(() => {
     fetchWorkoutQuestions();
     // Capture the initial brainFatPercentage for the report display
-    setInitialBrainFatPercentage(brainFatPercentage);
-  }, [brainFatPercentage]);
+    const currentBrainFat = userData?.brainFatPercentage || 100;
+    setInitialBrainFatPercentage(currentBrainFat);
+  }, [userData?.brainFatPercentage]);
 
   // Keep initialBrainFatPercentage synchronized with AuthContext when not in an active session
   useEffect(() => {
     if (!isSessionComplete && !hasCalculatedResult) {
       // Only update if we're not in an active session to avoid interfering with ongoing calculations
-      setInitialBrainFatPercentage(brainFatPercentage);
-      console.log("Synchronizing initialBrainFatPercentage with AuthContext:", brainFatPercentage);
+      const currentBrainFat = userData?.brainFatPercentage || 100;
+      setInitialBrainFatPercentage(currentBrainFat);
+      console.log("Synchronizing initialBrainFatPercentage with AuthContext:", currentBrainFat);
     }
-  }, [brainFatPercentage, isSessionComplete, hasCalculatedResult]);
+  }, [userData?.brainFatPercentage, isSessionComplete, hasCalculatedResult]);
 
   // Start timing when step 1 begins
   useEffect(() => {
@@ -318,8 +336,9 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     setHasCalculatedResult(false); // Reset calculation flag for new session
     
     // Capture the latest brainFatPercentage from AuthContext for the new session
-    console.log("Starting new session with latest brainFatPercentage:", brainFatPercentage);
-    setInitialBrainFatPercentage(brainFatPercentage);
+    const currentBrainFat = userData?.brainFatPercentage || 100;
+    console.log("Starting new session with latest brainFatPercentage:", currentBrainFat);
+    setInitialBrainFatPercentage(currentBrainFat);
     
     // Fetch new questions
     fetchWorkoutQuestions();

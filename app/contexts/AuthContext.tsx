@@ -9,63 +9,83 @@ import {
   onAuthStateChanged, 
   User 
 } from 'firebase/auth';
-import { doc, setDoc, onSnapshot } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
+
+interface UserData {
+  email: string;
+  displayName: string;
+  brainFatPercentage: number;
+  lastWorkoutBcal?: number;
+  lastWorkoutDate?: Date;
+  totalBcalBurned?: number;
+  totalWorkouts?: number;
+  workoutHistory?: any[];
+  createdAt: Date;
+}
 
 interface AuthContextType {
   user: User | null;
+  userData: UserData | null;
   isLoading: boolean;
-  brainFatPercentage: number;
   login: () => Promise<void>;
   logout: () => Promise<void>;
+  updateUser: (newUserData: Partial<UserData>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [brainFatPercentage, setBrainFatPercentage] = useState(100);
 
   // Set up the main authentication state listener
   useEffect(() => {
     console.log("Auth: Setting up authentication listener...");
 
-    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       console.log("Auth: onAuthStateChanged triggered", user ? "with user" : "with null");
       
       if (user) {
         console.log("Auth: User is signed in:", user.email);
         setUser(user);
         
-        // Set up real-time listener for user document
-        const userDocRef = doc(db, 'users', user.uid);
-        const unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
-          if (doc.exists()) {
-            const userData = doc.data();
-            const currentBrainFat = parseFloat(userData.brainFatPercentage) || 100;
-            console.log("Auth: Real-time update - brainFatPercentage from Firestore:", currentBrainFat);
-            setBrainFatPercentage(currentBrainFat);
+        // Fetch user data from Firestore once
+        try {
+          const userDocRef = doc(db, 'users', user.uid);
+          const userDoc = await getDoc(userDocRef);
+          
+          if (userDoc.exists()) {
+            const data = userDoc.data() as UserData;
+            console.log("Auth: Fetched user data from Firestore:", data);
+            setUserData(data);
           } else {
-            console.log("Auth: User document doesn't exist, using default brainFatPercentage: 100");
-            setBrainFatPercentage(100);
+            console.log("Auth: User document doesn't exist, using default data");
+            const defaultData: UserData = {
+              email: user.email || '',
+              displayName: user.displayName || '',
+              brainFatPercentage: 100,
+              createdAt: new Date()
+            };
+            setUserData(defaultData);
           }
-          // Set loading to false after we get the user data (or default)
-          setIsLoading(false);
-        }, (error) => {
-          console.error("Auth: Error in real-time listener:", error);
-          setBrainFatPercentage(100);
-          // Set loading to false even if there's an error
-          setIsLoading(false);
-        });
+        } catch (error) {
+          console.error("Auth: Error fetching user data:", error);
+          const defaultData: UserData = {
+            email: user.email || '',
+            displayName: user.displayName || '',
+            brainFatPercentage: 100,
+            createdAt: new Date()
+          };
+          setUserData(defaultData);
+        }
         
-        // Store the snapshot unsubscribe function for cleanup
-        return unsubscribeSnapshot;
+        setIsLoading(false);
       } else {
         console.log("Auth: No user signed in");
         setUser(null);
-        setBrainFatPercentage(100);
-        // Set loading to false immediately when user is null
+        setUserData(null);
         setIsLoading(false);
       }
     });
@@ -94,20 +114,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         
         try {
           const userDocRef = doc(db, 'users', result.user.uid);
-          await setDoc(userDocRef, {
-            email: result.user.email,
-            displayName: result.user.displayName,
-            brainFatPercentage: 100, // Initialize new users with 100%
+          const newUserData: UserData = {
+            email: result.user.email || '',
+            displayName: result.user.displayName || '',
+            brainFatPercentage: 100, // Initialize new users with exactly 100%
             createdAt: new Date()
-          });
+          };
+          
+          await setDoc(userDocRef, newUserData);
           console.log("Auth: New user document created successfully with brainFatPercentage: 100");
-          // Note: No need to set state here - the real-time listener will handle it
+          
+          // Update AuthContext state with the new user data
+          setUserData(newUserData);
         } catch (firestoreError) {
           console.error("Auth: Error creating user document:", firestoreError);
         }
       } else {
-        console.log("Auth: Existing user - real-time listener will handle data updates");
-        // Note: No need to fetch data here - the real-time listener will handle it
+        console.log("Auth: Existing user - user data will be fetched by auth state listener");
       }
       
       // Set user state immediately from the popup result
@@ -129,12 +152,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const updateUser = (newUserData: Partial<UserData>) => {
+    console.log("Auth: Updating user data:", newUserData);
+    setUserData(prev => prev ? { ...prev, ...newUserData } : null);
+  };
+
   const value = {
     user,
+    userData,
     isLoading,
-    brainFatPercentage,
     login,
     logout,
+    updateUser
   };
 
   return (
