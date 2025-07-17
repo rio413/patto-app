@@ -18,7 +18,6 @@ interface WorkoutRecord {
 interface UserData {
   email: string;
   displayName: string;
-  brainFatPercentage: number;
   lastWorkoutBcal?: number;
   lastWorkoutDate?: Date;
   totalBcalBurned?: number;
@@ -33,9 +32,6 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'overview' | 'insights'>('overview');
-
-  // Get brainFatPercentage from userData
-  const brainFatPercentage = userData?.brainFatPercentage || 100;
 
   // Calculate workout streak
   const calculateWorkoutStreak = (workoutHistory: WorkoutRecord[] = []): number => {
@@ -265,24 +261,13 @@ export default function ProfilePage() {
             {/* KPI Section */}
             <div className="mb-6 md:mb-8">
               <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6 font-sans">Performance Overview</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {/* Brain Fitness Level */}
                 <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
                   <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">BRAIN FITNESS LEVEL</h3>
                   <p className="text-2xl md:text-3xl font-bold text-white font-sans">Level {brainFitnessLevel}</p>
                   <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
                     {userDataLocal?.totalBcalBurned ? `${userDataLocal.totalBcalBurned.toLocaleString()} BCal total` : 'No workouts yet'}
-                  </p>
-                </div>
-
-                {/* Brain Fat % */}
-                <div className="bg-gray-800 rounded-lg p-4 md:p-6 border border-gray-700">
-                  <h3 className="text-base md:text-lg font-bold text-[#FACC15] mb-2 font-sans">Brain Fat %</h3>
-                  <p className="text-2xl md:text-3xl font-bold text-white font-sans">
-                    {brainFatPercentage.toFixed(1)}%
-                  </p>
-                  <p className="text-gray-400 text-xs md:text-sm font-sans mt-2">
-                    {userDataLocal?.lastWorkoutBcal ? `Last workout: ${userDataLocal.lastWorkoutBcal} BCal` : 'No workouts yet'}
                   </p>
                 </div>
 

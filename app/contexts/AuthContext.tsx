@@ -9,13 +9,12 @@ import {
   onAuthStateChanged, 
   User 
 } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from '../firebase/config';
 
 interface UserData {
   email: string;
   displayName: string;
-  brainFatPercentage: number;
   lastWorkoutBcal?: number;
   lastWorkoutDate?: Date;
   totalBcalBurned?: number;
@@ -30,7 +29,6 @@ interface AuthContextType {
   isLoading: boolean;
   login: () => Promise<void>;
   logout: () => Promise<void>;
-  updateUser: (newUserData: Partial<UserData>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -40,48 +38,62 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Set up the main authentication state listener
+  // Set up the main authentication state listener with real-time Firestore sync
   useEffect(() => {
     console.log("Auth: Setting up authentication listener...");
 
+    let unsubscribeSnapshot: (() => void) | null = null;
+
     const unsubscribeAuth = onAuthStateChanged(auth, async (user) => {
       console.log("Auth: onAuthStateChanged triggered", user ? "with user" : "with null");
+      
+      // Clean up previous snapshot listener if it exists
+      if (unsubscribeSnapshot) {
+        unsubscribeSnapshot();
+        unsubscribeSnapshot = null;
+      }
       
       if (user) {
         console.log("Auth: User is signed in:", user.email);
         setUser(user);
         
-        // Fetch user data from Firestore once
-        try {
-          const userDocRef = doc(db, 'users', user.uid);
-          const userDoc = await getDoc(userDocRef);
-          
-          if (userDoc.exists()) {
-            const data = userDoc.data() as UserData;
-            console.log("Auth: Fetched user data from Firestore:", data);
+        // Set up real-time listener for user data from Firestore
+        const userDocRef = doc(db, 'users', user.uid);
+        
+        unsubscribeSnapshot = onSnapshot(userDocRef, (doc) => {
+          if (doc.exists()) {
+            const data = doc.data() as UserData;
+            console.log("Auth: Real-time user data update from Firestore:", data);
             setUserData(data);
           } else {
-            console.log("Auth: User document doesn't exist, using default data");
+            console.log("Auth: User document doesn't exist, creating default data");
             const defaultData: UserData = {
               email: user.email || '',
               displayName: user.displayName || '',
-              brainFatPercentage: 100,
               createdAt: new Date()
             };
+            
+            // Create the user document with default data
+            setDoc(userDocRef, defaultData).then(() => {
+              console.log("Auth: Created new user document with default data");
+            }).catch((error) => {
+              console.error("Auth: Error creating user document:", error);
+            });
+            
             setUserData(defaultData);
           }
-        } catch (error) {
-          console.error("Auth: Error fetching user data:", error);
+          setIsLoading(false);
+        }, (error) => {
+          console.error("Auth: Error in real-time listener:", error);
+          // Fallback to default data if listener fails
           const defaultData: UserData = {
             email: user.email || '',
             displayName: user.displayName || '',
-            brainFatPercentage: 100,
             createdAt: new Date()
           };
           setUserData(defaultData);
-        }
-        
-        setIsLoading(false);
+          setIsLoading(false);
+        });
       } else {
         console.log("Auth: No user signed in");
         setUser(null);
@@ -94,6 +106,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       console.log("Auth: Cleaning up authentication listener");
       unsubscribeAuth();
+      if (unsubscribeSnapshot) {
+        unsubscribeSnapshot();
+      }
     };
   }, []);
 
@@ -117,20 +132,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           const newUserData: UserData = {
             email: result.user.email || '',
             displayName: result.user.displayName || '',
-            brainFatPercentage: 100, // Initialize new users with exactly 100%
             createdAt: new Date()
           };
           
           await setDoc(userDocRef, newUserData);
-          console.log("Auth: New user document created successfully with brainFatPercentage: 100");
-          
-          // Update AuthContext state with the new user data
-          setUserData(newUserData);
+          console.log("Auth: New user document created successfully");
+          // Note: The real-time listener will automatically update the state
         } catch (firestoreError) {
           console.error("Auth: Error creating user document:", firestoreError);
         }
       } else {
-        console.log("Auth: Existing user - user data will be fetched by auth state listener");
+        console.log("Auth: Existing user - real-time listener will handle data updates");
       }
       
       // Set user state immediately from the popup result
@@ -152,18 +164,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const updateUser = (newUserData: Partial<UserData>) => {
-    console.log("Auth: Updating user data:", newUserData);
-    setUserData(prev => prev ? { ...prev, ...newUserData } : null);
-  };
-
   const value = {
     user,
     userData,
     isLoading,
     login,
-    logout,
-    updateUser
+    logout
   };
 
   return (

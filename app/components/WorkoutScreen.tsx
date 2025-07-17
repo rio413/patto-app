@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { collection, getDocs, updateDoc, doc, getDoc, arrayUnion } from 'firebase/firestore';
-import { db } from '../firebase/config';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, updateDoc, doc, getDoc, arrayUnion } from "firebase/firestore";
+import { db } from "../firebase/config";
+import { useAuth } from "../contexts/AuthContext";
 
 interface JapaneseOption {
   text: string;
@@ -30,319 +30,114 @@ interface WorkoutScreenProps {
 }
 
 export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
-  const { user, userData, updateUser } = useAuth();
-  
-  // Session state management
+  const { user, userData } = useAuth();
   const [workoutQuestions, setWorkoutQuestions] = useState<QuestionData[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [totalBcalBurned, setTotalBcalBurned] = useState(0);
-  const [timer, setTimer] = useState(7); // Start with step 1 timer
-  const [isSessionComplete, setIsSessionComplete] = useState(false);
-  const [hasCalculatedResult, setHasCalculatedResult] = useState(false);
-  
-  // Store the initial brainFatPercentage for the report display
-  const [initialBrainFatPercentage, setInitialBrainFatPercentage] = useState(100);
-  
-  // Get current brainFatPercentage from userData
-  const brainFatPercentage = userData?.brainFatPercentage || 100;
-  
-  // Current question state
   const [currentStep, setCurrentStep] = useState(1);
   const [japaneseScore, setJapaneseScore] = useState<number | null>(null);
-  const [setScores, setSetScores] = useState<number[]>([]);
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [feedbackScore, setFeedbackScore] = useState(0);
-  const [feedbackPosition, setFeedbackPosition] = useState({ x: 0, y: 0 });
-  
-  // Timing tracking
-  const [step1StartTime, setStep1StartTime] = useState<number>(0);
-  const [step1Time, setStep1Time] = useState<number>(0);
-  const [step2Time, setStep2Time] = useState<number>(0);
-  const [wasDirectTranslationError, setWasDirectTranslationError] = useState<boolean>(false);
-  
-  // UI state
+  const [totalBcalBurned, setTotalBcalBurned] = useState(0);
+  const [timer, setTimer] = useState(7); // Start with step 1timer (7seconds)
+  const [isSessionComplete, setIsSessionComplete] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hasSaved, setHasSaved] = useState(false);
 
-  // Save workout results to Firestore
-  const saveWorkoutResult = async (totalBcalBurned: number, newBrainFatPercentage: number) => {
-    if (!user || !userData) {
-      console.error('No user or userData available');
+  // Fetch 5 random questions on mount
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const questionsRef = collection(db, "questions");
+        const questionsSnap = await getDocs(questionsRef);
+        const allQuestions = questionsSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as QuestionData[];
+        // Shuffle and pick 5
+        const shuffled = allQuestions.sort(() => Math.random() - 0.5).slice(0, 5);
+        setWorkoutQuestions(shuffled);
+      } catch (err) {
+        setError("Failed to fetch questions");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchQuestions();
+  }, []);
+
+  // Timer logic
+  useEffect(() => {
+    if (loading || isSessionComplete) return;
+    if (timer <= 0) {
+      handleTimeUp(); // Timeout = 0 score
       return;
     }
+    const interval = setInterval(() => setTimer((t) => t - 1), 1000);
+    return () => clearInterval(interval);
+  }, [timer, loading, isSessionComplete]);
 
-    try {
-      const userDocRef = doc(db, 'users', user.uid);
-      
-      // Get current user data to update workout history
+  // Save result to Firestore after session
+  useEffect(() => {
+    if (!isSessionComplete || hasSaved || !user) return;
+    const saveResult = async () => {
+      const userDocRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userDocRef);
       const currentData = userDoc.exists() ? userDoc.data() : {};
-      
-      // Create workout record
       const workoutRecord = {
         date: new Date(),
-        totalBcalBurned: totalBcalBurned,
-        step1Time: step1Time,
-        step2Time: step2Time,
-        wasDirectTranslationError: wasDirectTranslationError,
-        setScores: setScores
+        totalBcalBurned,
       };
-
-      // Prepare updated user data
-      const updatedUserData = {
-        brainFatPercentage: newBrainFatPercentage,
+      await updateDoc(userDocRef, {
         lastWorkoutBcal: totalBcalBurned,
         lastWorkoutDate: new Date(),
         totalBcalBurned: (currentData.totalBcalBurned || 0) + totalBcalBurned,
         totalWorkouts: (currentData.totalWorkouts || 0) + 1,
-        workoutHistory: arrayUnion(workoutRecord)
-      };
-
-      // Update user document with new workout data
-      await updateDoc(userDocRef, updatedUserData);
-      
-      console.log('Workout results saved to Firestore successfully');
-      console.log('New brainFatPercentage saved to Firestore:', newBrainFatPercentage);
-      
-      // Immediately update the AuthContext state with the new data
-      updateUser({
-        brainFatPercentage: newBrainFatPercentage,
-        lastWorkoutBcal: totalBcalBurned,
-        lastWorkoutDate: new Date(),
-        totalBcalBurned: (userData.totalBcalBurned || 0) + totalBcalBurned,
-        totalWorkouts: (userData.totalWorkouts || 0) + 1
+        workoutHistory: arrayUnion(workoutRecord),
       });
-      
-      console.log('AuthContext state updated immediately after Firestore save');
-    } catch (error) {
-      console.error('Error saving workout results:', error);
-    }
-  };
+      setHasSaved(true);
+    };
+    saveResult();
+  }, [isSessionComplete, hasSaved, user, totalBcalBurned]);
 
-  // Fetch 5 random questions for the session
-  const fetchWorkoutQuestions = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const questionsRef = collection(db, 'questions');
-      const questionsSnap = await getDocs(questionsRef);
-      
-      if (questionsSnap.empty) {
-        setError('No questions available');
-        return;
-      }
-      
-      // Convert to array and shuffle
-      const allQuestions = questionsSnap.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      
-      // Shuffle and take first 5 questions
-      const shuffledQuestions = allQuestions.sort(() => Math.random() - 0.5);
-      const selectedQuestions = shuffledQuestions.slice(0, 5);
-      
-      setWorkoutQuestions(selectedQuestions as QuestionData[]);
-      
-    } catch (err) {
-      setError('Failed to fetch workout questions');
-      console.error('Error fetching workout questions:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Timer effect
-  useEffect(() => {
-    if (isSessionComplete || loading || error) return;
-    
-    const interval = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer <= 1) {
-          // Time's up - give 0 BCal and move to next step or question
-          handleTimeUp();
-          // Reset timer based on current step
-          return currentStep === 1 ? 7 : 10;
-        }
-        return prevTimer - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [currentQuestionIndex, currentStep, isSessionComplete, loading, error]);
-
-  // Initial load
-  useEffect(() => {
-    fetchWorkoutQuestions();
-    // Capture the initial brainFatPercentage for the report display
-    const currentBrainFat = userData?.brainFatPercentage || 100;
-    setInitialBrainFatPercentage(currentBrainFat);
-  }, [userData?.brainFatPercentage]);
-
-  // Keep initialBrainFatPercentage synchronized with AuthContext when not in an active session
-  useEffect(() => {
-    if (!isSessionComplete && !hasCalculatedResult) {
-      // Only update if we're not in an active session to avoid interfering with ongoing calculations
-      const currentBrainFat = userData?.brainFatPercentage || 100;
-      setInitialBrainFatPercentage(currentBrainFat);
-      console.log("Synchronizing initialBrainFatPercentage with AuthContext:", currentBrainFat);
-    }
-  }, [userData?.brainFatPercentage, isSessionComplete, hasCalculatedResult]);
-
-  // Start timing when step 1 begins
-  useEffect(() => {
-    if (currentStep === 1 && !isSessionComplete && !loading && !error) {
-      setStep1StartTime(Date.now());
-    }
-  }, [currentQuestionIndex, currentStep, isSessionComplete, loading, error]);
-
-  // Save workout results when session is complete
-  useEffect(() => {
-    if (isSessionComplete && user && !hasCalculatedResult) {
-      console.log("--- DEBUGGING WORKOUT REPORT ---");
-      console.log("User object from AuthContext:", user);
-      console.log("Initial Brain Fat from session start:", initialBrainFatPercentage);
-      console.log("Current Brain Fat from AuthContext:", brainFatPercentage);
-      console.log("Total BCal Burned for this session:", totalBcalBurned);
-      
-      // Implement a Guard Clause
-      if (typeof initialBrainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
-        console.error("Calculation skipped: Missing necessary data to calculate new brain fat percentage.");
-        console.error("initialBrainFatPercentage type:", typeof initialBrainFatPercentage);
-        console.error("totalBcalBurned type:", typeof totalBcalBurned);
-        return; // Stop the function if data is not ready
-      }
-      
-      console.log("Report: Starting brain fat calculation...");
-      console.log("Report: totalBcalBurned =", totalBcalBurned);
-      console.log("Report: initialBrainFatPercentage =", initialBrainFatPercentage);
-      
-      // Calculate new brain fat percentage using the initial value from session start
-      const totalBcalBurnedNumber = totalBcalBurned; // Already a number
-      
-      console.log("Report: totalBcalBurnedNumber (converted) =", totalBcalBurnedNumber);
-      
-      // Calculate new brain fat percentage using exact formula: newPercentage = initialPercentage - (totalBcalBurned / 500)
-      const newPercentage = initialBrainFatPercentage - (totalBcalBurnedNumber / 500);
-      const newBrainFatPercentage = Math.max(newPercentage, 0);
-      
-      console.log("Report: calculated newPercentage =", newPercentage);
-      console.log("Report: newBrainFatPercentage =", newBrainFatPercentage);
-      
-      saveWorkoutResult(totalBcalBurned, newBrainFatPercentage);
-      
-      // Mark that we've calculated the result for this session
-      setHasCalculatedResult(true);
-    }
-  }, [isSessionComplete, totalBcalBurned, initialBrainFatPercentage, user, hasCalculatedResult]);
-
-  const handleTimeUp = () => {
-    // Give 0 BCal for timeout
-    const setScore = 0;
-    setTotalBcalBurned(prev => prev + setScore);
-    setSetScores(prev => [...prev, setScore]);
-    
+  function handleTimeUp() {
+    // Time's up - give 0 score and move to next step or question
     if (currentStep === 1) {
-      // Time's up on step 1, move to step 2
+      setJapaneseScore(0);
       setCurrentStep(2);
-      setTimer(10); // Reset timer for step 2
-    } else if (currentQuestionIndex < 4) {
-      // Time's up on step 2, move to next question
-      setFeedbackScore(setScore);
-      setShowFeedback(true);
-      setTimeout(() => {
-        setShowFeedback(false);
-        setCurrentQuestionIndex(prev => prev + 1);
-        setCurrentStep(1);
-        setJapaneseScore(null);
-        setTimer(7); // Reset timer for step 1 of next question
-      }, 1000);
-    } else {
-      // Session complete
-      setIsSessionComplete(true);
+      setTimer(10); // Reset timer to 10 seconds for step 2
+    } else { // Step 2 timeout - calculate final score and move to next question
+      const finalScore = (japaneseScore || 0) * 0; // Assuming English score is 0 for timeout
+      setTotalBcalBurned((prev) => prev + finalScore);
+      advanceToNextQuestion();
     }
-  };
+  }
 
-  const handleJapaneseOptionClick = (score: number) => {
-    // Calculate step 1 time
-    const step1EndTime = Date.now();
-    const step1Duration = (step1EndTime - step1StartTime) / 1000; // Convert to seconds
-    setStep1Time(step1Duration);
-    
+  function handleJapaneseAnswer(score: number) {
     setJapaneseScore(score);
     setCurrentStep(2);
-    setTimer(10); // Reset timer for step 2
-  };
+    setTimer(10); // Reset timer to 10 seconds for step2
+  }
 
-  const handleEnglishOptionClick = (score: number) => {
-    if (japaneseScore !== null) {
-      // Calculate step 2 time (from when step 2 started to now)
-      const step2EndTime = Date.now();
-      const step2StartTime = step1StartTime + (step1Time * 1000); // Convert back to milliseconds
-      const step2Duration = (step2EndTime - step2StartTime) / 1000; // Convert to seconds
-      setStep2Time(step2Duration);
-      
-      // Detect direct translation error (simplified logic - can be enhanced)
-      // This is a placeholder logic - you can make it more sophisticated
-      const isDirectTranslationError = score < 3; // Assuming low scores indicate direct translation
-      setWasDirectTranslationError(isDirectTranslationError);
-      
-      // Calculate BCal: (Japanese score * English score) + (remaining seconds * 2)
-      const intentAccuracy = japaneseScore * score;
-      const speedBonus = timer * 2;
-      const bcalForSet = intentAccuracy + speedBonus;
-      
-      setTotalBcalBurned(prev => {
-        const newTotal = prev + bcalForSet;
-        setSetScores(prev => [...prev, bcalForSet]);
-        
-        if (currentQuestionIndex < 4) {
-          // Show instant feedback
-          setFeedbackScore(bcalForSet);
-          setShowFeedback(true);
-          setTimeout(() => {
-            setShowFeedback(false);
-            setCurrentQuestionIndex(prev => prev + 1);
-            setCurrentStep(1);
-            setJapaneseScore(null);
-            setTimer(7); // Reset timer for step 1 of next question
-            // Reset timing for next question
-            setStep1Time(0);
-            setStep2Time(0);
-            setWasDirectTranslationError(false);
-          }, 1000);
-        } else {
-          // Session complete
-          setIsSessionComplete(true);
-        }
-        
-        return newTotal;
-      });
-    }
-  };
+  function handleEnglishAnswer(score: number) {
+    if (japaneseScore === null) return;
+    
+    // Calculate BCal: (Japanese score * English score) + (remaining seconds * 2)
+    const intentAccuracy = japaneseScore * score;
+    const speedBonus = timer * 2;
+    const bcalForSet = intentAccuracy + speedBonus;
+    
+    setTotalBcalBurned((prev) => prev + bcalForSet);
+    advanceToNextQuestion();
+  }
 
-  const handleStartNewSession = () => {
-    // Reset all states
-    setWorkoutQuestions([]);
-    setCurrentQuestionIndex(0);
-    setTotalBcalBurned(0);
-    setTimer(7); // Start with step 1 timer
-    setIsSessionComplete(false);
-    setCurrentStep(1);
+  function advanceToNextQuestion() {
     setJapaneseScore(null);
-    setSetScores([]);
-    setShowFeedback(false);
-    setHasCalculatedResult(false); // Reset calculation flag for new session
-    
-    // Capture the latest brainFatPercentage from AuthContext for the new session
-    const currentBrainFat = userData?.brainFatPercentage || 100;
-    console.log("Starting new session with latest brainFatPercentage:", currentBrainFat);
-    setInitialBrainFatPercentage(currentBrainFat);
-    
-    // Fetch new questions
-    fetchWorkoutQuestions();
-  };
+    setCurrentStep(1);
+    setTimer(7); // Reset timer to 7 seconds for step 1 of next question
+    if (currentQuestionIndex < 4) {
+      setCurrentQuestionIndex((i) => i + 1);
+    } else {
+      setIsSessionComplete(true);
+    }
+  }
 
   if (loading) {
     return (
@@ -361,90 +156,22 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
   }
 
   if (isSessionComplete) {
-    // Calculate max possible score (5 questions × 120 BCal each)
-    const maxPossibleBcal = 600;
-    const scorePercentage = totalBcalBurned / maxPossibleBcal;
-    
-    console.log("--- DEBUGGING WORKOUT REPORT DISPLAY ---");
-    console.log("User object from AuthContext:", user);
-    console.log("Initial Brain Fat from session start:", initialBrainFatPercentage);
-    console.log("Current Brain Fat from AuthContext:", brainFatPercentage);
-    console.log("Total BCal Burned for this session:", totalBcalBurned);
-    
-    // Implement a Guard Clause for display
-    if (typeof initialBrainFatPercentage !== 'number' || typeof totalBcalBurned !== 'number') {
-      console.error("Display calculation skipped: Missing necessary data to calculate new brain fat percentage.");
-      console.error("initialBrainFatPercentage type:", typeof initialBrainFatPercentage);
-      console.error("totalBcalBurned type:", typeof totalBcalBurned);
-      // Continue with default values for display
-    }
-    
-    console.log("Report Display: Starting brain fat calculation...");
-    console.log("Report Display: totalBcalBurned =", totalBcalBurned);
-    console.log("Report Display: initialBrainFatPercentage =", initialBrainFatPercentage);
-    
-    // Calculate final brain fat percentage using the initial value from session start
-    const totalBcalBurnedNumber = totalBcalBurned; // Already a number
-    
-    console.log("Report Display: totalBcalBurnedNumber (converted) =", totalBcalBurnedNumber);
-    
-    // Calculate new brain fat percentage using exact formula: newPercentage = initialPercentage - (totalBcalBurned / 500)
-    const newPercentage = initialBrainFatPercentage - (totalBcalBurnedNumber / 500);
-    const finalBrainFatPercentage = Math.max(newPercentage, 0);
-    
-    console.log("Report Display: calculated newPercentage =", newPercentage);
-    console.log("Report Display: finalBrainFatPercentage =", finalBrainFatPercentage);
-    
-    // Determine performance rating
-    let performanceRating = "GOOD!";
-    if (scorePercentage > 0.9) {
-      performanceRating = "PERFECT!";
-    } else if (scorePercentage > 0.7) {
-      performanceRating = "GREAT!";
-    }
-    
     return (
-      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4 md:p-6">
+      <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4">
         <div className="max-w-2xl w-full text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 md:mb-8 font-sans">
             WORKOUT REPORT
           </h2>
-          
-          <div className="bg-gray-800 rounded-lg p-6 md:p-8 mb-6 md:mb-8">
+          <div className="bg-gray-800 rounded-lg p-6 md:p-8 mb-8">
             <div className="text-5xl md:text-6xl font-bold text-[#FACC15] mb-4">
               {totalBcalBurned}
             </div>
-            <p className="text-lg md:text-2xl text-white mb-4 font-sans">TOTAL BURN: {totalBcalBurned} / {maxPossibleBcal} BCal</p>
-            <p className="text-lg md:text-xl text-[#FACC15] font-sans font-bold">
-              {performanceRating}
+            <p className="text-lg md:text-2xl text-white mb-4 font-sans">
+              TOTAL BURN: {totalBcalBurned} BCal
             </p>
           </div>
-          
-          <div className="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 md:mb-8">
-            <p className="text-lg md:text-xl text-gray-300 font-sans mb-4">
-              BRAIN FAT %: {initialBrainFatPercentage.toFixed(1)}% → {finalBrainFatPercentage.toFixed(1)}%
-            </p>
-            
-            {/* Set scores summary */}
-            <div className="text-left space-y-2">
-              <p className="text-base md:text-lg text-gray-300 font-sans">SET SCORES:</p>
-              {setScores.map((score, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <span className="text-gray-400 font-sans text-sm md:text-base">Set {index + 1}:</span>
-                  <span className="text-[#FACC15] font-sans font-bold text-sm md:text-base">{score} BCal</span>
-                </div>
-              ))}
-            </div>
-            
-            {totalBcalBurned === 0 && (
-              <p className="text-base md:text-lg text-gray-400 font-sans mt-4">
-                次はもっと脳に汗をかこう！
-              </p>
-            )}
-          </div>
-          
           <button
-            onClick={handleStartNewSession}
+            onClick={() => window.location.reload()}
             className="bg-[#FACC15] text-black px-6 md:px-8 py-3 md:py-4 rounded-lg text-lg md:text-xl font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer w-full max-w-sm"
           >
             START NEW SESSION
@@ -462,98 +189,73 @@ export default function WorkoutScreen({ onQuit }: WorkoutScreenProps) {
     );
   }
 
-
-
   const currentQuestion = workoutQuestions[currentQuestionIndex];
 
   return (
-    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4 md:p-6 relative">
-      {/* Quit button */}
+    <main className="h-screen bg-[#1A1A1A] flex flex-col items-center justify-center p-4 relative">
       <button
-        onClick={() => {
-          if (window.confirm("Are you sure you want to quit? Your current progress will be lost.")) {
-            onQuit();
-          }
-        }}
+        onClick={onQuit}
         className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200 font-sans text-base md:text-lg cursor-pointer"
       >
         QUIT
       </button>
-      
-      {/* Instant feedback overlay */}
-      {showFeedback && (
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="text-3xl md:text-4xl font-bold text-[#FACC15] animate-bounce">
-            +{feedbackScore} BCal
-          </div>
-        </div>
-      )}
-      
       <div className="max-w-2xl w-full text-center">
-        {/* Session progress */}
         <div className="mb-4 md:mb-6">
           <p className="text-xl md:text-2xl font-bold text-white font-sans">
             SET {currentQuestionIndex + 1} / 5
           </p>
         </div>
-
-        {/* Timer */}
         <div className="mb-6 md:mb-8">
           <p className="text-base md:text-lg text-gray-300 font-sans mb-2">TIME LEFT:</p>
-          <div className={`text-5xl md:text-6xl font-bold font-sans ${
-            timer <= 3 ? 'text-red-500' : timer <= 6 ? 'text-yellow-500' : 'text-[#FACC15]'
-          }`}>
+          <div className={`text-5xl md:text-6xl font-bold font-sans ${timer <= 3 ? "text-red-500" : timer <= 6 ? "text-yellow-500" : "text-[#FACC15]"}`}>
             {timer}
           </div>
           <p className="text-base md:text-lg text-gray-300 font-sans">seconds</p>
         </div>
-
-        {/* Trainer's prompt */}
         <p className="text-lg md:text-xl text-gray-300 mb-6 md:mb-8 font-sans px-4">
           {currentStep === 1 ? currentQuestion.trainerPrompt1 : currentQuestion.trainerPrompt2}
         </p>
-
-        {/* Instructional text */}
+        
+        {/* Show Japanese text only in step 1 */}
         {currentStep === 1 && (
-          <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 font-sans px-4">
-            この日本語の『意図』に最も近いものを、4つの中から選べ！
-          </p>
-        )}
-        {currentStep === 2 && (
-          <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 font-sans px-4">
-            OK！では、その意図に最適な英語を選べ！
-          </p>
-        )}
-
-        {/* Difficult Japanese text */}
-        {currentStep === 1 && (
-          <div className="mb-8 md:mb-12 px-4">
+          <div className="mb-8 px-4">
             <p className="text-2xl md:text-4xl font-bold text-white mb-4 font-sans">
               {currentQuestion.difficultJapanese}
             </p>
           </div>
         )}
-
-        {/* Options buttons */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 px-4">
+        
+        {/* Instructional text */}
+        {currentStep === 1 && (
+          <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 px-4 font-sans">
+            この日本語の『意図』に最も近いものを、4つの中から選べ！
+          </p>
+        )}
+        {currentStep === 2 && (
+          <p className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 px-4 font-sans">
+            OK！では、その意図に最適な英語を選べ！
+          </p>
+        )}
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 px-4">
           {currentStep === 1 ? (
             // Japanese options
-            Object.entries(currentQuestion.simpleJapaneseOptions).map(([key, option], index) => (
+            Object.values(currentQuestion.simpleJapaneseOptions).map((option, idx) => (
               <button
-                key={index}
-                onClick={() => handleJapaneseOptionClick(option.score)}
-                className="bg-[#FACC15] text-black px-4 md:px-6 py-3 md:py-4 rounded-lg text-base md:text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
+                key={idx}
+                onClick={() => handleJapaneseAnswer(option.score)}
+                className="bg-[#FACC15] text-black px-4 md:px-6 py-3 md:py-4 rounded-lg text-base md:text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer mb-2"
               >
                 {option.text}
               </button>
             ))
           ) : (
             // English options
-            Object.entries(currentQuestion.englishOptions).map(([key, option], index) => (
+            Object.values(currentQuestion.englishOptions).map((option, idx) => (
               <button
-                key={index}
-                onClick={() => handleEnglishOptionClick(option.score)}
-                className="bg-[#FACC15] text-black px-4 md:px-6 py-3 md:py-4 rounded-lg text-base md:text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer"
+                key={idx}
+                onClick={() => handleEnglishAnswer(option.score)}
+                className="bg-[#FACC15] text-black px-4 md:px-6 py-3 md:py-4 rounded-lg text-base md:text-lg font-bold hover:brightness-110 transition-all duration-200 font-sans cursor-pointer mb-2"
               >
                 {option.text}
               </button>
